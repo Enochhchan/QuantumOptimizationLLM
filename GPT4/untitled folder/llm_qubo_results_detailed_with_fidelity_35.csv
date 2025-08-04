@@ -1,0 +1,494 @@
+Index,Case,Prompt,Success,Failure Type,Latency (s),Num Variables,Num Constraints,Prompt Length,Complexity Score,Reverse Prompt,Fidelity
+1,Knapsack,"Select items to maximize value under weight limit. Total capacity is 13. Items: [{'id': 'item0', 'value': 7, 'weight': 2}, {'id': 'item1', 'value': 5, 'weight': 4}, {'id': 'item2', 'value': 3, 'weight': 3}, {'id': 'item3', 'value': 4, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 1}].",True,,1.71,5.0,1.0,291,8.91,"We want to maximize the expression \(7x_0 + 5x_1 + 3x_2 + 4x_3 + 2x_4\), where \(x_0\), \(x_1\), \(x_2\), \(x_3\), and \(x_4\) are variables.
+
+Subject to the constraint \(2x_0 + 4x_1 + 3x_2 + 2x_3 + x_4 \leq 13\), with a penalty of 1000 for violating the constraint.",0.03590664272890485
+2,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 8, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 1, 'weight': 5}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,1.95,5.0,1.0,291,8.91,"We are trying to maximize a profit function that depends on five items, denoted as item0, item1, item2, item3, and item4. The profit function is given by the expression 8*item0 + 9*item1 + 9*item2 + item3 + 6*item4.
+
+There is a constraint that must be satisfied, which is that the sum of item0, 2 times item1, item2, 5 times item3, and 3 times item4 must be less than or equal to 20. If this constraint is violated, a penalty of 1000 is incurred.
+
+Therefore, the goal is to determine the optimal quantities of item0, item1, item2, item3, and item4 that maximize the profit function while ensuring that the constraint is not violated.",0.03896103896103896
+3,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 1, 'weight': 1}, {'id': 'item1', 'value': 8, 'weight': 2}, {'id': 'item2', 'value': 1, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,1.51,5.0,1.0,291,8.91,"We are trying to maximize a linear objective function that depends on five variables: item0, item1, item2, item3, and item4. The objective function to be maximized is given by the expression ""item0 + 8*item1 + item2 + 3*item3 + 3*item4"".
+
+There is one constraint in this problem, which is an inequality constraint. The constraint is that ""item0 + 2*item1 + 4*item2 + 2*item3 + 4*item4"" must be less than or equal to 19. If this constraint is violated, a penalty of 1000 is incurred.
+
+Therefore, the goal is to find values for the variables item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given inequality constraint.",0.06910994764397906
+4,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 6, 'weight': 1}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 2}, {'id': 'item3', 'value': 4, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 3}].",True,,1.69,5.0,1.0,293,8.93,"We are trying to maximize the total value obtained from selecting items, where each item has a different value. There is a constraint that limits the total weight of the selected items. The weight of each item is multiplied by a coefficient and summed up, and this total weight must be less than or equal to 19. If the constraint is violated, a penalty of 1000 is incurred. The goal is to select the combination of items that maximizes the total value, considering the constraint on the total weight.",0.11853720050441362
+5,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 3, 'weight': 5}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 8, 'weight': 4}].",True,,2.63,5.0,1.0,291,8.91,"We have a set of five items: item0, item1, item2, item3, and item4. 
+
+We want to maximize the total value of these items based on the following values assigned to each item: 
+- item0 has a value of 9
+- item1 has a value of 9
+- item2 has a value of 3
+- item3 has a value of 3
+- item4 has a value of 8
+
+However, there is a constraint that the total weight of the selected items cannot exceed 17 units, where the weights of the items are as follows:
+- item0 weighs 1 unit
+- item1 weighs 5 units
+- item2 weighs 5 units
+- item3 weighs 2 units
+- item4 weighs 4 units
+
+If the weight constraint is violated, a penalty of 1000 will be incurred.
+
+Therefore, the goal is to select a combination of items that maximizes the total value while ensuring that the total weight does not exceed 17 units.",0.04085422469823584
+6,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 6, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 4}, {'id': 'item3', 'value': 8, 'weight': 2}, {'id': 'item4', 'value': 10, 'weight': 1}].",True,,1.52,5.0,1.0,292,8.92,"We are trying to maximize a linear objective function that depends on five decision variables: item0, item1, item2, item3, and item4. The objective function to be maximized is 9 times item0 plus 6 times item1 plus 2 times item2 plus 8 times item3 plus 10 times item4.
+
+There is one constraint that must be satisfied. The constraint is that the sum of 5 times item0, 3 times item1, 4 times item2, 2 times item3, and item4 must be less than or equal to 14. If this constraint is violated, a penalty of 1000 will be incurred.",0.06633906633906633
+7,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 4, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 9, 'weight': 3}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,2.04,5.0,1.0,292,8.92,"We are trying to maximize a linear objective function that depends on five items (item0, item1, item2, item3, item4). The objective function to be maximized is 4 times the value of item0 plus 4 times the value of item1 plus 9 times the value of item2 plus 10 times the value of item3 plus 7 times the value of item4.
+
+There is a constraint that must be satisfied, which is that the sum of 3 times item0, 5 times item1, 3 times item2, 4 times item3, and 4 times item4 must be less than or equal to 12. If this constraint is violated, a penalty of 1000 is incurred.
+
+Therefore, the goal is to choose values for item0, item1, item2, item3, and item4 that maximize the objective function while ensuring that the constraint is not violated.",0.05258033106134372
+8,Knapsack,"Select items to maximize value under weight limit. Total capacity is 11. Items: [{'id': 'item0', 'value': 10, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 6, 'weight': 2}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 3, 'weight': 5}].",True,,1.72,5.0,6.0,293,13.93,"We are given a maximization problem with five variables: \( x_0, x_1, x_2, x_3, x_4 \). The objective is to maximize the expression \( 10x_0 + 9x_1 + 6x_2 + 10x_3 + 3x_4 \).
+
+There are six inequality constraints with penalties of 1000 each:
+1. \( x_0 + 5x_1 + 2x_2 + 4x_3 + 5x_4 \leq 0 \)
+2. \( x_0 \leq 0 \)
+3. \( x_1 \leq 0 \)
+4. \( x_2 \leq 0 \)
+5. \( x_3 \leq 0 \)
+6. \( x_4 \leq 0 \)
+
+The goal is to find values for the variables that maximize the objective function while satisfying all the inequality constraints.",0.05904059040590406
+9,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 3}, {'id': 'item1', 'value': 3, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 4}, {'id': 'item3', 'value': 9, 'weight': 5}, {'id': 'item4', 'value': 4, 'weight': 1}].",True,,1.74,5.0,1.0,292,8.92,"We want to maximize the expression \(3x_0 + 3x_1 + 10x_2 + 9x_3 + 4x_4\), subject to the constraint \(3x_0 + 2x_1 + 4x_2 + 5x_3 + x_4 \leq 16\).",0.1559633027522936
+10,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 5, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 5}, {'id': 'item2', 'value': 4, 'weight': 5}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,0.97,5.0,1.0,291,8.91,We are trying to maximize the expression \(5 \times \text{item0} + 5 \times \text{item1} + 4 \times \text{item2} + 5 \times \text{item3} + 8 \times \text{item4}\) subject to the constraint \(5 \times \text{item0} + 5 \times \text{item1} + 4 \times \text{item2} + 5 \times \text{item3} + 2 \times \text{item4} \leq 14\).,0.009836065573770493
+11,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 9, 'weight': 4}, {'id': 'item1', 'value': 3, 'weight': 3}, {'id': 'item2', 'value': 5, 'weight': 2}, {'id': 'item3', 'value': 7, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 1}].",True,,1.13,5.0,1.0,291,8.91,"We are given a problem with five items (item0, item1, item2, item3, item4) that need to be assigned values. There is a constraint that the sum of the values of these items multiplied by certain coefficients (4 for item0, 3 for item1, 2 for item2, 5 for item3, and 1 for item4) should not exceed 15, with a penalty of 1000 for violating this constraint.
+
+The objective is to maximize a function that is a linear combination of the values of the items, with coefficients of 9 for item0, 3 for item1, 5 for item2, 7 for item3, and 9 for item4.
+
+Therefore, the optimization problem is to assign values to the items in a way that maximizes the total value, while ensuring that the sum of the values of the items multiplied by their respective coefficients does not exceed 15.",0.033930254476908575
+12,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 8, 'weight': 4}, {'id': 'item1', 'value': 7, 'weight': 1}, {'id': 'item2', 'value': 1, 'weight': 5}, {'id': 'item3', 'value': 10, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 5}].",True,,0.94,5.0,1.0,292,8.92,"We are trying to maximize a linear objective function that depends on five variables: item0, item1, item2, item3, and item4. The objective function to maximize is \(8 \times \text{item0} + 7 \times \text{item1} + \text{item2} + 10 \times \text{item3} + 2 \times \text{item4}\).
+
+There is one constraint that must be satisfied: \(4 \times \text{item0} + \text{item1} + 5 \times \text{item2} + 2 \times \text{item3} + 5 \times \text{item4} \leq 15\). If this constraint is violated, a penalty of 1000 is incurred.
+
+The goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given constraint.",0.06111696522655427
+13,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 4, 'weight': 2}, {'id': 'item2', 'value': 8, 'weight': 5}, {'id': 'item3', 'value': 4, 'weight': 4}, {'id': 'item4', 'value': 6, 'weight': 2}].",True,,2.66,5.0,6.0,291,13.91,"You have a set of five items (item0, item1, item2, item3, item4) with associated weights. There are constraints on the total weight of the items and penalties for violating these constraints. The goal is to maximize a linear combination of the weights of the items.
+
+The optimization problem can be described as follows:
+Maximize the total value by selecting items in such a way that the total weight does not exceed certain limits. Each item has a weight, and there are penalties for selecting an item. The objective is to maximize the total value of the selected items while staying within the weight limits and minimizing penalties.",0.056155507559395246
+14,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,2.08,5.0,1.0,291,8.91,"We want to maximize the total value obtained by selecting items from a set of five items. Each item has a specific value associated with it. The total weight of the selected items must not exceed 17 units.
+
+The objective is to maximize the total value, which is calculated as follows:
+- item0 has a value of 9
+- item1 has a value of 5
+- item2 has a value of 9
+- item3 has a value of 3
+- item4 has a value of 7
+
+There is a constraint that limits the total weight of the selected items:
+- 5*item0 + 2*item1 + 4*item2 + 4*item3 + 4*item4 <= 17
+
+If the weight constraint is violated, a penalty of 1000 is incurred.",0.06437291897891231
+15,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 10, 'weight': 4}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 10, 'weight': 1}, {'id': 'item3', 'value': 9, 'weight': 1}, {'id': 'item4', 'value': 8, 'weight': 5}].",True,,1.3,5.0,1.0,293,8.93,"We want to maximize the total value of a set of five items, denoted as item0, item1, item2, item3, and item4. Each item has a specific value associated with it: item0 has a value of 10, item1 has a value of 4, item2 has a value of 10, item3 has a value of 9, and item4 has a value of 8.
+
+However, there is a constraint that the total weight of the selected items cannot exceed 20 units. The weight of each item is as follows: item0 weighs 4 units, item1 weighs 5 units, item2 weighs 1 unit, item3 weighs 1 unit, and item4 weighs 5 units.
+
+The goal is to select a combination of items that maximizes the total value while ensuring that the total weight does not exceed 20 units.",0.06391752577319587
+16,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 6, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 4}, {'id': 'item2', 'value': 1, 'weight': 3}, {'id': 'item3', 'value': 8, 'weight': 1}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,0.98,5.0,1.0,291,8.91,"We have a set of five items: item0, item1, item2, item3, and item4. 
+
+We want to maximize the expression 6*item0 + 4*item1 + item2 + 8*item3 + 6*item4, subject to the constraint that 3*item0 + 4*item1 + 3*item2 + item3 + 3*item4 is less than or equal to 16. If this constraint is violated, a penalty of 1000 will be incurred.
+
+Our goal is to find the values for these items that maximize the objective function while satisfying the given constraint.",0.07567567567567568
+17,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 4}, {'id': 'item1', 'value': 5, 'weight': 3}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 3, 'weight': 1}, {'id': 'item4', 'value': 5, 'weight': 5}].",True,,2.15,5.0,1.0,291,8.91,"We are trying to maximize a profit function that depends on five items (item0, item1, item2, item3, item4). The profit is calculated as 3 times the value of item0 plus 5 times the value of item1 plus 9 times the value of item2 plus 3 times the value of item3 plus 5 times the value of item4.
+
+There is a constraint that the total weight of the items cannot exceed 16 units. The weight is calculated as 4 times the value of item0 plus 3 times the value of item1 plus the value of item2 plus the value of item3 plus 5 times the value of item4.
+
+The goal is to find the values for each item that maximize the profit while satisfying the weight constraint.",0.09544008483563096
+18,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 3, 'weight': 4}, {'id': 'item3', 'value': 6, 'weight': 5}, {'id': 'item4', 'value': 1, 'weight': 4}].",True,,1.46,5.0,1.0,291,8.91,"We are trying to maximize a linear objective function, which is a combination of different coefficients multiplied by the variables item0, item1, item2, item3, and item4. 
+
+We have one constraint that needs to be satisfied, which is that the sum of 5 times item0, 3 times item1, 4 times item2, 5 times item3, and 4 times item4 must be less than or equal to 12. If this constraint is violated, a penalty of 1000 will be incurred.
+
+Our goal is to find values for item0, item1, item2, item3, and item4 that maximize the expression 9*item0 + 2*item1 + 3*item2 + 6*item3 + 1*item4, while still satisfying the given constraint.",0.07894736842105263
+19,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 7, 'weight': 4}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,1.12,5.0,1.0,293,8.93,"We have a problem where we need to maximize a certain objective function. We have five items (item0, item1, item2, item3, item4) that we can choose from. The objective is to maximize the expression 10*item0 + 10*item1 + 7*item2 + 5*item3 + 8*item4.
+
+However, we have a constraint that needs to be satisfied. The constraint is that the expression 2*item0 + 2*item1 + 4*item2 + 5*item3 + 2*item4 must be less than or equal to 14. If this constraint is violated, a penalty of 1000 will be incurred.
+
+Therefore, the optimization problem is to select the items in such a way that the objective function is maximized while ensuring that the constraint is not violated.",0.06282722513089005
+20,Knapsack,"Select items to maximize value under weight limit. Total capacity is 18. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 2}, {'id': 'item3', 'value': 3, 'weight': 3}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,1.36,5.0,2.0,292,9.92,"You are given a set of five items: item0, item1, item2, item3, and item4. There are two constraints in this problem. The first constraint is that the expression 2*item0 + 3*item1 + 2*item2 + 3*item3 + 4*item4 must be less than or equal to a penalty of 1000. The second constraint is the same as the first one. 
+
+The goal is to maximize the objective function, which is defined as 10*item0 + 2*item1 + 2*item2 + 3*item3 + 3*item4. 
+
+Therefore, the optimization problem is to find the values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given constraints.",0.035555555555555556
+21,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.89,,,113,1.1300000000000001,,
+22,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.1,,,113,1.1300000000000001,,
+23,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.99,,,113,1.1300000000000001,,
+24,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.99,,,113,1.1300000000000001,,
+25,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.71,,,113,1.1300000000000001,,
+26,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.71,,,113,1.1300000000000001,,
+27,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,5.73,,,113,1.1300000000000001,,
+28,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.81,,,113,1.1300000000000001,,
+29,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.53,,,113,1.1300000000000001,,
+30,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.87,,,113,1.1300000000000001,,
+31,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.82,,,113,1.1300000000000001,,
+32,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,6.74,,,113,1.1300000000000001,,
+33,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.95,,,113,1.1300000000000001,,
+34,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.13,,,113,1.1300000000000001,,
+35,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,3.59,,,113,1.1300000000000001,,
+36,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,5.08,,,113,1.1300000000000001,,
+37,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.58,,,113,1.1300000000000001,,
+38,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,5.81,,,113,1.1300000000000001,,
+39,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,4.54,,,113,1.1300000000000001,,
+40,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",False,LLM Fail,5.8,,,113,1.1300000000000001,,
+41,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person1'], ['Person1', 'Person2']] together.",True,,1.55,4.0,6.0,123,11.23,"The optimization problem aims to minimize a function with four variables, x1, x2, x3, and x4. The objective is to minimize this function. There are six constraints in the problem, each representing an inequality. These constraints penalize the objective function with a penalty of 1000 if they are violated. The constraints are as follows:
+1. x1 + x2 <= 1
+2. x1 + x3 <= 1
+3. x1 + x4 <= 1
+4. x2 + x3 <= 1
+5. x2 + x4 <= 1
+6. x3 + x4 <= 1
+
+The goal is to find values for x1, x2, x3, and x4 that minimize the objective function while satisfying all of the given constraints.",0.05194805194805195
+42,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person0', 'Person3']] together.",True,,1.33,4.0,4.0,123,9.23,"The optimization problem aims to minimize the objective function subject to the following constraints:
+
+1. The sum of variables x0 and x1 should be less than or equal to 1 with a penalty of 1000.
+2. The sum of variables x0 and x3 should be less than or equal to 1 with a penalty of 1000.
+3. The sum of variables x1 and x2 should be less than or equal to 1 with a penalty of 1000.
+4. The sum of variables x2 and x3 should be less than or equal to 1 with a penalty of 1000.
+
+The goal is to find values for variables x0, x1, x2, and x3 that minimize the objective function, which in this case is set to 0.",0.03586206896551724
+43,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person3', 'Person4']] together.",True,,1.61,5.0,2.0,123,8.23,"We want to find values for variables \( x_0, x_1, x_2, x_3, x_4 \) that minimize the objective function. The objective function is to minimize the value of 0.
+
+We have two constraints:
+1. \( x_0 + x_4 \leq 1 \) with a penalty of 1000.
+2. \( x_3 + x_4 \leq 1 \) with a penalty of 1000.
+
+Our goal is to find values for the variables that satisfy these constraints while minimizing the objective function.",0.06095238095238095
+44,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person0'], ['Person4', 'Person0']] together.",True,,1.03,5.0,2.0,123,8.23,"We want to minimize a function with five variables: x0, x1, x2, x3, and x4. 
+
+There are two constraints:
+1. The sum of x0 and x1 should be less than or equal to 1, with a penalty of 1000 for violation.
+2. The sum of x0 and x4 should be less than or equal to 1, with a penalty of 1000 for violation.
+
+The objective is to minimize the function value, which is 0.",0.062111801242236024
+45,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person1'], ['Person4', 'Person1']] together.",True,,1.12,4.0,2.0,123,7.23,"We want to minimize a function with four variables, \(x_1\), \(x_2\), \(x_3\), and \(x_4\). There are two constraints: 
+1. The sum of \(x_1\) and \(x_2\) must be less than or equal to 1, with a penalty of 1000 for violating this constraint.
+2. The sum of \(x_1\) and \(x_4\) must be less than or equal to 1, with a penalty of 1000 for violating this constraint.
+
+The objective is to minimize the function, with no specific expression given.",0.07104795737122557
+46,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person3'], ['Person0', 'Person1']] together.",True,,0.93,4.0,2.0,123,7.23,"We want to minimize a function with four variables, \(x_0\), \(x_1\), \(x_2\), and \(x_3\). We have two constraints: 
+1. \(x_0 + x_3 \leq 1\) with a penalty of 1000 if violated.
+2. \(x_0 + x_1 \leq 1\) with a penalty of 1000 if violated.
+
+The objective is to minimize the function.",0.019801980198019802
+47,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person0', 'Person2']] together.",True,,1.02,3.0,2.0,123,6.23,"We have three variables, \(x_0\), \(x_1\), and \(x_2\), and two constraints. The first constraint is that the sum of \(x_0\) and \(x_1\) should be less than or equal to 1 with a penalty of 1000 for violation. The second constraint is that the sum of \(x_0\) and \(x_2\) should be less than or equal to 1 with a penalty of 1000 for violation. 
+
+The objective is to minimize the value of the QUBO.",0.02702702702702703
+48,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person4'], ['Person3', 'Person1']] together.",True,,1.35,4.0,2.0,123,7.23,"We have a minimization problem with four variables: x1, x2, x3, and x4. The goal is to minimize the objective function, which is set to 0.
+
+There are two constraints in the problem:
+1. x1 + x4 <= 1 with a penalty of 1000.
+2. x3 + x1 <= 1 with a penalty of 1000.
+
+The problem is to find values for the variables x1, x2, x3, and x4 that minimize the objective function while satisfying the given constraints.",0.04158790170132325
+49,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person2', 'Person3']] together.",True,,2.56,4.0,2.0,123,7.23,"We want to minimize a function with four variables, \(x_0\), \(x_1\), \(x_2\), and \(x_3\), subject to the following constraints:
+
+1. \(x_0 + x_1 \leq 1\) with a penalty of 1000 if violated.
+2. \(x_2 + x_3 \leq 1\) with a penalty of 1000 if violated.
+
+The objective is to minimize the function.",0.0815347721822542
+50,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person0', 'Person3']] together.",True,,2.28,5.0,6.0,123,12.23,"The optimization problem aims to minimize a cost function with five variables: x0, x1, x2, x3, and x4. The objective is to minimize this cost function. There are six constraints in the problem, each imposing an inequality restriction on the sum of two variables being less than or equal to 1. Each constraint violation incurs a penalty of 1000.",0.021413276231263382
+51,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person0']] together.",True,,1.32,3.0,2.0,123,6.23,"We want to find values for three variables, let's call them \( x_0 \), \( x_1 \), and \( x_2 \), that minimize a certain objective function. We have two constraints that must be satisfied: 
+
+1. The sum of \( x_0 \) and \( x_1 \) must be less than or equal to 1.
+2. The sum of \( x_2 \) and \( x_0 \) must be less than or equal to 1.
+
+We want to minimize the objective function, which in this case is simply 0.",0.07894736842105263
+52,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person4', 'Person2']] together.",True,,1.46,5.0,2.0,123,8.23,"We want to minimize a function with five variables: x0, x1, x2, x3, and x4. We have two constraints that must be satisfied with a penalty of 1000 each. The first constraint is that the sum of x0 and x1 must be less than or equal to 1. The second constraint is that the sum of x4 and x2 must be less than or equal to 1. The objective is to minimize the function.",0.06611570247933884
+53,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person1']] together.",True,,2.59,3.0,2.0,123,6.23,"We want to minimize a function with three variables, \(x_0\), \(x_1\), and \(x_2\). There are two constraints: 
+1. The sum of \(x_0\) and \(x_1\) must be less than or equal to 1, with a penalty of 1000 for violating this constraint.
+2. The sum of \(x_2\) and \(x_1\) must be less than or equal to 1, with a penalty of 1000 for violating this constraint.
+
+The objective is to minimize the function, with no specific expression given.",0.07207207207207207
+54,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person0'], ['Person2', 'Person0']] together.",True,,1.12,5.0,2.0,123,8.23,"We want to find values for variables \( x_0, x_1, x_2, x_3, x_4 \) that minimize the objective function. The objective is to minimize the value of 0.
+
+We have two constraints:
+1. \( x_0 + x_1 \leq 1 \) with a penalty of 1000.
+2. \( x_2 + x_0 \leq 1 \) with a penalty of 1000.
+
+The goal is to assign values to the variables that satisfy the constraints while minimizing the objective function.",0.05048543689320388
+55,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person3', 'Person0']] together.",True,,2.61,5.0,5.0,123,11.23,"We are given a set of variables {x0, x1, x2, x3, x4} and a set of constraints. Each constraint is an inequality expression with a penalty associated with it. The constraints are:
+1. x0 + x1 ≤ 1
+2. x1 + x2 ≤ 1
+3. x2 + x3 ≤ 1
+4. x3 + x4 ≤ 1
+5. x4 + x0 ≤ 1
+
+The objective is to minimize the sum of the variables: x0 + x1 + x2 + x3 + x4.",0.03508771929824561
+56,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person1', 'Person2']] together.",True,,1.65,4.0,6.0,123,11.23,"We are trying to minimize the expression \(1000x1 + 1000x2 + 1000x3 + 1000x4\), subject to the following constraints:
+
+1. \(x1 + x2 \leq 1\)
+2. \(x1 + x3 \leq 1\)
+3. \(x1 + x4 \leq 1\)
+4. \(x2 + x3 \leq 1\)
+5. \(x2 + x4 \leq 1\)
+6. \(x3 + x4 \leq 1\)
+
+The goal is to find values for \(x1\), \(x2\), \(x3\), and \(x4\) that minimize the objective function while satisfying all the constraints.",0.04271844660194175
+57,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person3', 'Person1'], ['Person0', 'Person2']] together.",True,,2.35,4.0,4.0,123,9.23,"The optimization problem aims to minimize the sum of variables x0, x1, x2, and x3. The problem includes constraints in the form of inequalities that penalize violations. Specifically, the constraints require that the sum of x0 and x1, the sum of x2 and x3, the sum of x0 and x2, and the sum of x1 and x3 must all be greater than or equal to 1.",0.008583690987124463
+58,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person3'], ['Person3', 'Person1']] together.",True,,1.15,3.0,3.0,123,7.23,"We have a minimization problem with three variables, x1, x2, and x3. The goal is to minimize the objective function, which is set to 0 in this case. 
+
+There are three constraints in the problem, each with a penalty of 1000:
+1. The sum of x1 and x2 must be less than or equal to 1.
+2. The sum of x2 and x3 must be less than or equal to 1.
+3. The sum of x3 and x1 must be less than or equal to 1.
+
+The task is to find values for x1, x2, and x3 that satisfy these constraints while minimizing the objective function.",0.0440251572327044
+59,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person1', 'Person0']] together.",True,,1.0,5.0,2.0,123,8.23,"We want to find values for variables \(x_0\), \(x_1\), \(x_2\), \(x_3\), and \(x_4\) that minimize the objective function. We have two constraints that must be satisfied:
+
+1. The sum of \(x_0\) and \(x_4\) must be less than or equal to 1, with a penalty of 1000 for each violation.
+2. The sum of \(x_1\) and \(x_0\) must be less than or equal to 1, with a penalty of 1000 for each violation.
+
+The goal is to minimize the objective function, which in this case is 0.",0.05102040816326531
+60,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person3', 'Person0']] together.",True,,1.25,4.0,2.0,123,7.23,"We want to minimize a function with four variables, x0, x1, x2, and x3. There are two constraints: 
+1. The sum of x0 and x1 should be less than or equal to 1, with a penalty of 1000 for each violation.
+2. The sum of x3 and x0 should be less than or equal to 1, with a penalty of 1000 for each violation.
+
+The objective is to minimize the function, with no specific expression provided.",0.05511811023622047
+61,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node0', 'Node4'), ('Node1', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,1.68,5.0,6.0,205,13.05,"We have a problem where we need to assign colors to five nodes (Node0, Node1, Node2, Node3, Node4) such that no two adjacent nodes have the same color. The goal is to minimize the number of conflicts between adjacent nodes with the constraint that neighboring nodes must have different colors.",0.14859437751004015
+62,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node2'), ('Node2', 'Node4'), ('Node3', 'Node4')].",True,,1.54,4.0,3.0,145,8.45,"The optimization problem aims to minimize a cost function. The variables in the problem represent the colors assigned to four different nodes in a graph. The goal is to assign colors to the nodes in a way that minimizes the cost, subject to the following constraints:
+
+1. Node1 and Node2 cannot have the same color.
+2. Node2 and Node4 cannot have the same color.
+3. Node3 and Node4 cannot have the same color.
+
+The objective is to find the optimal assignment of colors to the nodes that satisfies these constraints and minimizes the cost function.",0.02023121387283237
+63,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,1.42,5.0,3.0,145,9.45,"We have a problem where we need to assign colors to five nodes (Node0, Node1, Node2, Node3, Node4) such that no two adjacent nodes have the same color. The goal is to minimize the objective function value.
+
+The constraints are as follows:
+1. Node0 cannot have the same color as Node2.
+2. Node1 cannot have the same color as Node4.
+3. Node2 cannot have the same color as Node3.",0.1420345489443378
+64,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3')].",True,,0.98,2.0,1.0,105,4.05,"We want to assign colors to two nodes, Node2 and Node3, in a way that Node2 and Node3 have different colors. Our goal is to minimize the total penalty for violating this constraint.",0.34965034965034963
+65,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node2', 'Node3')].",True,,1.1,3.0,2.0,125,6.25,"We have a problem where we need to assign colors to three nodes (Node0, Node2, Node3) such that Node0 and Node3 cannot have the same color, and Node2 and Node3 cannot have the same color. The goal is to minimize some objective function.",0.0110803324099723
+66,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node2', 'Node3'), ('Node2', 'Node4')].",True,,1.68,5.0,4.0,165,10.65,"You have a problem where you need to assign colors to nodes in a graph in such a way that adjacent nodes do not have the same color. The goal is to minimize some objective function. The constraints specify that Node0 cannot have the same color as Node1 or Node3, and Node2 cannot have the same color as Node3 or Node4.",0.012422360248447204
+67,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3')].",True,,0.6,2.0,1.0,105,4.05,"We have two variables, Node0_color and Node3_color, that can each take on different values. The constraint is that Node0_color cannot be the same as Node3_color, with a penalty of 1 for each violation of this constraint. The objective is to minimize the overall penalty.",0.021333333333333333
+68,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node0', 'Node3'), ('Node1', 'Node3')].",True,,1.43,4.0,4.0,165,9.65,"You have a problem where you need to assign colors to four nodes (Node0, Node1, Node2, Node3) such that no two adjacent nodes have the same color. The goal is to minimize some objective function.",0.4222222222222222
+69,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node4')].",True,,1.21,2.0,1.0,105,4.05,"We want to assign colors to two nodes, Node1 and Node4, in a way that minimizes conflicts between them. The objective is to minimize conflicts, with no preference for any specific color assignment. The only constraint is that Node1 and Node4 cannot have the same color.",0.08021390374331551
+70,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,1.23,5.0,3.0,145,9.45,"We have a problem where we need to assign colors to five nodes (Node0, Node1, Node2, Node3, Node4) such that no two adjacent nodes have the same color. The goal is to minimize some objective function.
+
+Constraints:
+1. Node0 and Node2 cannot have the same color.
+2. Node1 and Node4 cannot have the same color.
+3. Node2 and Node3 cannot have the same color.
+
+Objective:
+Minimize the objective function (not specified in the JSON).",0.017452006980802792
+71,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node1', 'Node2'), ('Node1', 'Node3')].",True,,1.2,4.0,3.0,145,8.45,"We have a problem where we need to assign colors to four nodes (Node0, Node1, Node2, Node3) such that no two adjacent nodes have the same color. 
+
+Our goal is to minimize the objective function, which in this case is set to 0. 
+
+To achieve this, we need to ensure that Node0 and Node3 have different colors, Node1 and Node2 have different colors, and Node1 and Node3 have different colors. 
+
+Each time we violate one of these constraints, we incur a penalty of 1.",0.009868421052631578
+72,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node2', 'Node4')].",True,,0.93,4.0,2.0,125,7.25,"We have a problem where we want to assign colors to nodes in a graph. The variables represent the color assigned to each node (Node0, Node1, Node2, Node4). 
+
+We have two constraints:
+1. The color difference between Node0 and Node1 should be minimized.
+2. The color difference between Node2 and Node4 should be minimized.
+
+Our objective is to minimize the overall penalty, which is currently set to 0.",0.011428571428571429
+73,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3'), ('Node3', 'Node4')].",True,,1.2,3.0,2.0,125,6.25,"We have three nodes, each with a color that can be assigned. We want to minimize the total penalty for violating the constraints. The constraints state that Node 2 cannot have the same color as Node 3, and Node 3 cannot have the same color as Node 4. The objective is to minimize the penalty, which means finding a coloring assignment that satisfies the constraints with the lowest possible number of violations.",0.0148975791433892
+74,Graph Coloring,Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [].,True,,2.66,4.0,6.0,87,10.87,"The optimization problem aims to minimize a cost function with respect to four variables, x0, x1, x2, and x3. The problem includes six inequality constraints, each penalized with a weight of 1000. The constraints limit the sum of certain variable pairs to be less than or equal to 1. The objective is to find values for the variables that minimize the overall cost function.",0.01735357917570499
+75,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node2', 'Node4')].",True,,1.23,4.0,3.0,145,8.45,"We have a problem where we need to assign colors to nodes in a graph. The goal is to minimize some objective function. We have four nodes (Node0, Node1, Node2, Node4) that need to be assigned colors. The colors are represented by variables Node0_color, Node1_color, Node2_color, and Node4_color.
+
+We have some constraints that need to be satisfied:
+1. Node0_color should not be the same as Node1_color.
+2. Node0_color should not be the same as Node2_color.
+3. Node2_color should not be the same as Node4_color.
+
+The objective is to minimize the value of the objective function, which is currently set to 0.",0.013315579227696404
+76,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node1', 'Node3')].",True,,1.02,4.0,3.0,145,8.45,"We have a set of nodes (Node0, Node1, Node2, Node3) that need to be colored. The goal is to minimize some objective function. 
+
+We want to assign colors to each node in a way that neighboring nodes have different colors. There is a penalty of 1 for each pair of neighboring nodes that have the same color. 
+
+The objective is to find the optimal coloring scheme that minimizes the total penalties for neighboring nodes having the same color.",0.06153846153846154
+77,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node1', 'Node4'), ('Node2', 'Node3'), ('Node3', 'Node4')].",True,,1.43,4.0,4.0,165,9.65,"We have a problem where we need to assign colors to four nodes (Node1, Node2, Node3, Node4) such that no two adjacent nodes have the same color. The goal is to minimize the objective function.
+
+Constraints:
+1. Node1 cannot have the same color as Node3.
+2. Node1 cannot have the same color as Node4.
+3. Node2 cannot have the same color as Node3.
+4. Node3 cannot have the same color as Node4.
+
+Objective:
+Minimize the objective function (which is not explicitly defined in this case).",0.015455950540958269
+78,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node4'), ('Node1', 'Node2')].",True,,1.2,4.0,2.0,125,7.25,"We have a problem where we need to assign colors to four nodes (Node0, Node1, Node2, Node4) such that no two adjacent nodes have the same color. The goal is to minimize the objective function value.
+
+The first constraint states that Node0 and Node4 cannot have the same color. The penalty for violating this constraint is 1.
+
+The second constraint states that Node1 and Node2 cannot have the same color. The penalty for violating this constraint is 1.
+
+The objective is to minimize the value of the objective function, which in this case is set to 0.",0.011851851851851851
+79,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3')].",True,,0.79,2.0,1.0,105,4.05,"We have two variables, Node1_color and Node3_color, that represent the colors assigned to two nodes in a graph. The objective is to minimize the overall cost. The only constraint is that Node1_color cannot be the same as Node3_color, with a penalty of 1 for violating this constraint.",0.030848329048843187
+80,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node3', 'Node4')].",True,,0.9,3.0,2.0,125,6.25,"We have three variables representing the colors assigned to different nodes: Node1, Node3, and Node4. There are two constraints that need to be satisfied: Node1 cannot have the same color as Node3, and Node3 cannot have the same color as Node4. The goal is to minimize the objective function, which in this case is set to zero.",0.030973451327433628
+81,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 6, 4, 7, 5, 3].",True,,1.85,6.0,3.0,158,10.58,"We are given a problem with six variables: x0, x1, x2, x3, x4, and x5. The problem consists of the following components:
+
+1. Constraints:
+   - Equality constraint: The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any violation.
+   - Inequality constraint: The sum of x0, x1, and x2 must be less than or equal to 3, with a penalty of 1000 for any violation.
+   - Inequality constraint: The sum of x3, x4, and x5 must be less than or equal to 4, with a penalty of 1000 for any violation.
+
+2. Objective:
+   The objective is to minimize the squared difference between the following two sets of variables:
+   - 2*x0 + 6*x1 + 4*x2
+   - 7*x3 + 5*x4 + 3*x5
+
+The goal is to find values for x0, x1, x2, x3, x4, and x5 that satisfy the equality constraint, the inequality constraints, and minimize the squared difference specified in the objective function.",0.043726235741444866
+82,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 9, 3, 10, 5].",True,,1.27,6.0,2.0,160,9.6,"You have a constrained optimization problem where you want to minimize the square of the difference between two sets of variables. 
+
+The variables x0, x1, and x2 must sum up to 3, and the variables x3, x4, and x5 must also sum up to 3. 
+
+The objective is to minimize the squared difference between the sum of (10*x0 + 2*x1 + 9*x2) and the sum of (10*x3 - 3*x4 - 5*x5).",0.06818181818181818
+83,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 7, 5, 1, 2, 7].",True,,3.39,6.0,9.0,158,16.58,"The optimization problem aims to minimize the total penalty associated with a set of variables (x0, x1, x2, x3, x4, x5) subject to the following constraints:
+
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5 with a penalty of 1000.
+2. The sum of x0, x1, and x2 must be equal to 3 with a penalty of 1000.
+3. The sum of x3, x4, and x5 must be equal to 3 with a penalty of 1000.
+4. Each variable (x0, x1, x2, x3, x4, x5) must be less than or equal to 1 with a penalty of 1000.
+
+The objective is to minimize the total penalty, which is calculated as the sum of 1000 times each variable (x0, x1, x2, x3, x4, x5).",0.027918781725888325
+84,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [1, 8, 5, 6, 10, 9].",True,,3.53,6.0,9.0,159,16.59,"The optimization problem aims to minimize a cost function that is a linear combination of six variables: x0, x1, x2, x3, x4, and x5. The cost function is formulated as follows: 
+
+Cost = 1000*x0 + 8000*x1 + 5000*x2 + 6000*x3 + 10000*x4 + 9000*x5
+
+The problem is subject to the following constraints:
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for deviation from this equality.
+2. The sum of x0, x1, and x2 must be equal to 3, with a penalty of 1000 for deviation from this equality.
+3. The sum of x3, x4, and x5 must be equal to 3, with a penalty of 1000 for deviation from this equality.
+4. Each variable x0, x1, x2, x3, x4, and x5 must be less than or equal to 1, with a penalty of 1000 for exceeding this limit.
+
+The goal is to find values for x0, x1, x2, x3, x4, and x5 that minimize the cost function while satisfying all the constraints mentioned above.",0.026168224299065422
+85,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 9, 9, 8, 9, 7].",True,,2.26,6.0,9.0,158,16.58,"The optimization problem aims to minimize the objective function. The problem involves six variables, namely x0, x1, x2, x3, x4, and x5. 
+
+There are several constraints in the problem:
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any deviation from this equality.
+2. The sum of x0, x1, and x2 must be equal to 3, with a penalty of 1000 for any deviation from this equality.
+3. The sum of x3, x4, and x5 must be equal to 3, with a penalty of 1000 for any deviation from this equality.
+4. Each variable x0, x1, x2, x3, x4, and x5 must be less than or equal to 1, with a penalty of 1000 for any violation of this inequality.
+
+The goal is to find values for x0, x1, x2, x3, x4, and x5 that satisfy these constraints and minimize the objective function.",0.01664932362122789
+86,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [3, 8, 5, 4, 9, 3].",True,,1.83,6.0,3.0,158,10.58,"We are given a minimization problem with six variables: x0, x1, x2, x3, x4, and x5. The problem involves three constraints and an objective function.
+
+The first constraint is that the sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any violation of this equality.
+
+The second constraint states that the sum of x0, x1, and x2 must be less than or equal to 3, with a penalty of 1000 for exceeding this limit.
+
+The third constraint specifies that the sum of x3, x4, and x5 must be less than or equal to 3, also penalized by 1000 for any violation.
+
+The objective function is to minimize the square of the expression (3*x0 + 8*x1 + 5*x2 + 4*x3 + 9*x4 + 3*x5).",0.03263403263403263
+87,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 1, 7, 10, 4, 9].",True,,2.25,6.0,9.0,159,16.59,"The optimization problem aims to minimize the sum of penalties associated with violations of constraints. 
+
+Variables:
+- There are six binary variables: x0, x1, x2, x3, x4, x5.
+
+Constraints:
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any violation.
+2. The sum of x0, x1, and x2 must be equal to 3, with a penalty of 1000 for any violation.
+3. The sum of x3, x4, and x5 must be equal to 3, with a penalty of 1000 for any violation.
+4. Each variable x0, x1, x2, x3, x4, x5 must be less than or equal to 1, with a penalty of 1000 for any violation.
+
+Objective:
+Minimize the total penalty, which is the sum of penalties associated with violations of constraints:
+- 1000 times x0 + 1000 times x1 + 1000 times x2 + 1000 times x3 + 1000 times x4 + 1000 times x5.",0.037075180226570546
+88,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 8, 9, 3, 8, 10].",True,,2.74,6.0,9.0,160,16.6,"The optimization problem aims to minimize the total penalty associated with a set of variables (x0, x1, x2, x3, x4, x5) subject to the following constraints:
+
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any deviation from this equality.
+2. The sum of x0, x1, and x2 must be equal to 3, with a penalty of 1000 for any deviation from this equality.
+3. The sum of x3, x4, and x5 must be equal to 3, with a penalty of 1000 for any deviation from this equality.
+4. Each variable (x0, x1, x2, x3, x4, x5) must be less than or equal to 1, with a penalty of 1000 for any violation of this inequality.
+
+The objective is to minimize the total penalty, which is calculated as the sum of 1000 times each variable (x0, x1, x2, x3, x4, x5).",0.027600849256900213
+89,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 3, 5, 2, 1, 7].",True,,1.36,6.0,2.0,159,9.59,"The optimization problem aims to minimize the squared difference between two sets of variables. The variables x0, x1, and x2 must sum up to 3, and the variables x3, x4, and x5 must also sum up to 3. The objective function to be minimized is the square of the difference between the weighted sums of the two sets of variables.",0.049586776859504134
+90,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 6, 3, 6, 8].",True,,1.94,6.0,3.0,158,10.58,"We are given a set of variables {x0, x1, x2, x3, x4, x5} and three equality constraints. The first constraint states that the sum of x0, x1, and x2 should be equal to the sum of x3, x4, and x5 with a penalty of 1000. The second constraint specifies that the sum of x0, x1, and x2 should be equal to 3 with a penalty of 1000. The third constraint states that the sum of x3, x4, and x5 should be equal to 3 with a penalty of 1000.
+
+The objective is to minimize the squared difference between the sum of (6*x0 + 5*x1 + 6*x2) and the sum of (3*x3 + 6*x4 + 8*x5).",0.030726256983240222
+91,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 6, 7, 1, 9, 3].",True,,2.23,6.0,3.0,158,10.58,"We are given a set of variables {x0, x1, x2, x3, x4, x5} and need to optimize the following problem:
+
+Minimize the square of the expression (8*x0 + 6*x1 + 7*x2 - 1*x3 + 9*x4 + 3*x5), subject to the following constraints:
+1. x0 + x1 + x2 + x3 + x4 + x5 = 3 with a penalty of 1000 for any deviation from this equality.
+2. x0 + x1 + x2 <= 1 with a penalty of 1000 for violating this inequality.
+3. x3 + x4 + x5 <= 1 with a penalty of 1000 for violating this inequality.
+
+The goal is to find values for x0, x1, x2, x3, x4, and x5 that minimize the squared expression while satisfying the given constraints.",0.02631578947368421
+92,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [7, 7, 4, 1, 5, 2].",True,,1.75,6.0,2.0,158,9.58,"We are given a problem with 6 variables, denoted as x0, x1, x2, x3, x4, and x5. The problem consists of two constraints and an objective function.
+
+The first constraint is an equality constraint, which states that the sum of all variables x0 to x5 must equal 3. Violating this constraint incurs a penalty of 1000.
+
+The second constraint is an inequality constraint, which states that the weighted sum of the variables must be less than or equal to 12. The weights are 7 for x0 and x1, 4 for x2, 1 for x3, 5 for x4, and 2 for x5. Violating this constraint incurs a penalty of 1000.
+
+The objective is to minimize the sum of the squares of all variables x0 to x5.
+
+Therefore, the optimization problem is to find values for x0 to x5 that minimize the sum of their squares, while satisfying the constraints that the sum of the variables is 3 and the weighted sum of the variables is less than or equal to 12.",0.03581526861451461
+93,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 10, 10, 8, 9, 4].",True,,1.74,6.0,2.0,160,9.6,"You have 6 variables: x0, x1, x2, x3, x4, x5. 
+
+There are 2 constraints:
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any violation.
+2. The sum of all variables x0, x1, x2, x3, x4, and x5 must be equal to 3, with a penalty of 1000 for any deviation.
+
+The objective is to minimize the square of the expression: (8*x0 + 10*x1 + 10*x2 + 8*x3 + 9*x4 + 4*x5).",0.04569420035149385
+94,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 8, 10, 6, 10, 2].",True,,2.58,6.0,9.0,160,16.6,"We are given a set of variables {x0, x1, x2, x3, x4, x5} and the following constraints and objective function:
+
+Constraints:
+1. x0 + x1 + x2 = x3 + x4 + x5 (penalty: 1000)
+2. x0 + x1 + x2 = 3 (penalty: 1000)
+3. x3 + x4 + x5 = 3 (penalty: 1000)
+4. x0 <= 1 (penalty: 1000)
+5. x1 <= 1 (penalty: 1000)
+6. x2 <= 1 (penalty: 1000)
+7. x3 <= 1 (penalty: 1000)
+8. x4 <= 1 (penalty: 1000)
+9. x5 <= 1 (penalty: 1000)
+
+Objective:
+Minimize the expression 1000*x0 + 1000*x1 + 1000*x2 + 1000*x3 + 1000*x4 + 1000*x5.
+
+This optimization problem aims to find values for the variables x0, x1, x2, x3, x4, and x5 that satisfy the given constraints while minimizing the objective function.",0.021739130434782608
+95,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 1, 4, 5, 7, 1].",True,,1.57,6.0,2.0,158,9.58,"We are given a problem with six variables: x0, x1, x2, x3, x4, and x5. 
+
+There are two equality constraints in this problem:
+1. The sum of x0, x1, and x2 must equal 3 with a penalty of 1000 for any violation.
+2. The sum of x3, x4, and x5 must equal 3 with a penalty of 1000 for any violation.
+
+The objective is to minimize the square of the expression (6*x0 + 1*x1 + 4*x2 - 5*x3 - 7*x4 - 1*x5).",0.03260869565217391
+96,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 7, 7, 3, 5].",True,,2.23,6.0,2.0,159,9.59,"We are given a set of variables \(x_0, x_1, x_2, x_3, x_4, x_5\) and we want to minimize the expression \(x_0^2 + x_1^2 + x_2^2 + x_3^2 + x_4^2 + x_5^2\). 
+
+We have two constraints:
+1. The sum of all variables must equal 3: \(x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3\)
+2. The expression \(10*x_0 + 2*x_1 + 7*x_2 + 7*x_3 + 3*x_4 + 5*x_5\) must be less than or equal to 12.
+
+Each constraint violation incurs a penalty of 1000.",0.03103448275862069
+97,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 10, 3, 10, 5, 6].",True,,1.92,6.0,3.0,160,10.6,"You have six variables: x0, x1, x2, x3, x4, and x5. 
+
+Your goal is to minimize the square of the expression (6*x0 + 10*x1 + 3*x2 - 10*x3 - 5*x4 - 6*x5).
+
+You have three constraints:
+1. The sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any deviation from this equality.
+2. The sum of x0, x1, and x2 must be equal to 3, with a penalty of 1000 for any deviation from this equality.
+3. The sum of x3, x4, and x5 must be equal to 3, with a penalty of 1000 for any deviation from this equality.",0.031654676258992806
+98,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 7, 1, 4, 5].",True,,1.56,6.0,3.0,158,10.58,"We are given a problem with six variables: x0, x1, x2, x3, x4, and x5. The problem consists of three constraints and an objective function.
+
+The first constraint is that the sum of x0, x1, and x2 must be equal to the sum of x3, x4, and x5, with a penalty of 1000 for any violation.
+
+The second constraint states that the sum of x0, x1, and x2 must be less than or equal to 3, with a penalty of 1000 for any violation.
+
+The third constraint states that the sum of x3, x4, and x5 must be less than or equal to 3, with a penalty of 1000 for any violation.
+
+The objective is to minimize the square of the expression (6*x0 + 5*x1 + 7*x2 - 1*x3 - 4*x4 - 5*x5).",0.034482758620689655
+99,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 3, 6, 9, 2, 1].",True,,2.39,6.0,9.0,158,16.58,"We have a set of variables {x0, x1, x2, x3, x4, x5} and need to solve the following optimization problem:
+
+Minimize the objective function: 5*x0 + 3*x1 + 6*x2 + 9*x3 + 2*x4 + x5
+
+Subject to the constraints:
+1. x0 + x1 + x2 = x3 + x4 + x5, with a penalty of 1000
+2. x0 + x1 + x2 = 3, with a penalty of 1000
+3. x3 + x4 + x5 = 3, with a penalty of 1000
+4. x0 <= 1, with a penalty of 1000
+5. x1 <= 1, with a penalty of 1000
+6. x2 <= 1, with a penalty of 1000
+7. x3 <= 1, with a penalty of 1000
+8. x4 <= 1, with a penalty of 1000
+9. x5 <= 1, with a penalty of 1000
+
+The goal is to find values for the variables that minimize the objective function while satisfying all the constraints.",0.026252983293556086
+100,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 7, 5, 6, 8, 5].",True,,1.33,6.0,2.0,158,9.58,"The optimization problem aims to minimize the squared difference between the calculated values and the target values. The variables x0, x1, and x2 should sum up to 3, and the variables x3, x4, and x5 should also sum up to 3. The objective function to be minimized is the sum of the squared differences between the calculated and target values for each group of variables.",0.034026465028355386

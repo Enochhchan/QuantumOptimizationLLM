@@ -1,0 +1,392 @@
+Index,Case,Prompt,Success,Failure Type,Latency (s),Num Variables,Num Constraints,Prompt Length,Complexity Score,Reverse Prompt,Fidelity
+1,Knapsack,"Select items to maximize value under weight limit. Total capacity is 13. Items: [{'id': 'item0', 'value': 7, 'weight': 2}, {'id': 'item1', 'value': 5, 'weight': 4}, {'id': 'item2', 'value': 3, 'weight': 3}, {'id': 'item3', 'value': 4, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 1}].",True,,4.58,5,1,291,8.91,"We want to maximize the total value obtained by selecting items from a set of five items (item0, item1, item2, item3, item4). Each item has a specific value associated with it: item0 has a value of 7, item1 has a value of 5, item2 has a value of 3, item3 has a value of 4, and item4 has a value of 2.
+
+However, there is a constraint that the total weight of the selected items cannot exceed 13 units. The weights of the items are as follows: item0 weighs 2 units, item1 weighs 4 units, item2 weighs 3 units, item3 weighs 2 units, and item4 weighs 1 unit.
+
+If the total weight of the selected items exceeds 13 units, a penalty of 10 will be incurred.
+
+The goal is to select a combination of items that maximizes the total value while ensuring that the total weight does not exceed the constraint.",0.04419889502762431
+2,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 8, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 1, 'weight': 5}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,3.38,5,1,291,8.91,"We are trying to maximize a linear objective function that depends on five decision variables: item0, item1, item2, item3, and item4. The objective function to be maximized is 8 times item0 plus 9 times item1 plus 9 times item2 plus item3 plus 6 times item4.
+
+There is one constraint that must be satisfied. The constraint is that the sum of item0, 2 times item1, item2, 5 times item3, and 3 times item4 must be less than or equal to 20. If this constraint is violated, a penalty of 100 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while ensuring that the constraint is not violated.",0.06217616580310881
+3,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 1, 'weight': 1}, {'id': 'item1', 'value': 8, 'weight': 2}, {'id': 'item2', 'value': 1, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,3.55,5,1,291,8.91,"We are trying to maximize a linear objective function that depends on five variables: item0, item1, item2, item3, and item4. The objective function to be maximized is item0 + 8*item1 + item2 + 3*item3 + 3*item4.
+
+There is one constraint in this problem, which is an inequality constraint. The constraint is that item0 + 2*item1 + 4*item2 + 2*item3 + 4*item4 should be less than or equal to 19. If this constraint is violated, a penalty of 10 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given inequality constraint.",0.0718954248366013
+4,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 6, 'weight': 1}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 2}, {'id': 'item3', 'value': 4, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 3}].",True,,4.66,5,1,293,8.93,"We have a set of five items: item0, item1, item2, item3, and item4. 
+
+We want to maximize the total value of these items based on the following values assigned to each item: 6 for item0, 10 for item1, 10 for item2, 4 for item3, and 9 for item4.
+
+However, there is a constraint that the total weight of the items cannot exceed 19 units. The weights of the items are as follows: item0 has a weight of 1 unit, item1 has a weight of 2 units, item2 has a weight of 2 units, item3 has a weight of 5 units, and item4 has a weight of 3 units.
+
+If the total weight of the selected items exceeds 19 units, a penalty of 10 will be applied.
+
+The goal is to select a combination of items that maximizes the total value while staying within the weight constraint.",0.06333973128598848
+5,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 3, 'weight': 5}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 8, 'weight': 4}].",True,,5.5,5,1,291,8.91,"We want to maximize the total value obtained from selecting items, where each item has a different value. There is a constraint that the total weight of selected items cannot exceed 17 units. The values of the items are as follows:
+- item0 has a value of 9
+- item1 has a value of 9
+- item2 has a value of 3
+- item3 has a value of 3
+- item4 has a value of 8
+
+Additionally, there is a penalty of 100 for violating the weight constraint.",0.11586206896551725
+6,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 6, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 4}, {'id': 'item3', 'value': 8, 'weight': 2}, {'id': 'item4', 'value': 10, 'weight': 1}].",True,,4.12,5,1,292,8.92,"We have a set of five items: item0, item1, item2, item3, and item4. 
+
+We want to maximize the total value of these items, where the value of each item is given by:
+9 times the value of item0,
+6 times the value of item1,
+2 times the value of item2,
+8 times the value of item3, and
+10 times the value of item4.
+
+However, there is a constraint that the total weight of the items cannot exceed 14 units. The weight of each item is:
+5 units for item0,
+3 units for item1,
+4 units for item2,
+2 units for item3, and
+1 unit for item4.
+
+If the total weight of the selected items exceeds 14 units, a penalty of 10 will be applied.
+
+The goal is to select a combination of items that maximizes the total value while staying within the weight constraint.",0.07364341085271318
+7,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 4, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 9, 'weight': 3}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,4.91,5,1,292,8.92,"We are trying to maximize a linear objective function that depends on five variables: item0, item1, item2, item3, and item4. The objective function to be maximized is 4 times item0 plus 4 times item1 plus 9 times item2 plus 10 times item3 plus 7 times item4.
+
+There is one constraint in the problem, which is an inequality constraint. The constraint states that 3 times item0 plus 5 times item1 plus 3 times item2 plus 4 times item3 plus 4 times item4 must be less than or equal to 12. If this constraint is violated, a penalty of 100 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given inequality constraint.",0.07707509881422925
+8,Knapsack,"Select items to maximize value under weight limit. Total capacity is 11. Items: [{'id': 'item0', 'value': 10, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 6, 'weight': 2}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 3, 'weight': 5}].",True,,4.73,5,1,293,8.93,"We want to maximize a linear objective function that depends on five items (item0, item1, item2, item3, item4), with coefficients 10, 9, 6, 10, and 3 respectively. 
+
+There is a constraint that the sum of item0, 5 times item1, 2 times item2, 4 times item3, and 5 times item4 must be less than or equal to 11, with a penalty of 100 for violating this constraint.",0.07044410413476264
+9,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 3}, {'id': 'item1', 'value': 3, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 4}, {'id': 'item3', 'value': 9, 'weight': 5}, {'id': 'item4', 'value': 4, 'weight': 1}].",True,,4.3,5,1,292,8.92,"We have a problem where we want to maximize a linear combination of the values of five items (item0, item1, item2, item3, item4) with coefficients 3, 3, 10, 9, and 4 respectively. 
+
+There is a constraint that the total weight of the items cannot exceed 16 units, where each item has a specific weight: item0 has a weight of 3, item1 has a weight of 2, item2 has a weight of 4, item3 has a weight of 5, and item4 has a weight of 1. If this constraint is violated, a penalty of 100 will be incurred.
+
+The goal is to find the combination of items that maximizes the objective function while satisfying the weight constraint.",0.08105147864184009
+10,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 5, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 5}, {'id': 'item2', 'value': 4, 'weight': 5}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,5.46,5,1,291,8.91,"We have a set of five items: item0, item1, item2, item3, and item4. The goal is to maximize the total value obtained by selecting these items, where each item has a specific value associated with it. The objective is to maximize the expression 5*item0 + 5*item1 + 4*item2 + 5*item3 + 8*item4.
+
+There is a constraint that needs to be satisfied: the total weight of the selected items cannot exceed 14 units. If this constraint is violated, a penalty of 100 will be incurred.
+
+Therefore, the optimization problem is to select a combination of items to maximize the total value while ensuring that the total weight of the selected items does not exceed 14 units.",0.10105263157894737
+11,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 9, 'weight': 4}, {'id': 'item1', 'value': 3, 'weight': 3}, {'id': 'item2', 'value': 5, 'weight': 2}, {'id': 'item3', 'value': 7, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 1}].",True,,4.9,5,1,291,8.91,We want to maximize the expression \(9 \cdot \text{item0} + 3 \cdot \text{item1} + 5 \cdot \text{item2} + 7 \cdot \text{item3} + 9 \cdot \text{item4}\) with the following constraint: \(4 \cdot \text{item0} + 3 \cdot \text{item1} + 2 \cdot \text{item2} + 5 \cdot \text{item3} + 1 \cdot \text{item4} \leq 15\).,0.02671118530884808
+12,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 8, 'weight': 4}, {'id': 'item1', 'value': 7, 'weight': 1}, {'id': 'item2', 'value': 1, 'weight': 5}, {'id': 'item3', 'value': 10, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 5}].",True,,4.5,5,1,292,8.92,"We have a set of five items: item0, item1, item2, item3, and item4. The optimization problem aims to maximize a linear combination of these items, where the coefficients are 8, 7, 1, 10, and 2 respectively.
+
+There is a constraint that must be satisfied: 4 times the value of item0 plus 1 times the value of item1 plus 5 times the value of item2 plus 2 times the value of item3 plus 5 times the value of item4 must be less than or equal to 15. If this constraint is violated, a penalty of 100 will be incurred.
+
+The goal is to find the values for item0, item1, item2, item3, and item4 that maximize the objective function while adhering to the constraint provided.",0.06701570680628273
+13,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 4, 'weight': 2}, {'id': 'item2', 'value': 8, 'weight': 5}, {'id': 'item3', 'value': 4, 'weight': 4}, {'id': 'item4', 'value': 6, 'weight': 2}].",True,,4.06,5,1,291,8.91,"We are trying to maximize a linear objective function, which is a weighted sum of the variables item0, item1, item2, item3, and item4. The weights for each variable are 9, 4, 8, 4, and 6 respectively.
+
+There is a constraint that needs to be satisfied, which is that the weighted sum of the variables item0, item1, item2, item3, and item4 multiplied by 5, 2, 5, 4, and 2 respectively, should be less than or equal to 12. If this constraint is violated, a penalty of 10 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given constraint.",0.09431939978563773
+14,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,5.06,5,1,291,8.91,"We are trying to maximize a linear objective function that depends on five decision variables: item0, item1, item2, item3, and item4. The objective function is to maximize the expression 9*item0 + 5*item1 + 9*item2 + 3*item3 + 7*item4.
+
+There is one constraint in this problem, which is an inequality constraint. The constraint is that 5*item0 + 2*item1 + 4*item2 + 4*item3 + 4*item4 should be less than or equal to 17. If this constraint is violated, a penalty of 100 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while satisfying the given constraint.",0.07922912205567452
+15,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 10, 'weight': 4}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 10, 'weight': 1}, {'id': 'item3', 'value': 9, 'weight': 1}, {'id': 'item4', 'value': 8, 'weight': 5}].",True,,4.3,5,1,293,8.93,"We want to maximize the total value obtained from selecting items, where each item has a different value. There is a constraint that the total weight of the selected items cannot exceed 20 units. The penalty for violating this constraint is set to 100.
+
+The objective is to maximize the total value obtained by selecting items based on their individual values. The values of the items are as follows:
+- item0: 10
+- item1: 4
+- item2: 10
+- item3: 9
+- item4: 8
+
+Additionally, there is a constraint that the total weight of the selected items must not exceed 20 units.",0.07001166861143523
+16,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 6, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 4}, {'id': 'item2', 'value': 1, 'weight': 3}, {'id': 'item3', 'value': 8, 'weight': 1}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,4.15,5,1,291,8.91,"We are trying to maximize a linear objective function that depends on five variables: item0, item1, item2, item3, and item4. The objective function to be maximized is 6 times item0 plus 4 times item1 plus 1 times item2 plus 8 times item3 plus 6 times item4.
+
+There is one constraint that must be satisfied. The constraint is that the sum of 3 times item0, 4 times item1, 3 times item2, 1 times item3, and 3 times item4 must be less than or equal to 16. If this constraint is violated, a penalty of 100 will be incurred.
+
+Therefore, the goal is to find values for item0, item1, item2, item3, and item4 that maximize the objective function while ensuring that the constraint is not violated.",0.06326530612244897
+17,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 4}, {'id': 'item1', 'value': 5, 'weight': 3}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 3, 'weight': 1}, {'id': 'item4', 'value': 5, 'weight': 5}].",True,,4.03,5,1,291,8.91,"We are trying to maximize the total value obtained from selecting items, where each item has a specific value. The total weight of the selected items cannot exceed 16 units. The values of the items are as follows: item0 has a value of 3, item1 has a value of 5, item2 has a value of 9, item3 has a value of 3, and item4 has a value of 5. Additionally, there is a penalty of 100 for each unit of weight that exceeds the limit.",0.12569832402234637
+18,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 3, 'weight': 4}, {'id': 'item3', 'value': 6, 'weight': 5}, {'id': 'item4', 'value': 1, 'weight': 4}].",True,,4.61,5,1,291,8.91,"We have a problem where we need to maximize a linear objective function. We have five variables: item0, item1, item2, item3, and item4. The objective is to maximize the expression 9*item0 + 2*item1 + 3*item2 + 6*item3 + 1*item4.
+
+We also have one constraint in the form of an inequality: 5*item0 + 3*item1 + 4*item2 + 5*item3 + 4*item4 should be less than or equal to 12. If this constraint is violated, a penalty of 100 will be incurred.",0.07407407407407407
+19,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 7, 'weight': 4}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,3.79,5,1,293,8.93,"We are trying to maximize the total value of selecting items from a set of five items (item0, item1, item2, item3, item4). Each item has a specific value associated with it (10 for item0, 10 for item1, 7 for item2, 5 for item3, and 8 for item4).
+
+However, there is a constraint that the total weight of the selected items cannot exceed 14 units. The weight of each item is given by (2 for item0, 2 for item1, 4 for item2, 5 for item3, and 2 for item4).
+
+The goal is to select a combination of items that maximizes the total value while ensuring that the total weight does not exceed the specified limit.",0.10491071428571429
+20,Knapsack,"Select items to maximize value under weight limit. Total capacity is 18. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 2}, {'id': 'item3', 'value': 3, 'weight': 3}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,3.88,5,1,292,8.92,"We have a set of five items: item0, item1, item2, item3, and item4. We want to maximize a profit function that depends on the quantities of these items. The profit function is defined as follows: maximize 10 times the quantity of item0 plus 2 times the quantity of item1 plus 2 times the quantity of item2 plus 3 times the quantity of item3 plus 3 times the quantity of item4.
+
+There is a constraint that needs to be satisfied: the total weight of the items cannot exceed 18 units. The weight is calculated as 2 times the quantity of item0 plus 3 times the quantity of item1 plus 2 times the quantity of item2 plus 3 times the quantity of item3 plus 4 times the quantity of item4. If this constraint is violated, a penalty of 100 will be incurred.",0.06544754571703561
+21,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.21,5,2,113,8.13,"We are tasked with assigning a value to each of the cities (City0, City1, City2, City3, City4) such that each city is assigned a value of either 0 or 1. There are two constraints that need to be satisfied: the sum of the values assigned to the cities must be either 1 or 5. Our goal is to minimize the sum of the values assigned to the cities.",0.03508771929824561
+22,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.53,5,2,113,8.13,"We are trying to minimize the sum of the variables representing cities (City0, City1, City2, City3, City4) while satisfying two constraints. The first constraint requires that exactly one city is selected (City0 + City1 + City2 + City3 + City4 = 1), and the second constraint requires that all five cities are selected (City0 + City1 + City2 + City3 + City4 = 5). Each violation of these constraints incurs a penalty of 10.",0.033582089552238806
+23,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.63,5,2,113,8.13,"We want to minimize the sum of variables representing different cities (City0, City1, City2, City3, City4) while satisfying two constraints. The first constraint requires that exactly one city is selected (City0 + City1 + City2 + City3 + City4 = 1), and the second constraint requires that all five cities are selected (City0 + City1 + City2 + City3 + City4 = 5). Each violation of these constraints incurs a penalty of 100.",0.0297951582867784
+24,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.81,5,2,113,8.13,"We have a set of variables representing cities: City0, City1, City2, City3, and City4. There are two equality constraints in this problem. The first constraint states that exactly one city must be selected among the five cities, and the penalty for violating this constraint is 10. The second constraint requires exactly five cities to be selected, with the same penalty of 10 for any violations. 
+
+The objective is to minimize the total number of selected cities from the set.",0.02711864406779661
+25,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.87,5,1,113,7.13,"We are trying to find the best assignment of cities (City0, City1, City2, City3, City4) to a single location. Each city can only be assigned to one location. The goal is to minimize the total number of cities assigned to the location.",0.04610951008645533
+26,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.84,5,2,113,8.13,"The optimization problem aims to minimize the sum of the products of distances between consecutive cities in a circular route. The problem involves five cities labeled as City0, City1, City2, City3, and City4. 
+
+Two constraints are imposed on the problem:
+1. The sum of variables representing the cities must equal 1, ensuring that exactly one city is visited in the route.
+2. The sum of products of distances between consecutive cities must equal 1, ensuring that the route forms a closed loop visiting all cities exactly once.
+
+The objective is to minimize the sum of products of distances between consecutive cities in the circular route.",0.03183023872679045
+27,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.22,5,2,113,8.13,"You have five cities represented by variables City0, City1, City2, City3, and City4. 
+
+Your goal is to minimize the total number of selected cities. 
+
+You have two constraints: 
+1. The sum of selected cities must be exactly 1. 
+2. The number of adjacent pairs of selected cities must be exactly 1. 
+
+For violating any of these constraints, a penalty of 100 is applied.",0.029106029106029108
+28,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,12.53,5,6,113,12.13,"The optimization problem described by this QUBO is to find the assignment of values to variables representing cities (City0, City1, City2, City3, City4) such that exactly one city is selected (sum of selected cities equals 1) and the selected city is minimized. Additionally, there are constraints ensuring that only one city is selected at a time. The goal is to minimize the total value of the selected city while satisfying these constraints.",0.04659498207885305
+29,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.64,5,1,113,7.13,"We have a set of five cities: City0, City1, City2, City3, and City4. The optimization problem aims to minimize the total number of selected cities. The constraint requires that exactly one city must be selected out of the five available cities. The penalty for violating this constraint is set to 1000.",0.04819277108433735
+30,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.06,5,1,113,7.13,"We have five cities labeled as City0, City1, City2, City3, and City4. The total number of cities visited should be exactly 5. The goal is to minimize the total number of cities visited.",0.21476510067114093
+31,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.25,5,2,113,8.13,"You are given a set of five cities: City0, City1, City2, City3, and City4. 
+
+Your goal is to assign each city a value of either 0 or 1 in such a way that:
+1. Exactly one city is assigned the value of 1, while the rest are assigned the value of 0.
+2. Exactly two neighboring cities are assigned the value of 1, while the rest are assigned the value of 0.
+
+You want to minimize the total number of cities assigned the value of 1.",0.025925925925925925
+32,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.1,5,2,113,8.13,"We are tasked with minimizing the sum of variables representing cities (City0, City1, City2, City3, City4) while satisfying two constraints. 
+
+The first constraint requires that exactly one city is selected, meaning the sum of selected cities must equal 1. The penalty for violating this constraint is 10.
+
+The second constraint ensures that at least one city is selected, meaning the product of selected cities must be 0 (indicating at least one city is selected). The penalty for violating this constraint is also 10.",0.028481012658227847
+33,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.47,5,1,113,7.13,"We have five cities, each represented by a variable (City0, City1, City2, City3, City4). The total number of cities visited must be exactly 5. We want to minimize the total number of cities visited.",0.2057877813504823
+34,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.88,5,5,113,11.13,"The optimization problem aims to minimize the sum of variables representing cities (City0, City1, City2, City3, City4) while ensuring that exactly one city is selected. The constraints enforce that only one city can be chosen by setting the sum of all city variables to 1. The penalty for violating this constraint is set to 10. The objective is to find the combination of cities that results in the lowest total value while adhering to the constraint of selecting only one city.",0.030405405405405407
+35,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.44,5,2,113,8.13,"We are given a set of variables representing cities: City0, City1, City2, City3, and City4. 
+
+The optimization problem aims to minimize the sum of these variables. 
+
+There are two constraints in the problem:
+1. The sum of all cities must be equal to 1, with a penalty of 10 for any deviation from this constraint.
+2. The product of each city with the next city in the list must be equal to 1, with a penalty of 10 for any deviation from this constraint.
+
+The goal is to find values for the cities that minimize their sum while satisfying the given constraints.",0.029717682020802376
+36,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.27,5,1,113,7.13,"We have a set of 5 cities labeled as City0, City1, City2, City3, and City4. The total number of cities visited must be exactly 5. The goal is to minimize the total number of cities visited.",0.2119205298013245
+37,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,3.79,5,2,113,8.13,"We want to find the best assignment of cities (City0, City1, City2, City3, City4) such that each city is assigned exactly once. Additionally, the difference between the number of City0 and the sum of the other cities should be minimized. The goal is to minimize the total number of assigned cities.",0.038929440389294405
+38,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.51,5,2,113,8.13,"You have a set of variables representing cities: City0, City1, City2, City3, and City4. 
+
+The optimization problem aims to minimize the total number of selected cities. 
+
+There are two constraints in the problem:
+1. The sum of selected cities must be exactly 1.
+2. Exactly one pair of adjacent cities must be selected.
+
+Each constraint violation incurs a penalty of 10.
+
+The goal is to select the fewest number of cities while satisfying these constraints.",0.0351493848857645
+39,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.2,5,1,113,7.13,"We have a problem where we need to assign 5 cities (City0, City1, City2, City3, City4) to a route. The goal is to minimize the total distance traveled in the route. 
+
+The total distance traveled is calculated as the sum of the distances between consecutive cities in the route: distance(City0, City1) + distance(City1, City2) + distance(City2, City3) + distance(City3, City4) + distance(City4, City0).
+
+There is a constraint that each city must be visited exactly once, meaning that the sum of cities visited should be equal to 5. If this constraint is violated, a penalty of 1000 is applied.
+
+The objective is to find the assignment of cities to the route that minimizes the total distance traveled.",0.07872078720787208
+40,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,2.84,5,1,113,7.13,"We are trying to find the assignment of cities (City0, City1, City2, City3, City4) such that exactly one city is selected. The goal is to minimize the total number of selected cities.",0.24324324324324326
+41,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person1'], ['Person1', 'Person2']] together.",True,,2.94,4,2,123,7.23,"We have four people, labeled as Person1, Person2, Person3, and Person4. There are two constraints in this problem: 
+1. Person4 and Person1 cannot both be assigned the same value.
+2. Person1 and Person2 cannot both be assigned the same value.
+
+The goal is to minimize the sum of the product of Person4 and Person1, and the product of Person1 and Person2.",0.14705882352941177
+42,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person0', 'Person3']] together.",True,,3.28,4,2,123,7.23,"We want to minimize the product of two pairs of people, Person1 and Person2, and Person0 and Person3. We have two constraints: Person1 and Person2 cannot be on the same team, and Person0 and Person3 cannot be on the same team. If these constraints are violated, a penalty of 10 is incurred for each violation.",0.018518518518518517
+43,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person3', 'Person4']] together.",True,,3.68,5,2,123,8.23,"We have five people, each represented by a binary variable: Person0, Person1, Person2, Person3, and Person4. 
+
+The goal is to minimize the sum of the products of Person0 and Person4, and Person3 and Person4. 
+
+There are two constraints: 
+1. Person0 and Person4 cannot both be 1 at the same time.
+2. Person3 and Person4 cannot both be 1 at the same time.
+
+If these constraints are violated, a penalty of 10 is incurred for each violation.",0.017857142857142856
+44,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person0'], ['Person4', 'Person0']] together.",True,,3.78,5,2,123,8.23,"We want to minimize the product of the interactions between Person2 and Person0, as well as Person4 and Person0. Additionally, we have constraints that the product of Person2 and Person0 must be less than or equal to 0, with a penalty of 10, and the product of Person4 and Person0 must also be less than or equal to 0, with a penalty of 10.",0.02591792656587473
+45,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person1'], ['Person4', 'Person1']] together.",True,,6.01,4,2,123,7.23,"We have four people, each represented by a variable (Person1, Person2, Person3, Person4). There are two constraints in this problem: Person1 and Person2 cannot both be assigned the value of 1 at the same time, and Person1 and Person4 cannot both be assigned the value of 1 at the same time. The penalty for violating each constraint is 10.
+
+The goal is to minimize the sum of the products of Person1 and Person2, and Person1 and Person4.",0.07857142857142857
+46,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person3'], ['Person0', 'Person1']] together.",True,,3.69,4,2,123,7.23,"We have a group of four people: Person0, Person1, Person2, and Person3. We want to minimize conflicts within the group based on two constraints. The first constraint penalizes any situation where Person0 and Person3 are assigned to work together. The second constraint penalizes any situation where Person0 and Person1 are assigned to work together. The objective is to minimize conflicts by assigning Person0 to work with individuals other than Person1 and Person3.",0.13921901528013583
+47,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person0', 'Person2']] together.",True,,3.07,3,2,123,6.23,"We have three people, labeled Person0, Person1, and Person2. There are two constraints in this problem: Person0 and Person1 cannot both be assigned the same value, and Person0 and Person2 cannot both be assigned the same value. The goal is to minimize the sum of the products of Person0 with Person1 and Person0 with Person2.",0.10714285714285714
+48,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person4'], ['Person3', 'Person1']] together.",True,,5.83,3,2,123,6.23,"We have three people, Person1, Person4, and Person3. There are two constraints in this problem. The first constraint states that Person1 and Person4 cannot both be assigned the same value. The second constraint states that Person3 and Person1 cannot both be assigned the same value. 
+
+The goal is to minimize the sum of the products of Person1 and Person4, and Person3 and Person1.",0.12301587301587301
+49,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person2', 'Person3']] together.",True,,3.2,4,2,123,7.23,"We have four people, labeled as Person0, Person1, Person2, and Person3. There are two constraints in this problem. The first constraint states that Person1 and Person0 cannot both be assigned a value greater than zero at the same time. The second constraint states that Person2 and Person3 cannot both be assigned a value greater than zero at the same time. 
+
+The goal is to minimize the product of Person1 and Person0, and the product of Person2 and Person3, while satisfying the constraints mentioned above.",0.03481012658227848
+50,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person0', 'Person3']] together.",True,,5.07,5,2,123,8.23,"We have a group of five people labeled as Person0, Person1, Person2, Person3, and Person4. Two constraints are given: 
+1. Person4 and Person3 cannot be assigned together (Person4*Person3 <= 0).
+2. Person0 and Person3 cannot be assigned together (Person0*Person3 <= 0).
+
+The goal is to minimize the sum of the products of each pair of consecutive people in the group, i.e., minimize the expression: Person0*Person1 + Person1*Person2 + Person2*Person3 + Person3*Person4.",0.08798646362098139
+51,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person0']] together.",True,,4.14,3,2,123,6.23,"We have three people, labeled Person0, Person1, and Person2. There are two constraints in this problem: Person0 and Person1 cannot both be assigned the same value, and Person2 and Person0 cannot both be assigned the same value. The goal is to minimize the total value of Person0 multiplied by Person1, and Person2 multiplied by Person0.",0.09586056644880174
+52,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person4', 'Person2']] together.",True,,4.7,4,2,123,7.23,"We want to minimize the product of two pairs of people, where each pair consists of two individuals. The pairs are Person0 and Person1, and Person4 and Person2. We have two constraints: the product of Person0 and Person1 must be less than or equal to 0 with a penalty of 10, and the product of Person4 and Person2 must also be less than or equal to 0 with a penalty of 10.",0.06868686868686869
+53,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person1']] together.",True,,3.28,3,2,123,6.23,"We have three people, Person0, Person1, and Person2. There are two constraints in this problem:
+
+1. Person0 and Person1 cannot both be assigned the same value.
+2. Person2 and Person1 cannot both be assigned the same value.
+
+The goal is to minimize the sum of the products of Person0 and Person1, and Person2 and Person1.",0.17607223476297967
+54,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person0'], ['Person2', 'Person0']] together.",True,,5.22,5,2,123,8.23,"We have a group of 5 people, labeled as Person0, Person1, Person2, Person3, and Person4. There are two constraints in place: 
+1. The sum of Person4 and Person0 should be less than or equal to 1, with a penalty of 10 for each violation.
+2. The sum of Person2 and Person0 should be less than or equal to 1, with a penalty of 10 for each violation.
+
+The goal is to minimize the sum of (Person4 + Person0) and (Person2 + Person0).",0.08378870673952642
+55,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person3', 'Person0']] together.",True,,3.58,3,2,123,6.23,"We are trying to minimize a function that depends on the interactions between three people: Person0, Person3, and Person4. There are two constraints that penalize certain interactions between these people. The first constraint penalizes interactions between Person4 and Person3, ensuring that they do not have a positive interaction. The second constraint penalizes interactions between Person3 and Person0, also ensuring that they do not have a positive interaction. The objective is to minimize the sum of the interactions between Person4 and Person3, and between Person3 and Person0.",0.0535966149506347
+56,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person1', 'Person2']] together.",True,,2.16,2,1,123,4.23,"We have two people, Person1 and Person2. The constraint is that Person1 cannot be the same as Person2, with a penalty of 10 for violating this constraint. The objective is to minimize conflicts between Person1 and Person2.",0.02318840579710145
+57,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person3', 'Person1'], ['Person0', 'Person2']] together.",True,,4.1,4,2,123,7.23,"We have four people, labeled Person0, Person1, Person2, and Person3. There are two constraints in this problem: Person3 and Person1 cannot both be assigned the value 1 at the same time, and Person0 and Person2 cannot both be assigned the value 1 at the same time. 
+
+The goal is to minimize a penalty that is incurred when either of these constraints is violated. The penalty is calculated by multiplying the values assigned to Person3 and Person1, and the values assigned to Person0 and Person2, respectively. The objective is to minimize the total penalty incurred by violating these constraints.",0.12777777777777777
+58,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person3'], ['Person3', 'Person1']] together.",True,,2.87,3,2,123,6.23,"We have three persons, Person1, Person2, and Person3. There are two constraints in this problem: Person2 and Person3 cannot both be assigned the same value (either both positive or both negative), and Person3 and Person1 cannot both be assigned the same value. 
+
+The goal is to minimize the sum of the product of Person2 and Person3, and the product of Person3 and Person1, while satisfying the constraints mentioned above.",0.09157509157509157
+59,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person1', 'Person0']] together.",True,,3.99,5,2,123,8.23,"We have a group of five people: Person0, Person1, Person2, Person3, and Person4. 
+
+There are two constraints in place:
+1. Person0 and Person4 cannot be in the same group.
+2. Person1 and Person0 cannot be in the same group.
+
+The goal is to minimize the number of pairs that violate these constraints. The cost associated with violating each constraint is 10.
+
+The objective function is to minimize the total cost of violating the constraints, which is calculated as the sum of the products of Person0 and Person4, and Person1 and Person0.",0.15151515151515152
+60,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person3', 'Person0']] together.",True,,3.31,4,2,123,7.23,"We have a group of four people: Person0, Person1, Person2, and Person3. There are two constraints in this problem. The first constraint states that Person1 and Person0 cannot both be assigned the same value (either 0 or 1). The penalty for violating this constraint is 10. The second constraint states that Person3 and Person0 cannot both be assigned the same value (either 0 or 1). The penalty for violating this constraint is also 10. 
+
+The objective is to minimize the sum of the products of Person1 and Person0, and Person3 and Person0.",0.05429864253393665
+61,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node0', 'Node4'), ('Node1', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,6.33,5,6,205,13.05,"You have a set of nodes (Node0, Node1, Node2, Node3, Node4) that need to be assigned values. The goal is to minimize the sum of the values assigned to these nodes while satisfying the following constraints: Node0 cannot have the same value as Node1, Node3, or Node4; Node1 cannot have the same value as Node2 or Node4; and Node2 cannot have the same value as Node3. Each violation of these constraints incurs a penalty of 10.",0.012698412698412698
+62,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node2'), ('Node2', 'Node4'), ('Node3', 'Node4')].",True,,3.69,4,3,145,8.45,"You have a problem with four nodes, labeled Node1, Node2, Node3, and Node4. The goal is to minimize the overall penalty. There are three constraints: Node1 cannot be equal to Node2 (with a penalty of 10), Node2 cannot be equal to Node4 (with a penalty of 10), and Node3 cannot be equal to Node4 (with a penalty of 10). The objective is to find the assignment of nodes that minimizes the penalty.",0.022222222222222223
+63,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,4.97,5,3,145,9.45,"We are trying to minimize the sum of values assigned to 5 nodes (Node0, Node1, Node2, Node3, Node4) while satisfying the following constraints:
+1. Node0 cannot have the same value as Node2.
+2. Node1 cannot have the same value as Node4.
+3. Node2 cannot have the same value as Node3.
+
+If any of these constraints are violated, a penalty of 10 is incurred.",0.012048192771084338
+64,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3')].",True,,2.46,2,1,105,4.05,We want to find values for variables Node2 and Node3 that minimize the objective function. The only constraint is that Node2 cannot be equal to Node3.,0.3607843137254902
+65,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node2', 'Node3')].",True,,4.09,4,2,125,7.25,"We have four nodes: Node0, Node1, Node2, and Node3. 
+
+We want to minimize the sum of values assigned to these nodes (Node0 + Node1 + Node2 + Node3).
+
+There are two constraints:
+1. Node0 cannot have the same value as Node3 (penalty of 10).
+2. Node2 cannot have the same value as Node3 (penalty of 10).
+
+Our goal is to assign values to these nodes in a way that minimizes the total sum, while satisfying the constraints mentioned above.",0.028622540250447227
+66,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node2', 'Node3'), ('Node2', 'Node4')].",True,,6.65,5,4,165,10.65,"The optimization problem aims to minimize the sum of values assigned to five nodes (Node0, Node1, Node2, Node3, Node4) while satisfying the following constraints: Node0 is not equal to Node1, Node0 is not equal to Node3, Node2 is not equal to Node3, and Node2 is not equal to Node4.",0.02237136465324385
+67,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3')].",True,,2.6,2,1,105,4.05,"We want to minimize the sum of values assigned to two nodes, Node0 and Node3. However, there is a constraint that the values assigned to these nodes must be different, with a penalty of 10 for violating this constraint.",0.024691358024691357
+68,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node0', 'Node3'), ('Node1', 'Node3')].",True,,3.69,4,4,165,9.65,"You have a set of variables representing nodes: Node0, Node1, Node2, and Node3. The optimization problem aims to minimize a certain objective function. The constraints state that Node0 cannot be equal to Node1, Node2, or Node3, and that Node1 cannot be equal to Node3. Each constraint violation incurs a penalty of 10. The goal is to find the assignment of nodes that minimizes the objective function while satisfying all constraints.",0.02671118530884808
+69,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node4')].",True,,2.87,2,1,105,4.05,"We want to find values for two variables, Node1 and Node4, that minimize the objective function. The only constraint is that Node1 cannot be equal to Node4, with a penalty of 10 for violating this constraint.",0.012779552715654952
+70,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,3.99,5,3,145,9.45,"You have a problem with five nodes, labeled Node0 to Node4. The goal is to minimize the overall energy of the system. There are three constraints in place to penalize certain configurations: Node0 cannot be the same as Node2, Node1 cannot be the same as Node4, and Node2 cannot be the same as Node3. Each violation of these constraints incurs a penalty of 100 units. The objective is to find the assignment of nodes that minimizes the total penalty.",0.02356902356902357
+71,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node1', 'Node2'), ('Node1', 'Node3')].",True,,3.68,4,3,145,8.45,"You have a problem with four nodes: Node0, Node1, Node2, and Node3. The goal is to minimize a certain objective function. There are three constraints in this problem: 
+1. Node0 cannot be equal to Node3, with a penalty of 10.
+2. Node1 cannot be equal to Node2, with a penalty of 10.
+3. Node1 cannot be equal to Node3, with a penalty of 10.
+
+The objective is to find assignments to the nodes that minimize the objective function value.",0.020761245674740483
+72,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node2', 'Node4')].",True,,3.15,4,2,125,7.25,"We have a set of variables representing nodes in a system: Node0, Node1, Node2, and Node4. 
+
+There are two constraints in place:
+1. Node0 cannot be equal to Node1, with a penalty of 10 for violating this constraint.
+2. Node2 cannot be equal to Node4, with a penalty of 10 for violating this constraint.
+
+The objective is to minimize the overall penalty, which in this case is set to 0.",0.011764705882352941
+73,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3'), ('Node3', 'Node4')].",True,,3.41,3,2,125,6.25,"We have three nodes: Node2, Node3, and Node4. We want to minimize a certain objective function. The constraints are that Node2 cannot be equal to Node3, and Node3 cannot be equal to Node4. The penalties for violating these constraints are both set to 1.",0.010582010582010581
+74,Graph Coloring,Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [].,True,,1.68,0,0,87,0.87,"In this optimization problem, we are trying to minimize a constant value of 0. There are no variables or constraints involved in this problem.",0.2445414847161572
+75,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node2', 'Node4')].",True,,3.99,4,3,145,8.45,"We have a problem with four nodes: Node0, Node1, Node2, and Node4. There are three constraints that penalize certain combinations of nodes being equal to each other: Node0 cannot be equal to Node1 (penalty of 10), Node0 cannot be equal to Node2 (penalty of 10), and Node2 cannot be equal to Node4 (penalty of 10). 
+
+The objective is to minimize the sum of Node0, Node1, Node2, and Node4.",0.011278195488721804
+76,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node1', 'Node3')].",True,,5.35,4,3,145,8.45,"We have a problem with four nodes: Node0, Node1, Node2, and Node3. The goal is to minimize the objective function. We want to avoid having Node0 connected to Node1 and Node2, as well as Node1 connected to Node3. Each of these connections incurs a penalty of 10.",0.03940886699507389
+77,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node1', 'Node4'), ('Node2', 'Node3'), ('Node3', 'Node4')].",True,,5.94,4,4,165,9.65,"You have a problem with four nodes: Node1, Node2, Node3, and Node4. The goal is to minimize the objective function. There are constraints that penalize certain combinations of nodes being equal to each other. Specifically, Node1 cannot be equal to Node3 or Node4, Node2 cannot be equal to Node3, and Node3 cannot be equal to Node4. The penalties for violating these constraints are all set to 10.",0.06417112299465241
+78,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node4'), ('Node1', 'Node2')].",True,,2.99,4,2,125,7.25,"We have a problem with four nodes: Node0, Node1, Node2, and Node4. There are two constraints in this problem: Node0 cannot be equal to Node4, and Node1 cannot be equal to Node2. The goal is to minimize the objective function, which is currently set to 0.",0.036939313984168866
+79,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3')].",True,,2.18,2,1,105,4.05,"We have two nodes, Node1 and Node3, that we want to assign values to. The objective is to minimize the overall cost. The constraint is that Node1 cannot have the same value as Node3, with a penalty of 10 for violating this constraint.",0.035398230088495575
+80,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node3', 'Node4')].",True,,2.99,3,2,125,6.25,"We have three nodes: Node1, Node3, and Node4. We want to minimize a certain objective function. There are two constraints: Node1 cannot be equal to Node3, and Node3 cannot be equal to Node4. If these constraints are violated, a penalty of 10 is incurred. The goal is to find assignments to the nodes that minimize the overall penalty.",0.026143790849673203
+81,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 6, 4, 7, 5, 3].",True,,3.97,6,1,158,8.58,"We have six people, each denoted as Person0, Person1, Person2, Person3, Person4, and Person5. 
+
+There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint.
+
+The objective is to minimize the following expression: 
+2 times the value of Person0, plus 6 times the value of Person1, plus 4 times the value of Person2, minus 7 times the value of Person3, minus 5 times the value of Person4, and minus 3 times the value of Person5.",0.014084507042253521
+82,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 9, 3, 10, 5].",True,,3.68,6,1,160,8.6,"We have six people, each represented by a variable (Person0, Person1, Person2, Person3, Person4, Person5). There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint.
+
+The goal is to minimize a certain objective function, which is a combination of weights assigned to each person. The objective function to be minimized is calculated as follows:
+10 times Person0 +
+2 times Person1 +
+9 times Person2 -
+3 times Person3 -
+10 times Person4 -
+5 times Person5
+
+The task is to find values for each person that satisfy the equality constraint while minimizing the overall value of the objective function.",0.03167420814479638
+83,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 7, 5, 1, 2, 7].",True,,3.57,6,1,158,8.58,"We want to minimize the absolute difference between the sum of the values assigned to Person0, Person1, and Person2, and the sum of the values assigned to Person3, Person4, and Person5. There is a penalty of 10 for each unit of violation of this equality constraint.",0.02830188679245283
+84,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [1, 8, 5, 6, 10, 9].",True,,4.12,6,1,159,8.59,"We have six people, labeled Person0 through Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize a cost function, where the cost is calculated based on the values assigned to each person. Assigning lower values to Person0, Person1, and Person2, and higher values to Person3, Person4, and Person5 will result in a lower overall cost. The cost function is calculated as follows: Person0*1 + Person1*8 + Person2*5 - Person3*6 - Person4*10 - Person5*9. The goal is to find the assignment of values to the people that minimizes this cost function while still satisfying the equality constraint.",0.02600216684723727
+85,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 9, 9, 8, 9, 7].",True,,3.59,6,1,158,8.58,"We have six people, each denoted as Person0, Person1, Person2, Person3, Person4, and Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize the cost function, which is calculated as follows: 
+5 times the value of Person0, plus 9 times the value of Person1, plus 9 times the value of Person2, minus 8 times the value of Person3, minus 9 times the value of Person4, minus 7 times the value of Person5. 
+
+The goal is to assign values to each person such that the total cost is minimized while satisfying the equality constraint mentioned above.",0.011467889908256881
+86,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [3, 8, 5, 4, 9, 3].",True,,3.89,6,1,158,8.58,"We have six people, each represented by a binary variable: Person0, Person1, Person2, Person3, Person4, and Person5. 
+
+The optimization problem aims to minimize the following objective function: 
+minimize: 3*Person0 + 8*Person1 + 5*Person2 - 4*Person3 - 9*Person4 - 3*Person5
+
+Subject to the constraint that the sum of Person0, Person1, and Person2 is equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this equality.",0.04213938411669368
+87,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 1, 7, 10, 4, 9].",True,,4.23,6,1,159,8.59,"We have six people, labeled Person0 to Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The goal is to minimize the following objective function: 8 times Person0 plus 1 times Person1 plus 7 times Person2 minus 10 times Person3 minus 4 times Person4 minus 9 times Person5.",0.06551724137931035
+88,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 8, 9, 3, 8, 10].",True,,3.88,6,1,160,8.6,"We have six people, each represented by a variable (Person0, Person1, Person2, Person3, Person4, Person5). There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this equality. 
+
+The goal is to minimize the cost function, which is calculated as follows: 
+(10 * Person0 + 8 * Person1 + 9 * Person2) - (3 * Person3 + 8 * Person4 + 10 * Person5).
+
+The objective is to find values for each person that minimize the cost function while satisfying the equality constraint.",0.04043126684636118
+89,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 3, 5, 2, 1, 7].",True,,3.58,6,1,159,8.59,"We have six people, each denoted as Person0, Person1, Person2, Person3, Person4, and Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize a cost function, where the cost associated with each person is different. Person0 has a cost of 10, Person1 has a cost of 3, Person2 has a cost of 5, Person3 has a cost of 2, Person4 has a cost of 1, and Person5 has a cost of 7.
+
+Therefore, the optimization problem is to assign costs to each person in a way that minimizes the total cost, while ensuring that the constraint regarding the sums of the two groups of people is satisfied.",0.050716648291069456
+90,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 6, 3, 6, 8].",True,,3.36,6,1,158,8.58,"We have six people, each denoted as Person0, Person1, Person2, Person3, Person4, and Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint.
+
+The goal is to minimize a cost function, where the cost is calculated based on the values assigned to each person. The cost function is defined as follows:
+minimize: 6*Person0 + 5*Person1 + 6*Person2 - 3*Person3 - 6*Person4 - 8*Person5
+
+The objective is to find the assignment of values to each person that minimizes the total cost based on the given cost function, while also satisfying the constraint of equality between the two groups of people.",0.020247469066366704
+91,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 6, 7, 1, 9, 3].",True,,3.74,6,1,158,8.58,"We want to minimize the cost of assigning values to six people (Person0 to Person5) based on certain constraints. The constraint requires that the sum of values assigned to Person0, Person1, and Person2 should be equal to the sum of values assigned to Person3, Person4, and Person5, with a penalty of 10 for any deviation from this equality. 
+
+The objective function to minimize is calculated as follows:
+Cost = 8*Person0 + 6*Person1 + 7*Person2 - 1*Person3 - 9*Person4 - 3*Person5",0.053208137715179966
+92,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [7, 7, 4, 1, 5, 2].",True,,4.3,6,1,158,8.58,"We have six people, labeled Person0 to Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize the following expression: 7 times Person0 plus 7 times Person1 plus 4 times Person2 minus 1 times Person3 minus 5 times Person4 minus 2 times Person5.",0.03826086956521739
+93,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 10, 10, 8, 9, 4].",True,,4.43,6,1,160,8.6,"We want to minimize a certain cost function that depends on six variables: Person0, Person1, Person2, Person3, Person4, and Person5. The cost function is calculated as follows: 8 times Person0 plus 10 times Person1 plus 10 times Person2 minus 8 times Person3 minus 9 times Person4 minus 4 times Person5.
+
+Additionally, we have a constraint that the sum of Person0, Person1, and Person2 must be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for each violation of this constraint.
+
+The goal is to find values for Person0, Person1, Person2, Person3, Person4, and Person5 that minimize the overall cost function while satisfying the equality constraint mentioned above.",0.04230317273795535
+94,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 8, 10, 6, 10, 2].",True,,3.85,6,1,160,8.6,"We have six people, each denoted as Person0, Person1, Person2, Person3, Person4, and Person5. The problem aims to minimize a cost function that takes into account the values associated with each person. 
+
+There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any deviation from this equality.
+
+The objective is to minimize the cost, which is calculated as follows:
+Cost = 6*Person0 + 8*Person1 + 10*Person2 - 6*Person3 - 10*Person4 - 2*Person5
+
+The goal is to assign values to each person in a way that minimizes the overall cost, while ensuring that the constraint regarding the sums of the two groups of people is satisfied.",0.03611738148984198
+95,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 1, 4, 5, 7, 1].",True,,4.05,6,1,158,8.58,"We have six people, each represented by a variable (Person0, Person1, ..., Person5). The optimization problem aims to minimize a cost function based on the values assigned to these variables. 
+
+There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this equality.
+
+The objective is to minimize the following cost function:
+6*Person0 + 1*Person1 + 4*Person2 - 5*Person3 - 7*Person4 - 1*Person5
+
+The goal is to find values for Person0 to Person5 that minimize this cost function while satisfying the equality constraint mentioned above.",0.11386138613861387
+96,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 7, 7, 3, 5].",True,,4.02,6,1,159,8.59,"We have six people, labeled Person0 to Person5. The optimization problem aims to minimize a cost function that depends on these people. The cost function is calculated as follows: 10 times the value of Person0, plus 2 times the value of Person1, plus 7 times the value of Person2, minus 7 times the value of Person3, minus 3 times the value of Person4, and minus 5 times the value of Person5.
+
+There is a constraint that the sum of Person0, Person1, and Person2 must be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. The goal is to find values for each person that minimize the overall cost function while satisfying this equality constraint.",0.04861111111111111
+97,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 10, 3, 10, 5, 6].",True,,3.99,6,1,160,8.6,"You have six people, labeled Person0 to Person5. You want to minimize a certain objective function that depends on these people. The objective function is calculated as follows: 6 times Person0, plus 10 times Person1, plus 3 times Person2, minus 10 times Person3, minus 5 times Person4, minus 6 times Person5.
+
+Additionally, you have a constraint that states that the sum of Person0, Person1, and Person2 must be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint.",0.08211143695014662
+98,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 7, 1, 4, 5].",True,,3.45,6,1,158,8.58,"We have six people, labeled Person0 to Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize the expression: 6 times the value of Person0, plus 5 times the value of Person1, plus 7 times the value of Person2, minus 1 times the value of Person3, minus 4 times the value of Person4, and minus 5 times the value of Person5.",0.03067484662576687
+99,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 3, 6, 9, 2, 1].",True,,4.41,6,1,158,8.58,"We have six people, each represented by a variable (Person0, Person1, Person2, Person3, Person4, Person5). There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The objective is to minimize the absolute differences between the corresponding pairs of people (Person0 and Person3, Person1 and Person4, Person2 and Person5).",0.12357723577235773
+100,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 7, 5, 6, 8, 5].",True,,3.57,6,1,158,8.58,"We have six people, labeled Person0 to Person5. There is a constraint that the sum of Person0, Person1, and Person2 should be equal to the sum of Person3, Person4, and Person5, with a penalty of 10 for any violation of this constraint. 
+
+The goal is to minimize the following objective function: 2 times Person0, plus 7 times Person1, plus 5 times Person2, minus 6 times Person3, minus 8 times Person4, and minus 5 times Person5.",0.027257240204429302
