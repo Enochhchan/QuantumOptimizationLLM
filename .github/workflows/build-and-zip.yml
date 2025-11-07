@@ -2,7 +2,7 @@ name: Build PDF and Zip with Version
 
 on:
   push:
-    branches: [ main ]   # Change if your default branch is "master"
+    branches: [ main ]
 
 jobs:
   build:
@@ -16,15 +16,10 @@ jobs:
         id: get_version
         run: echo "version=$(cat version.txt)" >> $GITHUB_OUTPUT
 
-      - name: Set up LaTeX
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: dsnManual.tex   # <-- Change to your actual .tex file name
-
       - name: Prepare output folder
         run: |
           mkdir output
-          mv main.pdf output/Report_v${{ steps.get_version.outputs.version }}.pdf
+          cp Report.pdf output/Report_v${{ steps.get_version.outputs.version }}.pdf
 
       - name: Create ZIP
         run: |
