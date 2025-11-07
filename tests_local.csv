@@ -1,0 +1,60 @@
+index,case,vars,lin_terms,quad_terms,slack_vars,best_energy,constraints_ok,max_residual,sum_residual,strict,penalty_mult,sampler
+0,Knapsack,9,9,36,4,-21.0,True,1.0,1.0,False,1.0,local
+1,Knapsack,10,10,45,5,-33.0,True,8.0,8.0,False,1.0,local
+2,Knapsack,10,10,45,5,-16.0,True,6.0,6.0,False,1.0,local
+3,Knapsack,10,10,45,5,-39.0,True,6.0,6.0,False,1.0,local
+4,Knapsack,10,10,45,5,-32.0,True,0.0,0.0,False,1.0,local
+5,Knapsack,9,9,36,4,-33.0,True,3.0,3.0,False,1.0,local
+6,Knapsack,9,9,36,4,-26.0,True,1.0,1.0,False,1.0,local
+7,Knapsack,9,9,36,4,-29.0,True,1.0,1.0,False,1.0,local
+8,Knapsack,10,10,45,5,-29.0,True,1.0,1.0,False,1.0,local
+9,Knapsack,9,9,36,4,-18.0,True,2.0,2.0,False,1.0,local
+10,Knapsack,9,9,36,4,-33.0,True,0.0,0.0,False,1.0,local
+12,Knapsack,9,9,36,4,-23.0,True,0.0,0.0,False,1.0,local
+13,Knapsack,10,10,45,5,-30.0,True,2.0,2.0,False,1.0,local
+14,Knapsack,10,10,45,5,-41.0,True,4.0,4.0,False,1.0,local
+15,Knapsack,10,10,45,5,-25.0,True,2.0,2.0,False,1.0,local
+16,Knapsack,10,10,45,5,-25.0,True,2.0,2.0,False,1.0,local
+17,Knapsack,9,9,36,4,-15.0,True,2.0,2.0,False,1.0,local
+18,Knapsack,9,9,36,4,-35.0,True,4.0,4.0,False,1.0,local
+19,Knapsack,10,10,45,5,-20.0,True,4.0,4.0,False,1.0,local
+21,TSP,9,9,21,0,101.0,False,1.0,1.0,False,1.0,local
+23,TSP,10,10,30,0,11.0,False,1.0,1.0,False,1.0,local
+24,TSP,10,10,30,0,10.0,False,1.0,1.0,False,1.0,local
+25,TSP,9,9,21,0,1.0,True,0.0,0.0,False,1.0,local
+26,TSP,5,5,10,0,5.0,True,0.0,0.0,False,1.0,local
+27,TSP,5,5,10,0,41.0,False,1.0,4.0,False,1.0,local
+28,TSP,5,5,10,0,83.0,False,2.0,4.0,False,1.0,local
+29,TSP,5,5,10,0,10.0,False,1.0,1.0,False,1.0,local
+30,TSP,5,5,10,0,10.0,False,1.0,1.0,False,1.0,local
+31,TSP,5,5,10,0,1.0,True,0.0,0.0,False,1.0,local
+32,TSP,5,5,10,0,5.0,True,0.0,0.0,False,1.0,local
+33,TSP,10,10,30,0,100.0,False,1.0,1.0,False,1.0,local
+34,TSP,5,5,10,0,803.0,False,2.0,4.0,False,1.0,local
+35,TSP,9,9,21,0,1.0,True,0.0,0.0,False,1.0,local
+37,TSP,5,5,10,0,1.0,True,0.0,0.0,False,1.0,local
+38,TSP,9,9,21,0,11.0,False,1.0,1.0,False,1.0,local
+39,TSP,5,5,10,0,83.0,False,2.0,4.0,False,1.0,local
+41,Seating,6,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+43,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+45,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+46,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+47,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+48,Seating,6,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+51,Seating,6,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+53,Seating,5,5,6,2,0.0,True,1.0,2.0,False,1.0,local
+54,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+58,Seating,5,2,6,0,0.0,True,0.0,0.0,False,1.0,local
+59,Seating,5,5,6,2,0.0,True,1.0,2.0,False,1.0,local
+60,Graph Coloring,5,5,6,0,3.0,False,1.0,1.0,False,1.0,local
+61,Graph Coloring,4,4,3,0,2.0,True,0.0,0.0,False,1.0,local
+62,Graph Coloring,5,5,3,0,0.0,True,0.0,0.0,False,1.0,local
+65,Graph Coloring,5,5,4,0,0.0,True,0.0,0.0,False,1.0,local
+67,Graph Coloring,4,4,4,0,10.0,False,1.0,1.0,False,1.0,local
+69,Graph Coloring,5,5,3,0,0.0,True,0.0,0.0,False,1.0,local
+70,Graph Coloring,4,4,3,0,2.0,False,1.0,1.0,False,1.0,local
+72,Graph Coloring,3,3,2,0,0.0,True,0.0,0.0,False,1.0,local
+74,Graph Coloring,4,4,3,0,0.0,True,0.0,0.0,False,1.0,local
+75,Graph Coloring,4,4,3,0,2.0,False,1.0,1.0,False,1.0,local
+76,Graph Coloring,4,4,4,0,2.0,False,1.0,1.0,False,1.0,local
+77,Graph Coloring,4,4,2,0,2.0,False,1.0,2.0,False,1.0,local

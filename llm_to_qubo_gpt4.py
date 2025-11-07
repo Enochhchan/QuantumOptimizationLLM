@@ -8,11 +8,13 @@ import numpy as np
 from difflib import SequenceMatcher
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer, util
+from dotenv import load_dotenv, find_dotenv
+from openai import OpenAI
 
-
+load_dotenv(find_dotenv())
 # === INIT ===
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-sns.set(style="whitegrid")
+sns.set_theme(style="whitegrid")
 
 # === Core: QUBO Translator ===
 def real_llm_to_qubo(prompt_text):
@@ -136,7 +138,8 @@ for i, row in problems_df.iterrows():
         "Prompt Length": len(prompt),
         "Complexity Score": (num_vars or 0) + (num_constraints or 0) + len(prompt) * 0.01,
         "Reverse Prompt": reverse_prompt,
-        "Fidelity": fidelity
+        "Fidelity": fidelity,
+        "Raw JSON": json.dumps(qubo_json, ensure_ascii=False)
     })
 
 # === Save Results ===

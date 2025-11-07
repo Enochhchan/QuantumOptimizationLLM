@@ -1,0 +1,5 @@
+case,rows,feasibility_rate,mean_max_residual
+Graph Coloring,12,0.5,0.5
+Knapsack,19,1.0,2.5789473684210527
+Seating,11,1.0,0.18181818181818182
+TSP,17,0.35294117647058826,0.8235294117647058

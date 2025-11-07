@@ -1,0 +1,101 @@
+index,case,ok,reason,num_vars_declared,num_vars_qubo,num_lin_terms,num_quad_terms,num_slack_vars,model
+0,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+1,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+2,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+3,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+4,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+5,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+6,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+7,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+8,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+9,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+10,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+11,Knapsack,False,No JSON in row,,,,,,gpt-4
+12,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+13,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+14,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+15,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+16,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+17,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+18,Knapsack,True,,5.0,9.0,9.0,36.0,4.0,gpt-4
+19,Knapsack,True,,5.0,10.0,10.0,45.0,5.0,gpt-4
+20,TSP,False,No JSON in row,,,,,,gpt-4
+21,TSP,True,,5.0,9.0,9.0,21.0,0.0,gpt-4
+22,TSP,False,No JSON in row,,,,,,gpt-4
+23,TSP,True,,5.0,10.0,10.0,30.0,0.0,gpt-4
+24,TSP,True,,5.0,10.0,10.0,30.0,0.0,gpt-4
+25,TSP,True,,5.0,9.0,9.0,21.0,0.0,gpt-4
+26,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+27,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+28,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+29,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+30,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+31,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+32,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+33,TSP,True,,5.0,10.0,10.0,30.0,0.0,gpt-4
+34,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+35,TSP,True,,5.0,9.0,9.0,21.0,0.0,gpt-4
+36,TSP,False,No JSON in row,,,,,,gpt-4
+37,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+38,TSP,True,,5.0,9.0,9.0,21.0,0.0,gpt-4
+39,TSP,True,,5.0,5.0,5.0,10.0,0.0,gpt-4
+40,Seating,False,No JSON in row,,,,,,gpt-4
+41,Seating,True,,4.0,6.0,2.0,6.0,0.0,gpt-4
+42,Seating,False,No JSON in row,,,,,,gpt-4
+43,Seating,True,,5.0,7.0,2.0,6.0,0.0,gpt-4
+44,Seating,False,No JSON in row,,,,,,gpt-4
+45,Seating,True,,4.0,6.0,2.0,6.0,0.0,gpt-4
+46,Seating,True,,3.0,5.0,2.0,6.0,0.0,gpt-4
+47,Seating,True,,4.0,6.0,2.0,6.0,0.0,gpt-4
+48,Seating,True,,4.0,6.0,2.0,6.0,0.0,gpt-4
+49,Seating,False,No JSON in row,,,,,,gpt-4
+50,Seating,False,No JSON in row,,,,,,gpt-4
+51,Seating,True,,4.0,6.0,2.0,6.0,0.0,gpt-4
+52,Seating,False,No JSON in row,,,,,,gpt-4
+53,Seating,True,,5.0,7.0,5.0,6.0,2.0,gpt-4
+54,Seating,True,,3.0,5.0,2.0,6.0,0.0,gpt-4
+55,Seating,False,No JSON in row,,,,,,gpt-4
+56,Seating,False,No JSON in row,,,,,,gpt-4
+57,Seating,False,No JSON in row,,,,,,gpt-4
+58,Seating,True,,5.0,7.0,2.0,6.0,0.0,gpt-4
+59,Seating,True,,3.0,5.0,5.0,6.0,2.0,gpt-4
+60,Graph Coloring,True,,5.0,5.0,5.0,6.0,0.0,gpt-4
+61,Graph Coloring,True,,4.0,4.0,4.0,3.0,0.0,gpt-4
+62,Graph Coloring,True,,5.0,5.0,5.0,3.0,0.0,gpt-4
+63,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+64,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+65,Graph Coloring,True,,5.0,5.0,5.0,4.0,0.0,gpt-4
+66,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+67,Graph Coloring,True,,4.0,4.0,4.0,4.0,0.0,gpt-4
+68,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+69,Graph Coloring,True,,5.0,5.0,5.0,3.0,0.0,gpt-4
+70,Graph Coloring,True,,4.0,4.0,4.0,3.0,0.0,gpt-4
+71,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+72,Graph Coloring,True,,3.0,3.0,3.0,2.0,0.0,gpt-4
+73,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+74,Graph Coloring,True,,4.0,4.0,4.0,3.0,0.0,gpt-4
+75,Graph Coloring,True,,4.0,4.0,4.0,3.0,0.0,gpt-4
+76,Graph Coloring,True,,4.0,4.0,4.0,4.0,0.0,gpt-4
+77,Graph Coloring,True,,4.0,4.0,4.0,2.0,0.0,gpt-4
+78,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+79,Graph Coloring,False,No JSON in row,,,,,,gpt-4
+80,Team Assignment,False,No JSON in row,,,,,,gpt-4
+81,Team Assignment,False,Constraint 0 RHS is not numeric,6.0,,,,,gpt-4
+82,Team Assignment,False,Unrecognized factor '- 1' in term '- 1*Person3',6.0,,,,,gpt-4
+83,Team Assignment,False,No JSON in row,,,,,,gpt-4
+84,Team Assignment,False,No JSON in row,,,,,,gpt-4
+85,Team Assignment,False,No JSON in row,,,,,,gpt-4
+86,Team Assignment,False,No JSON in row,,,,,,gpt-4
+87,Team Assignment,False,No JSON in row,,,,,,gpt-4
+88,Team Assignment,False,No JSON in row,,,,,,gpt-4
+89,Team Assignment,False,"Unrecognized factor '6 ^2, Person1' in term 'sum Person0*6 ^2, Person1*5 ^2, Person2*6 ^2, Person3*3 ^2, Person4*6 ^2, Person5*8 ^2'",6.0,,,,,gpt-4
+90,Team Assignment,False,No JSON in row,,,,,,gpt-4
+91,Team Assignment,False,No JSON in row,,,,,,gpt-4
+92,Team Assignment,False,Constraint 0 RHS is not numeric,6.0,,,,,gpt-4
+93,Team Assignment,False,Constraint 0 RHS is not numeric,6.0,,,,,gpt-4
+94,Team Assignment,False,Unrecognized factor '- Person3' in term '- Person3 * 5',6.0,,,,,gpt-4
+95,Team Assignment,False,Unrecognized factor 'averageTeam1 ^2' in term '-1*averageTeam1 ^2',6.0,,,,,gpt-4
+96,Team Assignment,False,No JSON in row,,,,,,gpt-4
+97,Team Assignment,False,No JSON in row,,,,,,gpt-4
+98,Team Assignment,False,No JSON in row,,,,,,gpt-4
+99,Team Assignment,False,No JSON in row,,,,,,gpt-4
