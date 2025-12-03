@@ -61,9 +61,10 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
-          cp dsnManual.pdf dist/QuantumOptimizationLLM_v${VERSION}.pdf
+          cp latex/2025F_SSW423_07_Extreme/dsnManual.pdf dist/QuantumOptimizationLLM_v${VERSION}.pdf
           cd dist
           zip QuantumOptimizationLLM_v${VERSION}.zip QuantumOptimizationLLM_v${VERSION}.pdf
+
 
       # 9) Upload artifact
       - name: Upload versioned artifact
