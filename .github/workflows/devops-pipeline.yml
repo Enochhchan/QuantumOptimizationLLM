@@ -33,12 +33,12 @@ jobs:
           echo "Version is $VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      # NEW: build the LaTeX manual from latex/dsnManual.tex
       - name: Build LaTeX manual
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: latex
-          root_file: dsnManual.tex   # <-- change this if your root .tex has a different name
+          root_file: dsnManual.tex   # <-- change if needed
+          args: -pdfdvi
 
       - name: Run pytest
         run: |
@@ -48,7 +48,6 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
-          # use the PDF that was just compiled from LaTeX
           cp "latex/dsnManual.pdf" "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
           cd dist
           zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
