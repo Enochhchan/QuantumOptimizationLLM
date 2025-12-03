@@ -51,7 +51,7 @@ jobs:
       - name: Build LaTeX report
         working-directory: latex/2025F_SSW423_07_Extreme
         run: |
-          latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
+          latexmk -pdfps -interaction=nonstopmode -halt-on-error dsnManual.tex
 
       # 7) Run pytest tests
       - name: Run pytest
