@@ -27,10 +27,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            latexmk
+            texlive-full \
+            texlive-science \
+            latexmk \
+            python3-pygments \
+            ghostscript
 
       # 4) Install Python dependencies (pytest + optional requirements.txt)
       - name: Install Python dependencies
