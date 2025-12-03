@@ -41,7 +41,7 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
-          cp latex/2025F_SSW423_07_Extreme/dsnManual.pdf "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
+          cp latex/2025F_SSW423_07_Extreme/2025F_SSW423_07_Extreme.pdf "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
           cd dist
           zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
 
