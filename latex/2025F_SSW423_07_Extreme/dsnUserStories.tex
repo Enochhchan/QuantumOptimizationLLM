@@ -1,0 +1,78 @@
+% --- Fix User Story ID Formatting ---
+\makeatletter
+\renewcommand{\UserStoryLabel}[2]{\label{userstory:#2}} % Anchor
+\renewcommand{\UserStoryReference}[2]{\hyperref[userstory:#2]{\textbf{US-#2}}} % Blue linked text
+\makeatother
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+% =====================================
+% Chapter: User Stories
+% =====================================
+\chapter{User Stories \\
+\small{\textit{-- Chan, Moks, Ponte}}
+\index{user stories} 
+\index{Chapter!User Stories}
+\label{Chapter::UserStories}}
+
+\section{User Stories}
+\label{sec:userstories}
+\noindent
+Each user story is linked to its associated \hyperref[Chapter::UseCases]{Use Case(s)} and \hyperref[Table::RequirementsUser]{Requirement(s)} to ensure traceability throughout the system design. \\[4pt]
+
+\small
+\begin{longtable}{|p{1.2cm}|p{8.6cm}|p{2.2cm}|p{3.2cm}|}
+\caption{User Stories (linked to Use Cases and Requirements) \label{Table::UserStories}}\\
+\hline
+\textbf{ID} & \textbf{Story (Role • Goal • Benefit)} & \textbf{Use Case(s)} & \textbf{Requirement(s)}\\
+\hline
+\endhead
+
+{\UserStoryLabel{userstory}{1}\UserStoryReference{userstory}{1}} &
+\UserStoryName{userstory}{As an operations analyst with no quantum background, I want to type a routing/scheduling problem in plain English and immediately receive a solver-ready model so I can compare alternatives without learning QUBO syntax.}
+\begin{itemize}[topsep=2pt,itemsep=1pt,leftmargin=10pt]
+\item \textbf{Acceptance}: Given a valid NL prompt, the system returns schema-valid JSON and a compiled QUBO.
+\item Validation errors are reported with reason.
+\end{itemize}
+&
+\UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucExecuteReport} &
+\RequirementReference{reqkFunctional}{reqfTranslation}, \RequirementReference{reqkFunctional}{reqfCompilation}
+\\
+\hline
+
+{\UserStoryLabel{userstory}{2}\UserStoryReference{userstory}{2}} &
+\UserStoryName{userstory}{As a stakeholder, I need the system to show how my request was interpreted and a fidelity score so I can trust the optimization reflects my intent.}
+\begin{itemize}[topsep=2pt,itemsep=1pt,leftmargin=10pt]
+\item \textbf{Acceptance}: Reverse-translated text is shown side-by-side with the original; fidelity score reported.
+\item Scores below threshold are flagged.
+\end{itemize}
+&
+\UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucViewLogsMetrics} &
+\RequirementReference{reqkFunctional}{reqfReverseTranslate}, \RequirementReference{reqkQuality}{reqqFidelity}
+\\
+\hline
+
+{\UserStoryLabel{userstory}{3}\UserStoryReference{userstory}{3}} &
+\UserStoryName{userstory}{As a planner, I want the system to execute on a simulator and report the best-found solution with constraint checks and runtime so I can decide.}
+\begin{itemize}[topsep=2pt,itemsep=1pt,leftmargin=10pt]
+\item \textbf{Acceptance}: Solver returns objective value, assignment, feasibility status, and runtime.
+\item Results are saved for reuse.
+\end{itemize}
+&
+\UseCaseReference{ucExecuteReport} &
+\RequirementReference{reqkFunctional}{reqfExecution}, \RequirementReference{reqkFunctional}{reqfReporting}
+\\
+\hline
+
+{\UserStoryLabel{userstory}{4}\UserStoryReference{userstory}{4}} &
+\UserStoryName{userstory}{As a researcher, I need logs, metrics, and versioned prompts so results are reproducible across runs and models.}
+\begin{itemize}[topsep=2pt,itemsep=1pt,leftmargin=10pt]
+\item \textbf{Acceptance}: CSV/plots are exported; runs recorded with model version, seeds, and timestamps.
+\item Prompt versions are tracked and retrievable.
+\end{itemize}
+&
+\UseCaseReference{ucViewLogsMetrics}, \UseCaseReference{ucManagePromptLibrary} &
+\RequirementReference{reqkFunctional}{reqfReporting}, \RequirementReference{reqkFunctional}{reqfPromptLibrary}, \RequirementReference{reqkQuality}{reqqMaintainability}
+\\
+\hline
+
+\end{longtable}

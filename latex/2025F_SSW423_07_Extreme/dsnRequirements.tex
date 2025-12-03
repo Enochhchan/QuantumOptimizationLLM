@@ -1,0 +1,232 @@
+\chapter{Requirements \\
+\small{\textit{-- Chan, Moks, Ponte}}
+\index{requirements} 
+\index{Chapter!Requirements}
+\label{Chapter::Requirements}}
+
+\section{Stakeholders}
+\subsection{Customers} 
+End users who want to describe optimization problems in plain English and obtain valid solutions through quantum/classical solvers.  
+
+\subsection{Sponsors}
+Technical advisors from D-Wave supporting research in trustworthy AI/quantum optimization.  
+
+\subsection{Engineering and Technical Persons}
+Developers implementing LLM interfaces, QUBO compilers, and solver integrations.  
+
+\subsection{Regulators}
+IRB and institutional guidelines ensuring no sensitive personal data is used in prompts.  
+
+\subsection{Third Parties}
+Providers of APIs (e.g., OpenAI, D-Wave) that supply underlying LLM or solver services.  
+
+\subsection{Competitors} 
+Other optimization frameworks (e.g., OR-LLM-Agent, LLMOPT) that provide similar functionality for classical optimization.  
+
+\section{Key Concepts}
+
+\textbf{\gls{QUBO}}: Quadratic Unconstrained Binary Optimization formulation used for optimization problems.  
+
+\textbf{\gls{BQM}}: Binary Quadratic Model, solver-ready form of QUBO.  
+
+\textbf{\gls{LLM}}: Large Language Model, used for translating natural language into QUBO JSON.  
+
+\textbf{\gls{Fidelity}}: A measure of how well reverse-translated text preserves the original intent.  
+
+\textbf{\gls{Prompt Library}}: A curated set of optimization prompts used for benchmarking and testing.  
+ 
+
+\section{User Requirements}
+
+\small
+\begin{longtable}{|p{11cm}|p{1.5cm}|p{2cm}|}
+\caption{User Requirements Table \label{Table::RequirementsUser}}\\
+\hline
+\textbf{Requirement} & \textbf{Priority} & \textbf{Use Case(s)} \\
+\hline 
+\endhead
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfTranslation}]
+\RequirementLabel{reqkFunctional}{reqfTranslation}
+The system shall accept a natural language prompt and generate schema-compliant JSON (QUBO representation).
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfValidation}]
+\RequirementLabel{reqkFunctional}{reqfValidation}
+The system shall validate JSON and classify errors such as missing objectives, malformed constraints, or hallucinated variables.
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfReverseTranslate}]
+\RequirementLabel{reqkFunctional}{reqfReverseTranslate}
+The system shall reverse translate a QUBO into natural language and compute a fidelity score against the original prompt.
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucReverseTranslate} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfCompilation}]
+\RequirementLabel{reqkFunctional}{reqfCompilation}
+The system shall compile schema-compliant JSON into a QUBO and support five canonical optimization problem types.
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucExecuteReport} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfExecution}]
+\RequirementLabel{reqkFunctional}{reqfExecution}
+The system shall execute the compiled QUBO on a simulator (and optionally on a hardware solver) and return feasible solutions.
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucExecuteReport} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfReporting}]
+\RequirementLabel{reqkFunctional}{reqfReporting}
+The system shall log prompts, outputs, metrics, and export results as CSV and plots.
+\end{reqkFunctional}
+& \gls{must} & \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucViewLogsMetrics} \\
+\hline
+
+\begin{reqkFunctional}[
+\RequirementName{reqkFunctional}{reqfPromptLibrary}]
+\RequirementLabel{reqkFunctional}{reqfPromptLibrary}
+The system shall provide a prompt library where users can add, update, and tag benchmark prompts by problem type.
+\end{reqkFunctional}
+& \gls{should} & \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+\end{longtable}
+
+\section{Non-functional (Quality) Requirements}
+\small
+\begin{longtable}{|p{11cm}|p{1.5cm}|p{2cm}|}
+\caption{Non-Functional (Quality) Requirements Table \label{Table::RequirementsQuality}}\\
+\hline
+\textbf{Requirement} & \textbf{Priority} & \textbf{Use Case(s)} \\
+\hline
+\endhead
+
+\begin{reqkQuality}[
+\RequirementName{reqkQuality}{reqqLatency}]
+\RequirementLabel{reqkQuality}{reqqLatency}
+The system shall achieve a median latency $\leq$ 6 seconds, with 95th percentile latency $\leq$ 9 seconds.
+\end{reqkQuality}
+& \gls{must} & \UseCaseReference{ucViewLogsMetrics} \\
+\hline
+
+\begin{reqkQuality}[
+\RequirementName{reqkQuality}{reqqFidelity}]
+\RequirementLabel{reqkQuality}{reqqFidelity}
+The system shall achieve a fidelity score of at least 0.70 for automatic acceptance; lower fidelity shall be flagged.
+\end{reqkQuality}
+& \gls{must} & \UseCaseReference{ucReverseTranslate} \\
+\hline
+
+\begin{reqkQuality}[
+\RequirementName{reqkQuality}{reqqSchemaValid}]
+\RequirementLabel{reqkQuality}{reqqSchemaValid}
+The system shall produce at least 80\% schema-valid JSON across the five canonical problem types.
+\end{reqkQuality}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucViewLogsMetrics} \\
+\hline
+
+\begin{reqkQuality}[
+\RequirementName{reqkQuality}{reqqMaintainability}]
+\RequirementLabel{reqkQuality}{reqqMaintainability}
+The system shall maintain $\geq$ 85\% unit test coverage, use typing, and follow modular object-oriented design practices.
+\end{reqkQuality}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucViewLogsMetrics}, \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+\begin{reqkQuality}[
+\RequirementName{reqkQuality}{reqqSecurity}]
+\RequirementLabel{reqkQuality}{reqqSecurity}
+The system shall store no PII, keep API keys in secure secrets, and ensure all logs are sanitized.
+\end{reqkQuality}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucViewLogsMetrics} \\
+\hline
+
+\end{longtable}
+
+
+
+\section{System (Constraints) Requirements}
+\small
+\begin{longtable}{|p{11cm}|p{1.5cm}|p{2cm}|}
+\caption{System (Constraints) Requirements Table \label{Table::RequirementsSystem}}\\
+\hline
+\textbf{Requirement} & \textbf{Priority} & \textbf{Use Case(s)} \\
+\hline
+\endhead
+
+\begin{reqkConstraint}[
+\RequirementName{reqkConstraint}{reqcTechStack}]
+\RequirementLabel{reqkConstraint}{reqcTechStack}
+The system shall be implemented in Python 3.11 and use OpenAI SDK, pandas, jsonschema, matplotlib, and sentence-transformers.
+\end{reqkConstraint}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucExecuteReport} \\
+\hline
+
+\begin{reqkConstraint}[
+\RequirementName{reqkConstraint}{reqcBudget}]
+\RequirementLabel{reqkConstraint}{reqcBudget}
+The system shall operate under budgeted API usage; default simulator shall be used, with hardware solvers optional.
+\end{reqkConstraint}
+& \gls{must} & \UseCaseReference{ucExecuteReport} \\
+\hline
+
+\begin{reqkConstraint}[
+\RequirementName{reqkConstraint}{reqcData}]
+\RequirementLabel{reqkConstraint}{reqcData}
+The system shall only use synthetic or public prompts (no IRB approval required).
+\end{reqkConstraint}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+\begin{reqkConstraint}[
+\RequirementName{reqkConstraint}{reqcLocalExecution}]
+\RequirementLabel{reqkConstraint}{reqcLocalExecution}
+The system shall be fully executable on the user's machine without requiring any web interface or network connectivity. At minimum, all core functionalities must run through a local terminal or command-line interface using the project source code.
+\end{reqkConstraint}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+\begin{reqkConstraint}[
+\RequirementName{reqkConstraint}{reqcLocalWebUI}]
+\RequirementLabel{reqkConstraint}{reqcLocalWebUI}
+The system should provide an optional locally hosted web-based interface (e.g., running on localhost) to allow users to interact with the system via a graphical UI. This interface should not depend on any external deployment and must run entirely on the user's machine.
+\end{reqkConstraint}
+& \gls{should} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+
+
+\end{longtable}
+
+
+
+\section{Domain (Business) Requirements}
+\small
+\begin{longtable}{|p{11cm}|p{1.5cm}|p{2cm}|}
+\caption{Domain (Business) Requirements Table \label{Table::RequirementsDomain}}\\
+\hline
+\textbf{Requirement} & \textbf{Priority} & \textbf{Use Case(s)} \\
+\hline
+\endhead
+
+\begin{reqkBusiness}[
+\RequirementName{reqkBusiness}{reqbResearch}]
+\RequirementLabel{reqkBusiness}{reqbResearch}
+The system shall be designed for academic and research purposes only and not for commercial deployment.
+\end{reqkBusiness}
+& \gls{must} & \UseCaseReference{ucTranslatePrompt}, \UseCaseReference{ucReverseTranslate}, \UseCaseReference{ucExecuteReport}, \UseCaseReference{ucViewLogsMetrics}, \UseCaseReference{ucManagePromptLibrary} \\
+\hline
+
+\end{longtable}
