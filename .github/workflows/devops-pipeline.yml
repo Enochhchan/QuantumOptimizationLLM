@@ -32,26 +32,26 @@ jobs:
             texlive-fonts-recommended \
             latexmk
 
-      # 4) Install Python dependencies (if you have requirements.txt)
+      # 4) Install Python dependencies (pytest + optional requirements.txt)
       - name: Install Python dependencies
-        if: exists('requirements.txt')
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       # 5) Read version from version.txt
       - name: Read version from version.txt
         id: get_version
         run: |
-          VERSION=$(cat version.txt | tr -d ' \n')
+          VERSION=$(tr -d ' \n' < version.txt)
           echo "Version is $VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       # 6) Build LaTeX report from dsnManual.tex
       - name: Build LaTeX report
+        working-directory: latex/2025F_SSW423_07_Extreme
         run: |
-          cd latex/2025F_SSW423_07_Extreme
           latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
-
 
       # 7) Run pytest tests
       - name: Run pytest
@@ -63,10 +63,9 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
-          cp latex/2025F_SSW423_07_Extreme/dsnManual.pdf dist/QuantumOptimizationLLM_v${VERSION}.pdf
+          cp latex/2025F_SSW423_07_Extreme/dsnManual.pdf "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
           cd dist
-          zip QuantumOptimizationLLM_v${VERSION}.zip QuantumOptimizationLLM_v${VERSION}.pdf
-
+          zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
 
       # 9) Upload artifact
       - name: Upload versioned artifact
