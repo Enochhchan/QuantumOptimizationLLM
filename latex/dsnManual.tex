@@ -39,7 +39,7 @@ urlcolor=blue
 %\usepackage{tabto}
 
 \usepackage{tabularx,colortbl}
-\usepackage[nonumberlist]{glossaries}
+\usepackage[chapter]{algorithm} 
 \usepackage{algorithmic} 
 \usepackage{blindtext}
 
@@ -273,12 +273,12 @@ urlcolor=blue
 % Requirements name with inline (WI) reference 
 \newcommand{\UserStoryNameWIReference}[2]{\RequirementName{#1}{#1} (\RequirementReference{#1}{#2})}
 
-\renewcommand{\UseCaseLabel}[2]{\FamilyLabel{#1}{#2}}
-\renewcommand{\UseCaseName}[2]{\FamilyName{#1}{#2}}
-\renewcommand{\UseCaseReference}[2]{\FamilyNameReferenceKind{#1}{#2}{UC}{_}}
+\newcommand{\UseCaseLabel}[2]{\FamilyLabel{#1}{#2}}
+\newcommand{\UseCaseName}[2]{\FamilyName{#1}{#2}}
+\newcommand{\UseCaseReference}[2]{\FamilyNameReferenceKind{#1}{#2}{UC}{_}}
 
 % Use Case name with stacked (WS) reference
-\renewcommand{\UseCaseNameWSReference}[2]{%
+\newcommand{\UseCaseNameWSReference}[2]{%
   \begin{tabular}{c}
     \UseCaseName{#1}{#2} \\
     (\UseCaseReference{#1}{#2})
@@ -286,10 +286,9 @@ urlcolor=blue
 }
 
 % Use Case name with inline (WI) reference
-\renewcommand{\UseCaseNameWIReference}[2]{%
+\newcommand{\UseCaseNameWIReference}[2]{%
   \UseCaseName{#1}{#2} (\UseCaseReference{#1}{#2})
 }
-
 
 
 
