@@ -1,0 +1,73 @@
+name: DevOps Pipeline - Build, Test, Package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-test-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Set up Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3) Install LaTeX tools
+      - name: Install LaTeX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            latexmk
+
+      # 4) Install Python dependencies (if you have requirements.txt)
+      - name: Install Python dependencies
+        if: exists('requirements.txt')
+        run: |
+          pip install -r requirements.txt
+
+      # 5) Read version from version.txt
+      - name: Read version from version.txt
+        id: get_version
+        run: |
+          VERSION=$(cat version.txt | tr -d ' \n')
+          echo "Version is $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      # 6) Build LaTeX report from dsnManual.tex
+      - name: Build LaTeX report
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
+
+      # 7) Run pytest tests
+      - name: Run pytest
+        run: |
+          pytest
+
+      # 8) Create versioned ZIP artifact with the PDF
+      - name: Create versioned ZIP
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          mkdir -p dist
+          cp dsnManual.pdf dist/QuantumOptimizationLLM_v${VERSION}.pdf
+          cd dist
+          zip QuantumOptimizationLLM_v${VERSION}.zip QuantumOptimizationLLM_v${VERSION}.pdf
+
+      # 9) Upload artifact
+      - name: Upload versioned artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QuantumOptimizationLLM_v${{ steps.get_version.outputs.version }}
+          path: dist/QuantumOptimizationLLM_v${{ steps.get_version.outputs.version }}.zip
