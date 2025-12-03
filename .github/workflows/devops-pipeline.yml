@@ -49,7 +49,9 @@ jobs:
       # 6) Build LaTeX report from dsnManual.tex
       - name: Build LaTeX report
         run: |
+          cd latex/2025F_SSW423_07_Extreme
           latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
+
 
       # 7) Run pytest tests
       - name: Run pytest
