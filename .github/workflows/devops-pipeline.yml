@@ -40,7 +40,8 @@ jobs:
       - name: Build LaTeX manual
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: latex/dsnManual.tex
+          root_file: dsnManual.tex
+          working_directory: latex
           latexmk_use_latexmkrc: false
           latexmk_shell_escape: true
 
