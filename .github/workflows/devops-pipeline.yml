@@ -49,7 +49,7 @@ jobs:
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
           # use the PDF that was just compiled from LaTeX
-          cp "latex/dsnManual.pdf" "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
+          cp "latex/2025F_SSW423_07_Extreme.pdf" "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
           cd dist
           zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
 
