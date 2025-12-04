@@ -37,6 +37,24 @@ jobs:
         run: |
           pytest
 
+      - name: Build LaTeX manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: latex/dsnManual.tex
+          latexmk_use_latexmkrc: false
+          latexmk_shell_escape: true
+
+      - name: Zip LaTeX artifact
+        run: |
+          cd latex
+          zip dsnManual.zip dsnManual.pdf
+
+      - name: Upload LaTeX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsnManual
+          path: latex/dsnManual.zip
+
       - name: Create versioned ZIP
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
