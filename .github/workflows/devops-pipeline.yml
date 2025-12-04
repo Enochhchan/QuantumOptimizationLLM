@@ -1,4 +1,4 @@
-name: DevOps Pipeline - Test, Build LaTeX, and Package
+name: DevOps Pipeline - Test and Package
 
 on:
   push:
@@ -31,25 +31,20 @@ jobs:
         run: |
           VERSION=$(tr -d ' \n' < version.txt)
           echo "Version is $VERSION"
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-
-      # NEW: build the LaTeX manual from latex/dsnManual.tex
-      - name: Build LaTeX manual
-        uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: latex
-          root_file: dsnManual.tex   # <-- change this if your root .tex has a different name
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Run pytest
-        run: |
-          pytest
+        run: pytest
 
-      - name: Create versioned ZIP
+      - name: Copy PDF into dist folder
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           mkdir -p dist
-          # use the PDF that was just compiled from LaTeX
           cp "latex/2025F_SSW423_07_Extreme.pdf" "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
+
+      - name: Create versioned ZIP artifact
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
           cd dist
           zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
 
