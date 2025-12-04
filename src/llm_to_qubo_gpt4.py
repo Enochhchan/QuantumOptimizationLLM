@@ -200,7 +200,8 @@ def main():
 
 
 
-    # Compute normalized complexity score (0–1 range)
+    # Compute normalized complexity score (0-1 range)
+    # Normalizing keeps different cases on the same plotting scale.
     df["Normalized Complexity"] = (df["Complexity Score"] - df["Complexity Score"].min()) / (df["Complexity Score"].max() - df["Complexity Score"].min())
 
     # Compute average success and normalized complexity by case type
