@@ -1,6 +1,5 @@
 .venv310
 .env
-requirements.txt
 __pycache__
 .venv
 .pytest_cache
