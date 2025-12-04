@@ -1,55 +1,47 @@
-name: DevOps Pipeline - Test and Package  #testtest
+name: Build LaTeX and Package PDF
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  test-and-package:
+  build-latex:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install Python dependencies
+      - name: Install TeX Live and latexmk
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            latexmk
 
-      - name: Read version from version.txt
-        id: get_version
+      - name: Compile dsnManual.tex
+        working-directory: latex
         run: |
-          VERSION=$(tr -d ' \n' < version.txt)
-          echo "Version is $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          latexmk -pdf -interaction=nonstopmode dsnManual.tex
 
-      - name: Run pytest
-        run: pytest
+      - name: List generated files (debug)
+        working-directory: latex
+        run: ls -R
 
-      - name: Copy PDF into dist folder
+      - name: Create ZIP with compiled PDF
+        working-directory: latex
         run: |
-          VERSION="${{ steps.get_version.outputs.version }}"
-          mkdir -p dist
-          cp "latex/2025F_SSW423_07_Extreme.pdf" "dist/QuantumOptimizationLLM_v${VERSION}.pdf"
+          mkdir -p build
+          cp dsnManual.pdf build/
+          cd build
+          zip dsnManual_artifact.zip dsnManual.pdf
 
-      - name: Create versioned ZIP artifact
-        run: |
-          VERSION="${{ steps.get_version.outputs.version }}"
-          cd dist
-          zip "QuantumOptimizationLLM_v${VERSION}.zip" "QuantumOptimizationLLM_v${VERSION}.pdf"
-
-      - name: Upload versioned artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: QuantumOptimizationLLM_v${{ steps.get_version.outputs.version }}
-          path: dist/QuantumOptimizationLLM_v${{ steps.get_version.outputs.version }}.zip
+          name: dsnManual-pdf-zip
+          path: latex/build/dsnManual_artifact.zip
