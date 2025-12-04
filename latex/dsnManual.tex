@@ -20,7 +20,8 @@
 %\usepackage{url}
 
 % Does not work with LaTeX=>PDF
-\usepackage[pdfmark, 
+\usepackage[
+%CHANGE Hpdfmark, 
 breaklinks=true, 
 colorlinks=true,
 citecolor=blue,
@@ -273,22 +274,22 @@ urlcolor=blue
 % Requirements name with inline (WI) reference 
 \newcommand{\UserStoryNameWIReference}[2]{\RequirementName{#1}{#1} (\RequirementReference{#1}{#2})}
 
-\newcommand{\UseCaseLabel}[2]{\FamilyLabel{#1}{#2}}
-\newcommand{\UseCaseName}[2]{\FamilyName{#1}{#2}}
-\newcommand{\UseCaseReference}[2]{\FamilyNameReferenceKind{#1}{#2}{UC}{_}}
+% \newcommand{\UseCaseLabel}[2]{\FamilyLabel{#1}{#2}}
+% \newcommand{\UseCaseName}[2]{\FamilyName{#1}{#2}}
+% \newcommand{\UseCaseReference}[2]{\FamilyNameReferenceKind{#1}{#2}{UC}{_}}
 
-% Use Case name with stacked (WS) reference
-\newcommand{\UseCaseNameWSReference}[2]{%
-  \begin{tabular}{c}
-    \UseCaseName{#1}{#2} \\
-    (\UseCaseReference{#1}{#2})
-  \end{tabular}
-}
+% % Use Case name with stacked (WS) reference
+% \newcommand{\UseCaseNameWSReference}[2]{%
+%   \begin{tabular}{c}
+%     \UseCaseName{#1}{#2} \\
+%     (\UseCaseReference{#1}{#2})
+%   \end{tabular}
+% }
 
-% Use Case name with inline (WI) reference
-\newcommand{\UseCaseNameWIReference}[2]{%
-  \UseCaseName{#1}{#2} (\UseCaseReference{#1}{#2})
-}
+% % Use Case name with inline (WI) reference
+% \newcommand{\UseCaseNameWIReference}[2]{%
+%   \UseCaseName{#1}{#2} (\UseCaseReference{#1}{#2})
+% }
 
 
 
@@ -335,8 +336,9 @@ urlcolor=blue
 
 % glossaries to organize the document glossary
 \usepackage[toc,
-    chapter,
-    numberedchapter = autolabel
+    %chapter, CHANGE THESE TWO
+    %numberedchapter = autolabel
+    numberedsection
     ]{glossaries}
 
 % glossary creation
