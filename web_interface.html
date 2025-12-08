@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Extreme's NL-QUBO Translation & Execution System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        /* Frame 1: Input Stage */
+        .input-stage {
+            display: block;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .input-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            padding: 5px 10px;
+        }
+
+        .icon-btn:hover {
+            color: #333;
+        }
+
+        /* Frame 2: Translation Stage */
+        .translation-stage {
+            display: none;
+        }
+
+        .prompt-reference {
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #666;
+        }
+
+        .processing-log {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .log-line {
+            margin: 5px 0;
+        }
+
+        .qubo-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .qubo-summary h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .qubo-summary p {
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .fidelity-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .fidelity-score {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .fidelity-bar {
+            flex: 1;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fidelity-fill {
+            height: 100%;
+            background-color: #4caf50;
+            transition: width 0.3s ease;
+        }
+
+        .fidelity-value {
+            font-weight: 600;
+            font-size: 16px;
+            color: #4caf50;
+        }
+
+        .reverse-translation {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Frame 3: Execution Stage */
+        .execution-stage {
+            display: none;
+        }
+
+        .execution-status {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .status-line {
+            margin: 5px 0;
+        }
+
+        .status-success {
+            color: #4caf50;
+        }
+
+        .solver-results {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .solver-results h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .solver-results p {
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .solution-preview {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .solution-preview h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .solution-preview p {
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .action-prompt {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Frame 1: Input Stage -->
+    <div class="container input-stage" id="inputStage">
+        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
+        <div class="input-container">
+            <textarea 
+                class="input-field" 
+                id="promptInput" 
+                placeholder="Enter your natural language optimization problem here..."
+            >Assign 20 technicians to 4 shifts so that each shift has at least 4 people.</textarea>
+        </div>
+        <div class="input-actions">
+            <button class="icon-btn" title="View code">&lt;&gt;</button>
+            <button class="icon-btn" title="Submit" onclick="startTranslation()">↑</button>
+        </div>
+    </div>
+
+    <!-- Frame 2: Translation Stage -->
+    <div class="container translation-stage" id="translationStage">
+        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
+        <div class="prompt-reference" id="promptReference"></div>
+        
+        <div class="processing-log" id="processingLog"></div>
+        
+        <div class="qubo-summary" id="quboSummary" style="display: none;">
+            <h3>--- QUBO Summary ---</h3>
+            <div id="quboSummaryContent"></div>
+        </div>
+        
+        <div class="fidelity-section" id="fidelitySection" style="display: none;">
+            <div class="log-line">Reverse-translating QUBO back to natural language...</div>
+            <div class="log-line">Computing fidelity score...</div>
+            <div class="fidelity-score">
+                <span>Fidelity Score:</span>
+                <div class="fidelity-bar">
+                    <div class="fidelity-fill" id="fidelityFill"></div>
+                </div>
+                <span class="fidelity-value" id="fidelityValue">0.87</span>
+            </div>
+            <div class="reverse-translation" id="reverseTranslation"></div>
+        </div>
+        
+        <div class="action-prompt">Would you like to proceed to execution?</div>
+        <div class="btn-container">
+            <button class="btn" onclick="proceedToExecution()">Proceed</button>
+        </div>
+    </div>
+
+    <!-- Frame 3: Execution Stage -->
+    <div class="container execution-stage" id="executionStage">
+        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
+        
+        <div class="execution-status" id="executionStatus"></div>
+        
+        <div class="solver-results" id="solverResults" style="display: none;">
+            <h3>--- Solver Results ---</h3>
+            <div id="solverResultsContent"></div>
+        </div>
+        
+        <div class="solution-preview" id="solutionPreview" style="display: none;">
+            <h3>Solution Preview</h3>
+            <div id="solutionPreviewContent"></div>
+        </div>
+        
+        <div class="action-prompt">Would you like to save logs and metrics?</div>
+        <div class="btn-container">
+            <button class="btn" onclick="saveResults()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPrompt = '';
+
+        function startTranslation() {
+            const prompt = document.getElementById('promptInput').value.trim();
+            if (!prompt) {
+                alert('Please enter a prompt');
+                return;
+            }
+            
+            currentPrompt = prompt;
+            
+            // Hide input stage, show translation stage
+            document.getElementById('inputStage').style.display = 'none';
+            document.getElementById('translationStage').style.display = 'block';
+            
+            // Show prompt reference
+            document.getElementById('promptReference').textContent = `"${prompt}"`;
+            
+            // Start processing animation
+            simulateTranslation();
+        }
+
+        function simulateTranslation() {
+            const log = document.getElementById('processingLog');
+            log.innerHTML = '';
+            
+            const steps = [
+                'Translating prompt...',
+                'LLM translation completed.',
+                'Validating JSON...',
+                'JSON is valid',
+                'Compiling JSON into QUBO...',
+                'QUBO compilation successful'
+            ];
+            
+            let stepIndex = 0;
+            const interval = setInterval(() => {
+                if (stepIndex < steps.length) {
+                    const line = document.createElement('div');
+                    line.className = 'log-line';
+                    line.textContent = steps[stepIndex];
+                    log.appendChild(line);
+                    stepIndex++;
+                } else {
+                    clearInterval(interval);
+                    showQUBOSummary();
+                }
+            }, 800);
+        }
+
+        function showQUBOSummary() {
+            const summary = document.getElementById('quboSummary');
+            const content = document.getElementById('quboSummaryContent');
+            
+            content.innerHTML = `
+                <p><strong>Variables:</strong> x_1 ... x_20</p>
+                <p><strong>Objective:</strong> minimize overtime hours</p>
+                <p><strong>Constraints:</strong> shift coverage, max technicians per shift</p>
+                <p><strong>QUBO size:</strong> 420 terms</p>
+            `;
+            
+            summary.style.display = 'block';
+            
+            // Show fidelity section after a delay
+            setTimeout(() => {
+                showFidelitySection();
+            }, 1000);
+        }
+
+        function showFidelitySection() {
+            const fidelitySection = document.getElementById('fidelitySection');
+            const fidelityFill = document.getElementById('fidelityFill');
+            const fidelityValue = document.getElementById('fidelityValue');
+            const reverseTranslation = document.getElementById('reverseTranslation');
+            
+            fidelitySection.style.display = 'block';
+            
+            // Animate fidelity bar
+            const score = 0.87;
+            setTimeout(() => {
+                fidelityFill.style.width = (score * 100) + '%';
+                fidelityValue.textContent = score.toFixed(2);
+                reverseTranslation.textContent = `Reverse Translation: 'The system schedules 20 technicians across 4 shifts with constraints to reduce overtime.'`;
+            }, 500);
+        }
+
+        function proceedToExecution() {
+            // Hide translation stage, show execution stage
+            document.getElementById('translationStage').style.display = 'none';
+            document.getElementById('executionStage').style.display = 'block';
+            
+            // Start execution simulation
+            simulateExecution();
+        }
+
+        function simulateExecution() {
+            const status = document.getElementById('executionStatus');
+            status.innerHTML = '';
+            
+            const statusLine1 = document.createElement('div');
+            statusLine1.className = 'status-line';
+            statusLine1.textContent = 'Running QUBO on local solver...';
+            status.appendChild(statusLine1);
+            
+            setTimeout(() => {
+                const statusLine2 = document.createElement('div');
+                statusLine2.className = 'status-line status-success';
+                statusLine2.textContent = 'Execution complete ✓';
+                status.appendChild(statusLine2);
+                
+                setTimeout(() => {
+                    showSolverResults();
+                }, 500);
+            }, 1500);
+        }
+
+        function showSolverResults() {
+            const results = document.getElementById('solverResults');
+            const content = document.getElementById('solverResultsContent');
+            
+            content.innerHTML = `
+                <p><strong>Best Objective Value:</strong> 14.0 overtime hours</p>
+                <p><strong>Feasible:</strong> Yes</p>
+                <p><strong>Runtime:</strong> 0.38 seconds</p>
+            `;
+            
+            results.style.display = 'block';
+            
+            setTimeout(() => {
+                showSolutionPreview();
+            }, 500);
+        }
+
+        function showSolutionPreview() {
+            const preview = document.getElementById('solutionPreview');
+            const content = document.getElementById('solutionPreviewContent');
+            
+            content.innerHTML = `
+                <p>Shift 1: 5 technicians</p>
+                <p>Shift 2: 5 technicians</p>
+                <p>Shift 3: 5 technicians</p>
+                <p>Shift 4: 5 technicians</p>
+            `;
+            
+            preview.style.display = 'block';
+        }
+
+        function saveResults() {
+            alert('Logs and metrics saved successfully!');
+            // In a real implementation, this would save to a file or database
+        }
+
+        // Allow Enter key to submit (Ctrl+Enter or Shift+Enter)
+        document.getElementById('promptInput').addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.shiftKey) && e.key === 'Enter') {
+                startTranslation();
+            }
+        });
+    </script>
+</body>
+</html>

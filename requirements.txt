@@ -5,3 +5,5 @@ numpy
 openai
 sentence-transformers
 pytest
+flask
+prometheus-client
