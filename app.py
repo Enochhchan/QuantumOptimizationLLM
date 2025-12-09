@@ -20,7 +20,8 @@ def health():
     return {'status': 'healthy'}, 200
 
 
-if __name__ == '__main__':
-    # Run on all interfaces (0.0.0.0) so it works in Docker
-    # Use port 5000 by default
-    app.run(host='0.0.0.0', port=5000, debug=True)
+if __name__ == "__main__":
+    import os
+    port = int(os.getenv("PORT", 5000))
+    # host MUST be 0.0.0.0 so Docker can expose it
+    app.run(host="0.0.0.0", port=port)
