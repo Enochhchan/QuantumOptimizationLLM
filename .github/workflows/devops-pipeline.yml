@@ -43,17 +43,38 @@ jobs:
       - name: Auto-increment build number
         id: version
         run: |
+          # Pull latest changes first to get current version
+          git pull origin main || true
+          
+          # Show current version before increment
+          echo "Current version: $(cat version.txt)"
+          
           # Increment build number automatically
           NEW_VERSION=$(python version.py)
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "Build number auto-incremented to: $NEW_VERSION"
           
+          # Show what changed
+          git diff version.txt || echo "No diff shown"
+          
           # Commit the updated version.txt back to repo
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add version.txt
-          git commit -m "Auto-increment build number to $NEW_VERSION [skip ci]" || echo "No changes to commit"
-          git push || echo "Push failed or no changes"
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit in version.txt"
+          else
+            git commit -m "Auto-increment build number to $NEW_VERSION [skip ci]"
+            echo "Committed version update"
+          fi
+          
+          # Push with better error handling
+          git push origin main || {
+            echo "Push failed, trying with force-with-lease"
+            git push origin main --force-with-lease || echo "Push still failed"
+          }
 
       - name: Write version and commit SHA to version.tex
         working-directory: latex
