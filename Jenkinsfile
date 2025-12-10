@@ -78,6 +78,7 @@ pipeline {
                 bat '''
                 echo [Package versioned ZIP artifact]
 
+                REM Use delayed expansion so we can see VERSION after the FOR loop
                 setlocal EnableDelayedExpansion
 
                 REM Read version from version.txt
@@ -87,15 +88,10 @@ pipeline {
                 REM Ensure dist directory exists
                 if not exist dist mkdir dist
 
-                REM If the PDF exists, zip just that
-                if exist latex\\dsnManual.pdf (
-                    echo [INFO] Found latex\\dsnManual.pdf, packaging into versioned ZIP...
-                    powershell -Command "Compress-Archive -Path 'latex\\dsnManual.pdf' -DestinationPath 'dist\\QuantumOptimizationLLM_v!VERSION!.zip' -Force"
-                ) else (
-                    echo [WARN] latex\\dsnManual.pdf not found. This is expected on Jenkins (MiKTeX fresh-install issue).
-                    echo [WARN] Creating placeholder ZIP with source files instead.
-                    powershell -Command "Compress-Archive -Path 'src','latex','requirements.txt','Jenkinsfile','version.txt' -DestinationPath 'dist\\QuantumOptimizationLLM_v!VERSION!.zip' -Force"
-                )
+                echo [INFO] Creating versioned ZIP with source tree (includes LaTeX and any PDFs)
+
+                REM Package key project files into a versioned ZIP
+                powershell -Command "Compress-Archive -Path 'src','latex','requirements.txt','Jenkinsfile','version.txt' -DestinationPath 'dist\\QuantumOptimizationLLM_v!VERSION!.zip' -Force"
 
                 endlocal
 
@@ -104,6 +100,7 @@ pipeline {
                 '''
             }
         }
+
     }
 
     post {
