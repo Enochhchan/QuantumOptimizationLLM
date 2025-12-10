@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Git & CI
+.git
+.github
+
+# Project directories not needed for container
+latex/
+legacy/
+tests/
+data/
+docs/
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db

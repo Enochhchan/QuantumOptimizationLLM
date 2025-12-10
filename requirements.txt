@@ -7,3 +7,5 @@ sentence-transformers
 pytest
 flask
 prometheus-client
+flask
+prometheus-client
