@@ -71,3 +71,18 @@ pipeline {
                 '''
             }
         }
+    }
+
+    post {
+        always {
+            echo '[Post] Archiving artifacts'
+            archiveArtifacts artifacts: 'latex/dsnManual.pdf, dist/**/*.zip', fingerprint: true
+        }
+        success {
+            echo '[Post] Build succeeded!'
+        }
+        failure {
+            echo '[Post] Build failed!'
+        }
+    }
+}
