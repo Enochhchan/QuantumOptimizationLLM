@@ -35,15 +35,17 @@ pipeline {
             }
         }
 
-        stage('Build LaTeX PDF') {
-            steps {
-                bat '''
-                echo [Build LaTeX PDF]
-                cd latex
-                latexmk -pdf -interaction=nonstopmode dsnManual.tex
-                '''
-            }
+    stage('Build LaTeX PDF') {
+        steps {
+            bat '''
+            echo [Build LaTeX PDF]
+            cd latex
+            "C:\\Users\\enoch\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\latexmk.exe" -pdf -interaction=nonstopmode dsnManual.tex
+            '''
         }
+    }
+
+
 
         stage('Build Docker Image') {
             steps {
