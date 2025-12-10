@@ -51,7 +51,7 @@ jobs:
           git commit -m "Auto-increment build number to $NEW_VERSION [skip ci]" || exit 0
           git push || exit 0
 
-      - name: Write version and commit SHA to version.tex
+      - name: Write version and commit SHA to version.texx
         working-directory: latex
         run: |
           echo "v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})" > version.tex
