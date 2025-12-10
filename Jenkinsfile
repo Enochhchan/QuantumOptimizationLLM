@@ -41,18 +41,18 @@ pipeline {
             echo [Build LaTeX PDF]
             cd latex
 
-            REM Try to build the manual with latexmk
+            REM Try to build with latexmk (may fail due to MiKTeX / permissions)
             "C:\\Users\\enoch\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\latexmk.exe" -pdf -interaction=nonstopmode dsnManual.tex
 
-            REM If latexmk failed (MiKTeX fresh install / permissions), warn but DO NOT fail pipeline
-            IF ERRORLEVEL 1 (
-            echo [WARN] LaTeX build failed in Jenkins (likely MiKTeX setup / permissions).
-            echo [WARN] PDF is still built via GitHub Actions CI. Continuing pipeline...
+            echo [INFO] If LaTeX failed above, that is expected on Jenkins (MiKTeX fresh-install issue).
+            echo [INFO] The actual PDF is built in GitHub Actions CI. Continuing pipeline...
+
+            REM Force success so the pipeline can continue
             exit /B 0
-            )
             '''
         }
     }
+
 
 
         stage('Build Docker Image') {
