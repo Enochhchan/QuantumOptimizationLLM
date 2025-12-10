@@ -36,10 +36,17 @@ jobs:
       - name: Run tests
         run: pytest -q
 
-      - name: Write commit SHA to version.tex
+      - name: Get version from version.txt
+        id: version
+        run: |
+          VERSION=$(cat version.txt | tr -d '\n\r ')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: Write version and commit SHA to version.tex
         working-directory: latex
         run: |
-          echo "Commit: ${{ steps.commit.outputs.sha }}" > version.tex
+          echo "v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})" > version.tex
 
       - name: Install minimal LaTeX dependencies
         run: |
