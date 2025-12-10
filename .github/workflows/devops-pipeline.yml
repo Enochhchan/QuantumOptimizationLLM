@@ -92,3 +92,25 @@ jobs:
         with:
           name: dsnManual-pdf-v${{ steps.version.outputs.version }}-${{ steps.commit.outputs.sha }}
           path: latex/build/dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})
+          body: |
+            ## Release v${{ steps.version.outputs.version }}
+            
+            **Commit:** `${{ steps.commit.outputs.sha }}`
+            
+            ### Artifacts
+            - PDF: `dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.pdf`
+            - ZIP: `dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip`
+            
+            This release was automatically created by the CI/CD pipeline.
+          files: |
+            latex/build/dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
