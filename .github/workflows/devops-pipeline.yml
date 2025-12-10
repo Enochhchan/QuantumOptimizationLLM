@@ -90,5 +90,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dsnManual-pdf-v${{ steps.version.outputs.version }}
+          name: dsnManual-pdf-v${{ steps.version.outputs.version }}-${{ steps.commit.outputs.sha }}
           path: latex/build/dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip
