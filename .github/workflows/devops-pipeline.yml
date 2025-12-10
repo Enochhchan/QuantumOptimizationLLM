@@ -13,6 +13,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history to get commit SHA
+
+      - name: Get commit SHA
+        id: commit
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "Commit SHA: $COMMIT_SHA"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,6 +35,11 @@ jobs:
 
       - name: Run tests
         run: pytest -q
+
+      - name: Write commit SHA to version.tex
+        working-directory: latex
+        run: |
+          echo "Commit: ${{ steps.commit.outputs.sha }}" > version.tex
 
       - name: Install minimal LaTeX dependencies
         run: |
@@ -54,12 +68,12 @@ jobs:
         working-directory: latex
         run: |
           mkdir -p build
-          cp dsnManual.pdf build/
+          cp dsnManual.pdf build/dsnManual_${{ steps.commit.outputs.sha }}.pdf
           cd build
-          zip dsnManual_artifact.zip dsnManual.pdf
+          zip dsnManual_${{ steps.commit.outputs.sha }}.zip dsnManual_${{ steps.commit.outputs.sha }}.pdf
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dsnManual-pdf-zip
-          path: latex/build/dsnManual_artifact.zip
+          name: dsnManual-pdf-${{ steps.commit.outputs.sha }}
+          path: latex/build/dsnManual_${{ steps.commit.outputs.sha }}.zip
