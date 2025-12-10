@@ -36,12 +36,20 @@ jobs:
       - name: Run tests
         run: pytest -q
 
-      - name: Get version from version.txt
+      - name: Auto-increment build number
         id: version
         run: |
-          VERSION=$(cat version.txt | tr -d '\n\r ')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Version: $VERSION"
+          # Increment build number automatically
+          NEW_VERSION=$(python version.py)
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Build number auto-incremented to: $NEW_VERSION"
+          
+          # Commit the updated version.txt back to repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add version.txt
+          git commit -m "Auto-increment build number to $NEW_VERSION [skip ci]" || exit 0
+          git push || exit 0
 
       - name: Write version and commit SHA to version.tex
         working-directory: latex
@@ -75,12 +83,12 @@ jobs:
         working-directory: latex
         run: |
           mkdir -p build
-          cp dsnManual.pdf build/dsnManual_${{ steps.commit.outputs.sha }}.pdf
+          cp dsnManual.pdf build/dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.pdf
           cd build
-          zip dsnManual_${{ steps.commit.outputs.sha }}.zip dsnManual_${{ steps.commit.outputs.sha }}.pdf
+          zip dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.pdf
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dsnManual-pdf-${{ steps.commit.outputs.sha }}
-          path: latex/build/dsnManual_${{ steps.commit.outputs.sha }}.zip
+          name: dsnManual-pdf-v${{ steps.version.outputs.version }}
+          path: latex/build/dsnManual_v${{ steps.version.outputs.version }}_${{ steps.commit.outputs.sha }}.zip
