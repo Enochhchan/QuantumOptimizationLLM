@@ -51,7 +51,7 @@ jobs:
           git commit -m "Auto-increment build number to $NEW_VERSION [skip ci]" || exit 0
           git push || exit 0
 
-      - name: Write version and commit SHA to version.texx
+      - name: Write version and commit SHA to version.tex
         working-directory: latex
         run: |
           echo "v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})" > version.tex
@@ -97,7 +97,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.version.outputs.version }}
-          name: Release v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})
+          name: 'Release v${{ steps.version.outputs.version }} (Commit: ${{ steps.commit.outputs.sha }})'
           body: |
             ## Release v${{ steps.version.outputs.version }}
             
