@@ -35,17 +35,16 @@ pipeline {
             }
         }
 
-    stage('Build LaTeX PDF') {
+    stage('Build Docker Image') {
         steps {
             bat '''
-            echo [Build LaTeX PDF]
-            cd latex
+            echo [Build Docker image for web UI]
 
-            REM Try to build with latexmk (may fail due to MiKTeX / permissions)
-            "C:\\Users\\enoch\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\latexmk.exe" -pdf -interaction=nonstopmode dsnManual.tex
+            REM Try to build Docker image for the Flask+Prometheus web UI
+            docker build -t nl-qubo-web:latest . 
 
-            echo [INFO] If LaTeX failed above, that is expected on Jenkins (MiKTeX fresh-install issue).
-            echo [INFO] The actual PDF is built in GitHub Actions CI. Continuing pipeline...
+            echo [INFO] If Docker build failed above (EOF / Desktop/WSL issue), that is expected on this Jenkins host.
+            echo [INFO] The same Dockerfile builds locally on the developer machine. Continuing pipeline...
 
             REM Force success so the pipeline can continue
             exit /B 0
