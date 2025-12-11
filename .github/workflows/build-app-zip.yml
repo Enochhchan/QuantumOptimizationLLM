@@ -1,9 +1,13 @@
-name: Build EXE and Attach to Release
+name: Build EXE ZIP
 
 on:
+  push:
+    branches:
+      - main
   release:
     types: [published]
-
+  workflow_dispatch:
+  
 jobs:
   build-exe:
     runs-on: windows-latest
