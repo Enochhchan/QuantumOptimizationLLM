@@ -5,7 +5,7 @@ on:
     branches:
       - main
   release:
-    types: [published]
+    types: [created, published]
   workflow_dispatch:
 
 jobs:
@@ -42,7 +42,6 @@ jobs:
 
           # zip everything in dist into runnable-app.zip
           Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
-
 
       - name: Upload ZIP to this Release
         if: github.event_name == 'release'
