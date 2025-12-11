@@ -1,0 +1,50 @@
+name: Build EXE and Attach to Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          py -m pip install --upgrade pip
+          py -m pip install -r requirements.txt
+          py -m pip install pyinstaller
+
+      - name: Build EXE with PyInstaller
+        run: |
+          py -m PyInstaller --onefile --add-data "web_interface.html;." app.py
+
+      - name: Create launcher batch file
+        run: |
+          echo @echo off > dist\start_app.bat
+          echo start "" "app.exe" >> dist\start_app.bat
+          echo timeout /t 2 ^>nul >> dist\start_app.bat
+          echo start "" "http://127.0.0.1:5000" >> dist\start_app.bat
+
+      - name: Zip EXE and files
+        run: |
+          cd dist
+          powershell Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
+
+      - name: Upload ZIP to Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: runnable-app.zip
+          asset_name: runnable-app.zip
+          asset_content_type: application/zip

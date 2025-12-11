@@ -1,6 +1,7 @@
 from flask import Flask, send_file, request
 import os
 import time
+import sys
 
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
 
@@ -42,10 +43,10 @@ def record_metrics(response):
     return response
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    html_path = os.path.join(BASE_DIR, 'web_interface.html')
-    return send_file(html_path)
+    return send_file(resource_path("web_interface.html"))
+
 
 
 @app.route('/health')
@@ -57,6 +58,19 @@ def health():
 def metrics():
     data = generate_latest()
     return data, 200, {"Content-Type": CONTENT_TYPE_LATEST}
+
+def resource_path(relative_path: str) -> str:
+    """
+    Get absolute path to resource, works for dev and for PyInstaller one-file EXE.
+    """
+    try:
+        # PyInstaller creates a temp folder and stores data files in _MEIPASS
+        base_path = sys._MEIPASS  # type: ignore[attr-defined]
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 # Added a load route that simulates work
 
