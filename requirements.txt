@@ -9,3 +9,4 @@ flask
 prometheus-client
 flask
 prometheus-client
+pylint
