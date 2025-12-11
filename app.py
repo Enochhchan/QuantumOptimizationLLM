@@ -65,7 +65,7 @@ def metrics():
 #     time.sleep(0.2)
 #     return "Simulated load!"
 
-    
+# Added a load route that simulates work
 
 
 if __name__ == "__main__":
