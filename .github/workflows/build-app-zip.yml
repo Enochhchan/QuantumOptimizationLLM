@@ -45,6 +45,7 @@ jobs:
 
 
       - name: Upload ZIP to this Release
+        if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,3 +54,4 @@ jobs:
           asset_path: runnable-app.zip
           asset_name: runnable-app.zip
           asset_content_type: application/zip
+
