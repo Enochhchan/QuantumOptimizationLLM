@@ -1,10 +1,8 @@
-name: Build EXE ZIP
+name: Build EXE and Attach to Release
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   build-exe:
@@ -29,13 +27,24 @@ jobs:
         run: |
           py -m PyInstaller --onefile --add-data "web_interface.html;." app.py
 
-      - name: Zip EXE and files
+      - name: Create launcher and ZIP
         run: |
           cd dist
+          rem create a batch file so the grader just double-clicks once
+          echo @echo off > start_app.bat
+          echo start "" "app.exe" >> start_app.bat
+          echo timeout /t 2 ^>nul >> start_app.bat
+          echo start "" "http://127.0.0.1:5000" >> start_app.bat
+
+          rem zip everything in dist into runnable-app.zip
           powershell Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
 
-      - name: Upload EXE zip as artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload ZIP to this Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: runnable-app
-          path: runnable-app.zip
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: runnable-app.zip
+          asset_name: runnable-app.zip
+          asset_content_type: application/zip
