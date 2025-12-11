@@ -7,7 +7,7 @@ on:
   release:
     types: [published]
   workflow_dispatch:
-  
+
 jobs:
   build-exe:
     runs-on: windows-latest
@@ -34,14 +34,15 @@ jobs:
       - name: Create launcher and ZIP
         run: |
           cd dist
-          rem create a batch file so the grader just double-clicks once
-          echo @echo off > start_app.bat
-          echo start "" "app.exe" >> start_app.bat
-          echo timeout /t 2 ^>nul >> start_app.bat
-          echo start "" "http://127.0.0.1:5000" >> start_app.bat
+          # create a batch file so the grader just double-clicks once
+          "@echo off" | Out-File -Encoding ascii start_app.bat
+          'start "" "app.exe"' | Add-Content start_app.bat
+          'timeout /t 2 >nul' | Add-Content start_app.bat
+          'start "" "http://127.0.0.1:5000"' | Add-Content start_app.bat
 
-          rem zip everything in dist into runnable-app.zip
-          powershell Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
+          # zip everything in dist into runnable-app.zip
+          Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
+
 
       - name: Upload ZIP to this Release
         uses: actions/upload-release-asset@v1
