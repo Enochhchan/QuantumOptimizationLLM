@@ -34,14 +34,19 @@ jobs:
       - name: Create launcher and ZIP
         run: |
           cd dist
-          # create a batch file so the grader just double-clicks once
+          # create start_app.bat so grader can just double-click
           "@echo off" | Out-File -Encoding ascii start_app.bat
           'start "" "app.exe"' | Add-Content start_app.bat
           'timeout /t 2 >nul' | Add-Content start_app.bat
           'start "" "http://127.0.0.1:5000"' | Add-Content start_app.bat
-
-          # zip everything in dist into runnable-app.zip
+          # zip everything under dist into runnable-app.zip in repo root
           Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
+
+      - name: Upload EXE zip as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: runnable-app
+          path: runnable-app.zip
 
       - name: Upload ZIP to this Release
         if: github.event_name == 'release'
@@ -53,4 +58,3 @@ jobs:
           asset_path: runnable-app.zip
           asset_name: runnable-app.zip
           asset_content_type: application/zip
-
