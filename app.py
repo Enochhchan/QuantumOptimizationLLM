@@ -60,12 +60,12 @@ def metrics():
 
 # Added a load route that simulates work
 
-@app.route("/load")
-def load():
-    # Simulate work for demo (200ms)
-    import time
-    time.sleep(0.2)
-    return "Simulated load!"
+# @app.route("/load")
+# def load():
+#     # Simulate work for demo (200ms)
+#     import time
+#     time.sleep(0.2)
+#     return "Simulated load!"
 
 
 
