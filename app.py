@@ -58,14 +58,16 @@ def metrics():
     data = generate_latest()
     return data, 200, {"Content-Type": CONTENT_TYPE_LATEST}
 
-# @app.route("/load")
-# def load():
-#     # Simulate work for demo (200ms)
-#     import time
-#     time.sleep(0.2)
-#     return "Simulated load!"
-
 # Added a load route that simulates work
+
+@app.route("/load")
+def load():
+    # Simulate work for demo (200ms)
+    import time
+    time.sleep(0.2)
+    return "Simulated load!"
+
+
 
 
 if __name__ == "__main__":
