@@ -1,6 +1,8 @@
 import os
 import json
 import time
+import argparse
+from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -9,12 +11,76 @@ from difflib import SequenceMatcher
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer, util
 from dotenv import load_dotenv, find_dotenv
-from openai import OpenAI
+
+def _resolve_prompts_path(explicit_path: str | None) -> Path:
+    if explicit_path:
+        candidate = Path(explicit_path).expanduser()
+        if candidate.is_file():
+            return candidate
+        raise FileNotFoundError(f"--prompts not found: {candidate}")
+
+    env_path = os.getenv("QUBO_PROMPTS_PATH")
+    if env_path:
+        candidate = Path(env_path).expanduser()
+        if candidate.is_file():
+            return candidate
+        raise FileNotFoundError(f"QUBO_PROMPTS_PATH not found: {candidate}")
+
+    repo_root = Path(__file__).resolve().parents[1]
+    candidates = [
+        Path.cwd() / "generated_prompts.csv",
+        repo_root / "generated_prompts.csv",
+        repo_root / "legacy" / "generated_prompts.csv",
+        repo_root / "data" / "generated_prompts.csv",
+        repo_root / "data" / "prompts" / "generated_prompts.csv",
+    ]
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+
+    searched = "\n".join(str(p) for p in candidates)
+    raise FileNotFoundError(
+        "Could not find generated prompts CSV. Looked in:\n" + searched + "\n"
+        "Fix by passing --prompts <path> or setting QUBO_PROMPTS_PATH."
+    )
 
 def main():
+    parser = argparse.ArgumentParser(description="Run NL to QUBO translation experiment.")
+    parser.add_argument(
+        "--prompts",
+        default=None,
+        help="Path to generated_prompts.csv (or set QUBO_PROMPTS_PATH).",
+    )
+    parser.add_argument(
+        "--model",
+        default=os.getenv("OPENAI_MODEL", "gpt-4"),
+        help="OpenAI model name (or set OPENAI_MODEL).",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Only run the first N prompts (useful for cheap smoke tests).",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Skip OpenAI calls and use a dummy JSON output.",
+    )
+    parser.add_argument(
+        "--skip-embeddings",
+        action="store_true",
+        help="Skip embedding-based fidelity computations and plots.",
+    )
+    args = parser.parse_args()
+
     load_dotenv(find_dotenv())
     # === INIT ===
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key and not args.dry_run:
+        raise RuntimeError("OPENAI_API_KEY is missing. Put it in `.env` or your environment.")
+
+    client = OpenAI(api_key=api_key) if not args.dry_run else None
     sns.set_theme(style="whitegrid")
 
     # === Core: QUBO Translator ===
@@ -32,8 +98,19 @@ def main():
             "Only output valid JSON. Do not include extra text or explanation."
         )
         try:
+            if args.dry_run:
+                return (
+                    {
+                        "variables": ["x0", "x1"],
+                        "constraints": [
+                            {"type": "equality", "expression": "x0 + x1 = 1", "penalty": 10}
+                        ],
+                        "objective": "minimize: x0 + 2*x1",
+                    },
+                    True,
+                )
             response = client.chat.completions.create(
-                model="gpt-4",
+                model=args.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt_text}
@@ -50,9 +127,11 @@ def main():
     # === Reverse Translation ===
     def reverse_translate_qubo(qubo_json):
         try:
+            if args.dry_run:
+                return "Dummy reverse translation for dry-run."
             reverse_prompt = "You are a QUBO-to-text explainer. Translate this JSON QUBO into a natural language optimization problem description."
             response = client.chat.completions.create(
-                model="gpt-4",
+                model=args.model,
                 messages=[
                     {"role": "system", "content": reverse_prompt},
                     {"role": "user", "content": json.dumps(qubo_json)}
@@ -87,7 +166,12 @@ def main():
         return SequenceMatcher(None, a, b).ratio() if a and b else 0
 
     # === Load Prompts ===
-    problems_df = pd.read_csv("generated_prompts.csv")
+    prompts_path = _resolve_prompts_path(args.prompts)
+    print(f"Using prompts: {prompts_path}")
+    print(f"Using model: {args.model}{' (dry-run)' if args.dry_run else ''}")
+    problems_df = pd.read_csv(prompts_path)
+    if args.limit is not None:
+        problems_df = problems_df.head(args.limit)
 
     # === Run Experiment ===
     results = []
@@ -147,14 +231,6 @@ def main():
     df = pd.DataFrame(results)
     df.to_csv("llm_qubo_results_detailed_with_fidelity_gpt4_without_loop.csv", index=False)
 
-    # model = SentenceTransformer("all-MiniLM-L6-v2")
-
-    # def embedding_similarity(a, b):
-    #     embeddings = model.encode([a, b], convert_to_tensor=True)
-    #     return float(util.pytorch_cos_sim(embeddings[0], embeddings[1]))
-
-
-
     # === Summary Visuals ===
     # 1. Success Rate by Case
     plt.figure(figsize=(10, 6))
@@ -200,7 +276,7 @@ def main():
 
 
 
-    # Compute normalized complexity score (0–1 range)
+    # Compute normalized complexity score (0-1 range)
     df["Normalized Complexity"] = (df["Complexity Score"] - df["Complexity Score"].min()) / (df["Complexity Score"].max() - df["Complexity Score"].min())
 
     # Compute average success and normalized complexity by case type
@@ -229,11 +305,6 @@ def main():
 
 
 
-    # Re-import necessary packages after kernel reset
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-
     # Load the results CSV with fidelity scores
     df = pd.read_csv("llm_qubo_results_detailed_with_fidelity_gpt4_without_loop.csv")
 
@@ -250,81 +321,40 @@ def main():
     plt.tight_layout()
     plt.show()
 
-    fidelity_by_category
+    if not args.skip_embeddings:
+        # Load the model for semantic similarity
+        try:
+            model = SentenceTransformer("all-MiniLM-L6-v2")
+        except Exception as e:
+            print(f"Warning: could not load SentenceTransformer model; skipping embedding fidelity. Error: {e}")
+            return
 
+        # Compute embedding-based fidelity
+        def embedding_similarity(a, b):
+            if pd.isna(a) or pd.isna(b) or not isinstance(a, str) or not isinstance(b, str):
+                return None
+            embeddings = model.encode([a, b], convert_to_tensor=True)
+            return float(util.pytorch_cos_sim(embeddings[0], embeddings[1]))
 
+        # Apply the semantic similarity function to the dataset
+        df["Semantic Fidelity"] = df.apply(
+            lambda row: embedding_similarity(row["Prompt"], row["Reverse Prompt"]), axis=1
+        )
 
+        # Group by problem type to get average semantic fidelity
+        semantic_fid_by_category = df.groupby("Case")["Semantic Fidelity"].mean().reset_index()
 
-    # Load the model for semantic similarity
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-
-    # Compute embedding-based fidelity
-    def embedding_similarity(a, b):
-        if pd.isna(a) or pd.isna(b) or not isinstance(a, str) or not isinstance(b, str):
-            return None
-        embeddings = model.encode([a, b], convert_to_tensor=True)
-        return float(util.pytorch_cos_sim(embeddings[0], embeddings[1]))
-
-    # Apply the semantic similarity function to the dataset
-    df["Semantic Fidelity"] = df.apply(
-        lambda row: embedding_similarity(row["Prompt"], row["Reverse Prompt"]), axis=1
-    )
-
-    # Group by problem type to get average semantic fidelity
-    semantic_fid_by_category = df.groupby("Case")["Semantic Fidelity"].mean().reset_index()
-
-    # Plot average semantic fidelity by category
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data=semantic_fid_by_category, x="Case", y="Semantic Fidelity", color="skyblue")
-    plt.title("Average Semantic Fidelity Score by Problem Category")
-    plt.ylabel("Semantic Fidelity")
-    plt.ylim(0, 1.0)
-    plt.xticks(rotation=30)
-    plt.tight_layout()
-    output_path = "fidality.png"
-    plt.savefig(output_path, dpi=300)  # High resolution
-    plt.show()
-
-
-
-
-    # Load your result CSVs
-    df_35 = pd.read_csv("llm_qubo_results_detailed_with_fidelity_35.csv")
-    df_4 = pd.read_csv("llm_qubo_results_detailed_with_fidelity_gpt4_without_loop.csv")
-
-    # Load the embedding model
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-
-    # Define similarity
-    def embedding_similarity(a, b):
-        if pd.isna(a) or pd.isna(b) or not isinstance(a, str) or not isinstance(b, str):
-            return None
-        embeddings = model.encode([a, b], convert_to_tensor=True)
-        return float(util.pytorch_cos_sim(embeddings[0], embeddings[1]))
-
-    # Compute semantic fidelity per model
-    df_35["Model"] = "GPT-3.5"
-    df_4["Model"] = "GPT-4"
-    df_35["Semantic Fidelity"] = df_35.apply(lambda row: embedding_similarity(row["Prompt"], row["Reverse Prompt"]), axis=1)
-    df_4["Semantic Fidelity"] = df_4.apply(lambda row: embedding_similarity(row["Prompt"], row["Reverse Prompt"]), axis=1)
-
-    # Merge for comparison
-    df_all = pd.concat([df_35, df_4])
-
-    # Clean index and sort categories
-    df_all = df_all.reset_index(drop=True)
-    df_all["Case"] = pd.Categorical(df_all["Case"], categories=sorted(df_all["Case"].unique()), ordered=True)
-
-    # Plot
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data=df_all, x="Case", y="Semantic Fidelity", hue="Model", errorbar=None)
-    plt.title("Semantic Fidelity Score by Problem Type and Model (Embedding-Based)")
-    plt.ylabel("Semantic Fidelity")
-    plt.ylim(0, 1)
-    plt.xticks(rotation=30)
-    plt.tight_layout()
-    plt.savefig("semantic_fidelity_embedding_based.png", dpi=300)
-    plt.show()
+        # Plot average semantic fidelity by category
+        plt.figure(figsize=(10, 6))
+        sns.barplot(data=semantic_fid_by_category, x="Case", y="Semantic Fidelity", color="skyblue")
+        plt.title("Average Semantic Fidelity Score by Problem Category")
+        plt.ylabel("Semantic Fidelity")
+        plt.ylim(0, 1.0)
+        plt.xticks(rotation=30)
+        plt.tight_layout()
+        output_path = "fidality.png"
+        plt.savefig(output_path, dpi=300)  # High resolution
+        plt.show()
 
 
 if __name__ == "__main__":

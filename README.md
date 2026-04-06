@@ -44,6 +44,24 @@ Or visit http://localhost:5000/health in your browser.
 2. Open your browser and navigate to http://localhost:5000
 3. You should see the "Team Extreme's NL-QUBO Translation & Execution System" interface
 
+## Running the Experiment Script
+
+The experiment runner lives at `src/llm_to_qubo_gpt4.py`.
+
+Prereqs:
+- Set `OPENAI_API_KEY` (via `.env` or environment variables)
+
+Examples:
+```bash
+# Use the repo's current prompts file location
+python src/llm_to_qubo_gpt4.py --prompts legacy/generated_prompts.csv --model gpt-4.1 --limit 5
+
+# Or configure via env vars
+set OPENAI_MODEL=gpt-4.1
+set QUBO_PROMPTS_PATH=legacy/generated_prompts.csv
+python src/llm_to_qubo_gpt4.py --limit 5
+```
+
 ## Docker Deployment
 
 See Docker setup in Phase 2 (coming soon).

@@ -4,9 +4,8 @@ seaborn
 numpy
 openai
 sentence-transformers
+python-dotenv
 pytest
-flask
-prometheus-client
 flask
 prometheus-client
 pylint
