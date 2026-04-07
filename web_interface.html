@@ -266,6 +266,17 @@
             font-size: 16px;
             color: #666;
         }
+
+        .error-box {
+            background-color: #ffeceb;
+            color: #a60000;
+            border: 1px solid #f1b3ad;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -281,7 +292,7 @@
         </div>
         <div class="input-actions">
             <button class="icon-btn" title="View code">&lt;&gt;</button>
-            <button class="icon-btn" title="Submit" onclick="startTranslation()">↑</button>
+            <button class="icon-btn" title="Submit" onclick="startTranslation()">Submit</button>
         </div>
     </div>
 
@@ -289,6 +300,7 @@
     <div class="container translation-stage" id="translationStage">
         <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
         <div class="prompt-reference" id="promptReference"></div>
+        <div class="error-box" id="translationError"></div>
         
         <div class="processing-log" id="processingLog"></div>
         
@@ -321,6 +333,7 @@
         <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
         
         <div class="execution-status" id="executionStatus"></div>
+        <div class="error-box" id="executionError"></div>
         
         <div class="solver-results" id="solverResults" style="display: none;">
             <h3>--- Solver Results ---</h3>
@@ -340,31 +353,61 @@
 
     <script>
         let currentPrompt = '';
+        let currentPromptId = '';
+        let latestResult = null;
 
-        function startTranslation() {
+        function showError(elementId, message) {
+            const box = document.getElementById(elementId);
+            box.textContent = message;
+            box.style.display = 'block';
+        }
+
+        function clearError(elementId) {
+            const box = document.getElementById(elementId);
+            box.textContent = '';
+            box.style.display = 'none';
+        }
+
+        async function startTranslation() {
             const prompt = document.getElementById('promptInput').value.trim();
             if (!prompt) {
                 alert('Please enter a prompt');
                 return;
             }
-            
+
             currentPrompt = prompt;
-            
-            // Hide input stage, show translation stage
+
             document.getElementById('inputStage').style.display = 'none';
             document.getElementById('translationStage').style.display = 'block';
-            
-            // Show prompt reference
             document.getElementById('promptReference').textContent = `"${prompt}"`;
-            
-            // Start processing animation
-            simulateTranslation();
+            document.getElementById('quboSummary').style.display = 'none';
+            document.getElementById('fidelitySection').style.display = 'none';
+            clearError('translationError');
+
+            const log = document.getElementById('processingLog');
+            log.innerHTML = '<div class="log-line">Submitting prompt to translator...</div>';
+
+            try {
+                const response = await fetch('/api/translate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_text: prompt })
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || 'Translation failed.');
+                }
+
+                currentPromptId = data.prompt_id;
+                renderTranslationResponse(data);
+            } catch (error) {
+                showError('translationError', `Translation failed: ${error.message}`);
+                log.innerHTML += '<div class="log-line">Translation failed.</div>';
+            }
         }
 
-        function simulateTranslation() {
+        function renderTranslationResponse(data) {
             const log = document.getElementById('processingLog');
-            log.innerHTML = '';
-            
             const steps = [
                 'Translating prompt...',
                 'LLM translation completed.',
@@ -373,125 +416,133 @@
                 'Compiling JSON into QUBO...',
                 'QUBO compilation successful'
             ];
-            
-            let stepIndex = 0;
-            const interval = setInterval(() => {
-                if (stepIndex < steps.length) {
-                    const line = document.createElement('div');
-                    line.className = 'log-line';
-                    line.textContent = steps[stepIndex];
-                    log.appendChild(line);
-                    stepIndex++;
-                } else {
-                    clearInterval(interval);
-                    showQUBOSummary();
-                }
-            }, 800);
+            log.innerHTML = '';
+            steps.forEach((step) => {
+                const line = document.createElement('div');
+                line.className = 'log-line';
+                line.textContent = step;
+                log.appendChild(line);
+            });
+
+            showQUBOSummary(data.qubo_summary || {});
+            showFidelitySection(data.fidelity || {});
         }
 
-        function showQUBOSummary() {
+        function showQUBOSummary(summaryData) {
             const summary = document.getElementById('quboSummary');
             const content = document.getElementById('quboSummaryContent');
-            
+            const constraints = (summaryData.constraints || []).join(', ');
+
             content.innerHTML = `
-                <p><strong>Variables:</strong> x_1 ... x_20</p>
-                <p><strong>Objective:</strong> minimize overtime hours</p>
-                <p><strong>Constraints:</strong> shift coverage, max technicians per shift</p>
-                <p><strong>QUBO size:</strong> 420 terms</p>
+                <p><strong>Variables:</strong> ${summaryData.variables ?? 'N/A'}</p>
+                <p><strong>Objective:</strong> ${summaryData.objective ?? 'N/A'}</p>
+                <p><strong>Constraints:</strong> ${constraints || 'N/A'}</p>
+                <p><strong>QUBO size:</strong> ${summaryData.term_count ?? 'N/A'} terms</p>
             `;
-            
+
             summary.style.display = 'block';
-            
-            // Show fidelity section after a delay
-            setTimeout(() => {
-                showFidelitySection();
-            }, 1000);
         }
 
-        function showFidelitySection() {
+        function showFidelitySection(fidelityData) {
             const fidelitySection = document.getElementById('fidelitySection');
             const fidelityFill = document.getElementById('fidelityFill');
             const fidelityValue = document.getElementById('fidelityValue');
             const reverseTranslation = document.getElementById('reverseTranslation');
-            
+
             fidelitySection.style.display = 'block';
-            
-            // Animate fidelity bar
-            const score = 0.87;
-            setTimeout(() => {
-                fidelityFill.style.width = (score * 100) + '%';
-                fidelityValue.textContent = score.toFixed(2);
-                reverseTranslation.textContent = `Reverse Translation: 'The system schedules 20 technicians across 4 shifts with constraints to reduce overtime.'`;
-            }, 500);
+
+            const score = Number(fidelityData.score ?? 0);
+            fidelityFill.style.width = (score * 100) + '%';
+            fidelityValue.textContent = score.toFixed(2);
+            reverseTranslation.textContent = `Reverse Translation: '${fidelityData.reverse_translation || 'N/A'}'`;
         }
 
-        function proceedToExecution() {
-            // Hide translation stage, show execution stage
+        async function proceedToExecution() {
+            if (!currentPromptId) {
+                alert('Please complete translation first.');
+                return;
+            }
+
             document.getElementById('translationStage').style.display = 'none';
             document.getElementById('executionStage').style.display = 'block';
-            
-            // Start execution simulation
-            simulateExecution();
-        }
+            clearError('executionError');
+            document.getElementById('solverResults').style.display = 'none';
+            document.getElementById('solutionPreview').style.display = 'none';
 
-        function simulateExecution() {
             const status = document.getElementById('executionStatus');
-            status.innerHTML = '';
-            
-            const statusLine1 = document.createElement('div');
-            statusLine1.className = 'status-line';
-            statusLine1.textContent = 'Running QUBO on local solver...';
-            status.appendChild(statusLine1);
-            
-            setTimeout(() => {
-                const statusLine2 = document.createElement('div');
-                statusLine2.className = 'status-line status-success';
-                statusLine2.textContent = 'Execution complete ✓';
-                status.appendChild(statusLine2);
-                
-                setTimeout(() => {
-                    showSolverResults();
-                }, 500);
-            }, 1500);
+            status.innerHTML = '<div class="status-line">Running QUBO on selected solver...</div>';
+
+            try {
+                const response = await fetch('/api/execute', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_id: currentPromptId, solver: 'local' })
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || 'Execution failed.');
+                }
+
+                latestResult = data.result || null;
+                status.innerHTML += '<div class="status-line status-success">Execution complete [OK]</div>';
+                showSolverResults(latestResult || {});
+                showSolutionPreview((latestResult && latestResult.solution) || []);
+            } catch (error) {
+                showError('executionError', `Execution failed: ${error.message}`);
+                status.innerHTML += '<div class="status-line">Execution failed.</div>';
+            }
         }
 
-        function showSolverResults() {
+        function showSolverResults(resultData) {
             const results = document.getElementById('solverResults');
             const content = document.getElementById('solverResultsContent');
-            
+
             content.innerHTML = `
-                <p><strong>Best Objective Value:</strong> 14.0 overtime hours</p>
-                <p><strong>Feasible:</strong> Yes</p>
-                <p><strong>Runtime:</strong> 0.38 seconds</p>
+                <p><strong>Best Objective Value:</strong> ${resultData.best_objective ?? 'N/A'} overtime hours</p>
+                <p><strong>Feasible:</strong> ${resultData.feasible === true ? 'Yes' : 'No'}</p>
+                <p><strong>Runtime:</strong> ${resultData.runtime_s ?? 'N/A'} seconds</p>
             `;
-            
+
             results.style.display = 'block';
-            
-            setTimeout(() => {
-                showSolutionPreview();
-            }, 500);
         }
 
-        function showSolutionPreview() {
+        function showSolutionPreview(solutionRows) {
             const preview = document.getElementById('solutionPreview');
             const content = document.getElementById('solutionPreviewContent');
-            
-            content.innerHTML = `
-                <p>Shift 1: 5 technicians</p>
-                <p>Shift 2: 5 technicians</p>
-                <p>Shift 3: 5 technicians</p>
-                <p>Shift 4: 5 technicians</p>
-            `;
-            
+
+            if (!Array.isArray(solutionRows) || solutionRows.length === 0) {
+                content.innerHTML = '<p>No solution data available.</p>';
+            } else {
+                content.innerHTML = solutionRows
+                    .map((row) => `<p>Shift ${row.shift}: ${row.technicians} technicians</p>`)
+                    .join('');
+            }
+
             preview.style.display = 'block';
         }
 
         function saveResults() {
-            alert('Logs and metrics saved successfully!');
-            // In a real implementation, this would save to a file or database
+            if (!latestResult) {
+                alert('No execution result to save yet.');
+                return;
+            }
+
+            const payload = {
+                prompt_id: currentPromptId,
+                prompt: currentPrompt,
+                result: latestResult
+            };
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `demo_result_${currentPromptId || 'unknown'}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
-        // Allow Enter key to submit (Ctrl+Enter or Shift+Enter)
         document.getElementById('promptInput').addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.shiftKey) && e.key === 'Enter') {
                 startTranslation();
@@ -500,3 +551,4 @@
     </script>
 </body>
 </html>
+
