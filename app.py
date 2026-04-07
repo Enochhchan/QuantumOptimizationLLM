@@ -71,19 +71,23 @@ def translate():
 
     prompt_id = str(uuid4())
     qubo_summary = {
-        "variables": 20,
-        "objective": "minimize overtime hours",
+        "variables": 88,
+        "objective": "minimize travel time and workload balance",
         "constraints": [
-            "shift coverage",
-            "max technicians per shift"
+            "one driver per delivery",
+            "max 2 deliveries per driver",
+            "right-turn-only feasibility",
+            "reserve afternoon capacity"
         ],
-        "term_count": 420
+        "term_count": 88
     }
     fidelity = {
         "score": 0.87,
         "reverse_translation": (
-            "The system schedules 20 technicians across 4 shifts "
-            "with constraints to reduce overtime."
+            "The system assigns 8 drivers to 11 deliveries, limits each driver "
+            "to at most 2 deliveries, only uses right-turn-only feasible routes, "
+            "keeps at least 2 drivers available for priority afternoon shipments, "
+            "and minimizes travel time while balancing workload."
         )
     }
 
@@ -134,16 +138,20 @@ def execute():
     result = {
         "type": "success",
         "solver": solver,
-        "runtime_s": 0.38,
-        "best_objective": 14.0,
+        "runtime_s": 2.8,
+        "best_objective": 27.4,
         "feasible": True,
         "fidelity": record["fidelity"]["score"],
         "explanation": record["fidelity"]["reverse_translation"],
         "solution": [
-            {"shift": 1, "technicians": 5},
-            {"shift": 2, "technicians": 5},
-            {"shift": 3, "technicians": 5},
-            {"shift": 4, "technicians": 5}
+            {"driver": 1, "deliveries": ["D1", "D7"]},
+            {"driver": 2, "deliveries": ["D2", "D8"]},
+            {"driver": 3, "deliveries": ["D3", "D10"]},
+            {"driver": 4, "deliveries": ["D4", "D9"]},
+            {"driver": 5, "deliveries": ["D5", "D11"]},
+            {"driver": 6, "deliveries": ["D6"]},
+            {"driver": 7, "reserved_for": "afternoon priority shipments"},
+            {"driver": 8, "reserved_for": "afternoon priority shipments"}
         ]
     }
 

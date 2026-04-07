@@ -288,7 +288,12 @@
                 class="input-field" 
                 id="promptInput" 
                 placeholder="Enter your natural language optimization problem here..."
-            >Assign 20 technicians to 4 shifts so that each shift has at least 4 people.</textarea>
+            >Schedule 8 truck drivers to complete 11 local deliveries in one workday.
+Each delivery must be assigned to exactly one driver.
+No driver may be assigned more than 2 deliveries.
+Drivers can only use routes that avoid left turns, so each assigned delivery must use a right-turn-only route.
+At least 2 drivers must be reserved for priority shipments in the afternoon.
+Minimize the total estimated travel time while keeping workloads balanced across drivers.</textarea>
         </div>
         <div class="input-actions">
             <button class="icon-btn" title="View code">&lt;&gt;</button>
@@ -437,7 +442,7 @@
                 <p><strong>Variables:</strong> ${summaryData.variables ?? 'N/A'}</p>
                 <p><strong>Objective:</strong> ${summaryData.objective ?? 'N/A'}</p>
                 <p><strong>Constraints:</strong> ${constraints || 'N/A'}</p>
-                <p><strong>QUBO size:</strong> ${summaryData.term_count ?? 'N/A'} terms</p>
+                <p><strong>Model Size:</strong> ${summaryData.term_count ?? 'N/A'} binary variables</p>
             `;
 
             summary.style.display = 'block';
@@ -470,7 +475,7 @@
             document.getElementById('solutionPreview').style.display = 'none';
 
             const status = document.getElementById('executionStatus');
-            status.innerHTML = '<div class="status-line">Running QUBO on selected solver...</div>';
+            status.innerHTML = '<div class="status-line">Running QUBO on local solver...</div>';
 
             try {
                 const response = await fetch('/api/execute', {
@@ -484,7 +489,7 @@
                 }
 
                 latestResult = data.result || null;
-                status.innerHTML += '<div class="status-line status-success">Execution complete [OK]</div>';
+                status.innerHTML += '<div class="status-line status-success">Execution complete</div>';
                 showSolverResults(latestResult || {});
                 showSolutionPreview((latestResult && latestResult.solution) || []);
             } catch (error) {
@@ -514,7 +519,15 @@
                 content.innerHTML = '<p>No solution data available.</p>';
             } else {
                 content.innerHTML = solutionRows
-                    .map((row) => `<p>Shift ${row.shift}: ${row.technicians} technicians</p>`)
+                    .map((row) => {
+                        if (row.driver && Array.isArray(row.deliveries)) {
+                            return `<p>Driver ${row.driver} - Deliveries ${row.deliveries.join(', ')}</p>`;
+                        }
+                        if (row.driver && row.reserved_for) {
+                            return `<p>Driver ${row.driver} - Reserved for ${row.reserved_for}</p>`;
+                        }
+                        return '<p>Unrecognized solution row</p>';
+                    })
                     .join('');
             }
 
