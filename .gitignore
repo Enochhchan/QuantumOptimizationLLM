@@ -5,3 +5,4 @@ __pycache__
 .pytest_cache
 .venv_msys310_attempt
 .venv_py311_broken
+artifacts/

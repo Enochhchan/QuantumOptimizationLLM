@@ -63,6 +63,13 @@ class xtrPromptLibrary:
     def reset(self) -> None:
         self.currentIndex = 0
 
+class xtrPromptValidator:
+    def __init__(self, max_prompt_length: int = 1000) -> None:
+        self.maxPromptLength = max_prompt_length
+
+    def validatePrompt(self, prompt: xtrPrompt) -> bool:
+        return len(prompt.getText()) <= self.maxPromptLength
+
 
 class xtrLLMClient:
     def __init__(self, model_name: str, api_key: str) -> None:

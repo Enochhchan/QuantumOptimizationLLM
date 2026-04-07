@@ -5,6 +5,8 @@ numpy
 openai
 sentence-transformers
 python-dotenv
+jsonschema
+dimod
 pytest
 flask
 prometheus-client
