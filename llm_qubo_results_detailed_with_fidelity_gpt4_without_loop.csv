@@ -1,0 +1,1106 @@
+Index,Case,Prompt,Success,Failure Type,Latency (s),Num Variables,Num Constraints,Prompt Length,Complexity Score,Reverse Prompt,Fidelity,Raw JSON
+1,Knapsack,"Select items to maximize value under weight limit. Total capacity is 13. Items: [{'id': 'item0', 'value': 7, 'weight': 2}, {'id': 'item1', 'value': 5, 'weight': 4}, {'id': 'item2', 'value': 3, 'weight': 3}, {'id': 'item3', 'value': 4, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 1}].",True,,3.51,5.0,1.0,291,8.91,"This optimization problem involves selecting a subset of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items, where the values are as follows:
+- item0 contributes 7 units,
+- item1 contributes 5 units,
+- item2 contributes 3 units,
+- item3 contributes 4 units,
+- item4 contributes 2 units.
+
+However, there is a constraint on the combined ""weight"" of the selected items. The weights are:
+- item0 weighs 2 units,
+- item1 weighs 4 units,
+- item2 weighs 3 units,
+- item3 weighs 2 units,
+- item4 weighs 1 unit.
+
+The total weight of the chosen items must not exceed 13 units.
+
+In summary, the problem is to choose which items to include in order to maximize the total value while ensuring that the sum of their weights does not go over 13.",0.04790419161676647,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""2*item0 + 4*item1 + 3*item2 + 2*item3 + 1*item4 <= 13"", ""penalty"": 10}], ""objective"": ""maximize: 7*item0 + 5*item1 + 3*item2 + 4*item3 + 2*item4""}"
+2,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 8, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 1, 'weight': 5}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,1.92,5.0,1.0,291,8.91,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item has an associated weight and value:
+
+- item0 has a weight of 1 and a value of 8,
+- item1 has a weight of 2 and a value of 9,
+- item2 has a weight of 1 and a value of 9,
+- item3 has a weight of 5 and a value of 1,
+- item4 has a weight of 3 and a value of 6.
+
+The goal is to choose which items to include in order to maximize the total value. However, the total weight of the selected items must not exceed 20. If the combined weight goes over 20, a penalty is applied to discourage violating this constraint.
+
+In summary, the problem is to find the combination of items that yields the highest total value without the total weight surpassing 20.",0.05534351145038168,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""1*item0 + 2*item1 + 1*item2 + 5*item3 + 3*item4 <= 20"", ""penalty"": 10}], ""objective"": ""maximize: 8*item0 + 9*item1 + 9*item2 + 1*item3 + 6*item4""}"
+3,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 1, 'weight': 1}, {'id': 'item1', 'value': 8, 'weight': 2}, {'id': 'item2', 'value': 1, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,1.94,5.0,1.0,291,8.91,"This optimization problem involves selecting items represented by five binary decision variables: x_item0, x_item1, x_item2, x_item3, and x_item4. Each variable can be either 0 or 1, indicating whether the corresponding item is excluded or included in the selection.
+
+The goal is to maximize the total value obtained from the selected items, where the values are as follows:
+- x_item0 contributes 1 unit of value,
+- x_item1 contributes 8 units,
+- x_item2 contributes 1 unit,
+- x_item3 contributes 3 units,
+- x_item4 contributes 3 units.
+
+However, there is a constraint on the combined ""weight"" or cost of the selected items. The total weighted sum must not exceed 19, calculated as:
+- 1 times x_item0,
+- plus 2 times x_item1,
+- plus 4 times x_item2,
+- plus 2 times x_item3,
+- plus 4 times x_item4.
+
+If this constraint is violated, a penalty of 10 is applied, discouraging solutions that exceed the limit.
+
+In summary, the problem is to choose which items to include to maximize the total value while ensuring that the weighted sum of selected items does not exceed 19.",0.025018395879323033,"{""variables"": [""x_item0"", ""x_item1"", ""x_item2"", ""x_item3"", ""x_item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""1*x_item0 + 2*x_item1 + 4*x_item2 + 2*x_item3 + 4*x_item4 <= 19"", ""penalty"": 10}], ""objective"": ""maximize: 1*x_item0 + 8*x_item1 + 1*x_item2 + 3*x_item3 + 3*x_item4""}"
+4,Knapsack,"Select items to maximize value under weight limit. Total capacity is 19. Items: [{'id': 'item0', 'value': 6, 'weight': 1}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 2}, {'id': 'item3', 'value': 4, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 3}].",True,,2.65,5.0,1.0,293,8.93,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items. The values for the items are as follows:
+- item0: 6
+- item1: 10
+- item2: 10
+- item3: 4
+- item4: 9
+
+However, there is a constraint on the total weight of the selected items. The weights for the items are:
+- item0: 1
+- item1: 2
+- item2: 2
+- item3: 5
+- item4: 3
+
+The sum of the weights of the chosen items must be less than or equal to 19.
+
+In summary, the problem is to choose a subset of items that maximizes the total value without exceeding a total weight of 19.",0.09233791748526522,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""1*item0 + 2*item1 + 2*item2 + 5*item3 + 3*item4 <= 19"", ""penalty"": 10}], ""objective"": ""maximize: 6*item0 + 10*item1 + 10*item2 + 4*item3 + 9*item4""}"
+5,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 3, 'weight': 5}, {'id': 'item3', 'value': 3, 'weight': 2}, {'id': 'item4', 'value': 8, 'weight': 4}].",True,,2.69,5.0,1.0,291,8.91,"This optimization problem involves selecting items represented by binary decision variables x_item0, x_item1, x_item2, x_item3, and x_item4, where each variable can be either 0 (item not selected) or 1 (item selected).
+
+The goal is to maximize the total value obtained from the selected items. The value contributed by each item is as follows:
+- Item 0 contributes 9 units of value.
+- Item 1 contributes 9 units of value.
+- Item 2 contributes 3 units of value.
+- Item 3 contributes 3 units of value.
+- Item 4 contributes 8 units of value.
+
+However, there is a constraint on the total weight (or cost) of the selected items. The weights of the items are:
+- Item 0 weighs 1 unit.
+- Item 1 weighs 5 units.
+- Item 2 weighs 5 units.
+- Item 3 weighs 2 units.
+- Item 4 weighs 4 units.
+
+The sum of the weights of the selected items must not exceed 17 units.
+
+In summary, the problem is to choose a combination of items to maximize the total value without exceeding a total weight limit of 17.",0.02980392156862745,"{""variables"": [""x_item0"", ""x_item1"", ""x_item2"", ""x_item3"", ""x_item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""1*x_item0 + 5*x_item1 + 5*x_item2 + 2*x_item3 + 4*x_item4 <= 17"", ""penalty"": 10}], ""objective"": ""maximize: 9*x_item0 + 9*x_item1 + 3*x_item2 + 3*x_item3 + 8*x_item4""}"
+6,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 6, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 4}, {'id': 'item3', 'value': 8, 'weight': 2}, {'id': 'item4', 'value': 10, 'weight': 1}].",True,,2.05,5.0,1.0,292,8.92,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen or not (represented by binary variables). The goal is to maximize the total value obtained from the selected items, where the values are 9 for item0, 6 for item1, 2 for item2, 8 for item3, and 10 for item4.
+
+However, there is a constraint on the combined ""weight"" or ""cost"" of the chosen items. Specifically, the weighted sum 5 times item0 plus 3 times item1 plus 4 times item2 plus 2 times item3 plus 1 times item4 must not exceed 14. If this constraint is violated, a penalty is applied to the solution.
+
+In summary, the problem is to select items to maximize total value while ensuring that the weighted sum of the selected items does not exceed 14.",0.02411873840445269,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""5*item0 + 3*item1 + 4*item2 + 2*item3 + 1*item4 <= 14"", ""penalty"": 10}], ""objective"": ""maximize: 9*item0 + 6*item1 + 2*item2 + 8*item3 + 10*item4""}"
+7,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 4, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 9, 'weight': 3}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,1.85,5.0,1.0,292,8.92,"This optimization problem involves five decision variables named x0, x1, x2, x3, and x4. The goal is to select values for these variables to maximize the total value calculated as 4 times x0 plus 4 times x1 plus 9 times x2 plus 10 times x3 plus 7 times x4.
+
+However, the selection of these variables is subject to a constraint: the weighted sum of the variables, calculated as 3 times x0 plus 5 times x1 plus 3 times x2 plus 4 times x3 plus 4 times x4, must be less than or equal to 12.
+
+In summary, the problem is to choose values for x0 through x4 that maximize the expression 4x0 + 4x1 + 9x2 + 10x3 + 7x4, while ensuring that the sum 3x0 + 5x1 + 3x2 + 4x3 + 4x4 does not exceed 12.",0.0430327868852459,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""3*x0 + 5*x1 + 3*x2 + 4*x3 + 4*x4 <= 12"", ""penalty"": 10}], ""objective"": ""maximize: 4*x0 + 4*x1 + 9*x2 + 10*x3 + 7*x4""}"
+8,Knapsack,"Select items to maximize value under weight limit. Total capacity is 11. Items: [{'id': 'item0', 'value': 10, 'weight': 1}, {'id': 'item1', 'value': 9, 'weight': 5}, {'id': 'item2', 'value': 6, 'weight': 2}, {'id': 'item3', 'value': 10, 'weight': 4}, {'id': 'item4', 'value': 3, 'weight': 5}].",True,,2.66,5.0,1.0,293,8.93,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items. The values associated with each item are as follows:
+- item0: 10
+- item1: 9
+- item2: 6
+- item3: 10
+- item4: 3
+
+However, there is a constraint on the total weight of the selected items. Each item has a weight:
+- item0: 1
+- item1: 5
+- item2: 2
+- item3: 4
+- item4: 5
+
+The sum of the weights of the chosen items must not exceed 11.
+
+In summary, the problem is to choose a subset of these five items to maximize the total value while ensuring that the combined weight does not exceed 11.",0.06943105110896818,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""1*item0 + 5*item1 + 2*item2 + 4*item3 + 5*item4 <= 11"", ""penalty"": 10}], ""objective"": ""maximize: 10*item0 + 9*item1 + 6*item2 + 10*item3 + 3*item4""}"
+9,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 3}, {'id': 'item1', 'value': 3, 'weight': 2}, {'id': 'item2', 'value': 10, 'weight': 4}, {'id': 'item3', 'value': 9, 'weight': 5}, {'id': 'item4', 'value': 4, 'weight': 1}].",True,,2.87,5.0,1.0,292,8.92,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen or not (represented as binary decision variables). The goal is to maximize the total value obtained from the selected items, where the values are 3 for item0, 3 for item1, 10 for item2, 9 for item3, and 4 for item4.
+
+However, there is a constraint on the total weight of the selected items. The weights are 3 for item0, 2 for item1, 4 for item2, 5 for item3, and 1 for item4. The sum of the weights of the chosen items must not exceed 16.
+
+In summary, the problem is to choose which items to include in order to maximize the total value, while ensuring that the combined weight does not go over 16. If the weight constraint is violated, a penalty is applied to discourage such solutions.",0.05929919137466307,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""3*item0 + 2*item1 + 4*item2 + 5*item3 + 1*item4 <= 16"", ""penalty"": 10}], ""objective"": ""maximize: 3*item0 + 3*item1 + 10*item2 + 9*item3 + 4*item4""}"
+10,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 5, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 5}, {'id': 'item2', 'value': 4, 'weight': 5}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,2.05,5.0,1.0,291,8.91,"This optimization problem involves five decision variables named x0, x1, x2, x3, and x4. Each variable can be chosen to contribute to the solution.
+
+The goal is to maximize the total value calculated as follows: 5 times x0 plus 5 times x1 plus 4 times x2 plus 5 times x3 plus 8 times x4.
+
+However, there is a constraint that must be respected: the combined weighted sum of the variables, calculated as 5 times x0 plus 5 times x1 plus 5 times x2 plus 5 times x3 plus 2 times x4, cannot exceed 14.
+
+If this constraint is violated, a penalty with a weight of 10 is applied, discouraging solutions that do not satisfy the inequality.
+
+In summary, the problem seeks to select values for x0 through x4 that maximize the objective function while ensuring that the weighted sum constraint is not exceeded.",0.04595588235294118,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""5*x0 + 5*x1 + 5*x2 + 5*x3 + 2*x4 <= 14"", ""penalty"": 10}], ""objective"": ""maximize: 5*x0 + 5*x1 + 4*x2 + 5*x3 + 8*x4""}"
+11,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 9, 'weight': 4}, {'id': 'item1', 'value': 3, 'weight': 3}, {'id': 'item2', 'value': 5, 'weight': 2}, {'id': 'item3', 'value': 7, 'weight': 5}, {'id': 'item4', 'value': 9, 'weight': 1}].",True,,2.76,5.0,1.0,291,8.91,"This optimization problem involves selecting items from a set of five options: item0, item1, item2, item3, and item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items, where the values are as follows:
+- item0 contributes 9 units,
+- item1 contributes 3 units,
+- item2 contributes 5 units,
+- item3 contributes 7 units,
+- item4 contributes 9 units.
+
+However, there is a constraint on the total weight of the selected items. The weights for each item are:
+- item0 weighs 4 units,
+- item1 weighs 3 units,
+- item2 weighs 2 units,
+- item3 weighs 5 units,
+- item4 weighs 1 unit.
+
+The combined weight of the chosen items must not exceed 15 units. If this weight limit is surpassed, a penalty is applied to discourage solutions that violate this constraint.
+
+In summary, the problem is to choose a combination of items that maximizes the total value without the total weight exceeding 15 units.",0.0514018691588785,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""4*item0 + 3*item1 + 2*item2 + 5*item3 + 1*item4 <= 15"", ""penalty"": 10}], ""objective"": ""maximize: 9*item0 + 3*item1 + 5*item2 + 7*item3 + 9*item4""}"
+12,Knapsack,"Select items to maximize value under weight limit. Total capacity is 15. Items: [{'id': 'item0', 'value': 8, 'weight': 4}, {'id': 'item1', 'value': 7, 'weight': 1}, {'id': 'item2', 'value': 1, 'weight': 5}, {'id': 'item3', 'value': 10, 'weight': 2}, {'id': 'item4', 'value': 2, 'weight': 5}].",True,,1.95,5.0,1.0,292,8.92,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items. The values for each item are as follows:
+- item0: 8
+- item1: 7
+- item2: 1
+- item3: 10
+- item4: 2
+
+However, there is a constraint on the total weight of the selected items. The weights for each item are:
+- item0: 4
+- item1: 1
+- item2: 5
+- item3: 2
+- item4: 5
+
+The sum of the weights of the chosen items must be less than or equal to 15.
+
+In summary, the problem is to choose a subset of items that maximizes the total value while ensuring that the combined weight does not exceed 15.",0.09073359073359073,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""4*item0 + 1*item1 + 5*item2 + 2*item3 + 5*item4 <= 15"", ""penalty"": 10}], ""objective"": ""maximize: 8*item0 + 7*item1 + 1*item2 + 10*item3 + 2*item4""}"
+13,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 4, 'weight': 2}, {'id': 'item2', 'value': 8, 'weight': 5}, {'id': 'item3', 'value': 4, 'weight': 4}, {'id': 'item4', 'value': 6, 'weight': 2}].",True,,1.86,5.0,1.0,291,8.91,"This optimization problem involves selecting items represented by binary variables x_item0 through x_item4, where each variable can be either 0 (item not selected) or 1 (item selected). The goal is to maximize the total value obtained from the selected items, calculated as:
+
+9 times x_item0 plus 4 times x_item1 plus 8 times x_item2 plus 4 times x_item3 plus 6 times x_item4.
+
+However, the selection must satisfy a constraint on the total weight or cost of the chosen items. Specifically, the combined weighted sum:
+
+5 times x_item0 plus 2 times x_item1 plus 5 times x_item2 plus 4 times x_item3 plus 2 times x_item4
+
+must be less than or equal to 12.
+
+If this constraint is violated, a penalty is applied to discourage such solutions. The problem is to find the combination of items that maximizes the total value without exceeding the total allowed weight or cost of 12.",0.0429553264604811,"{""variables"": [""x_item0"", ""x_item1"", ""x_item2"", ""x_item3"", ""x_item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""5*x_item0 + 2*x_item1 + 5*x_item2 + 4*x_item3 + 2*x_item4 <= 12"", ""penalty"": 10}], ""objective"": ""maximize: 9*x_item0 + 4*x_item1 + 8*x_item2 + 4*x_item3 + 6*x_item4""}"
+14,Knapsack,"Select items to maximize value under weight limit. Total capacity is 17. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 5, 'weight': 2}, {'id': 'item2', 'value': 9, 'weight': 4}, {'id': 'item3', 'value': 3, 'weight': 4}, {'id': 'item4', 'value': 7, 'weight': 4}].",True,,1.52,5.0,1.0,291,8.91,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items. The values for the items are as follows:
+- item0: 9
+- item1: 5
+- item2: 9
+- item3: 3
+- item4: 7
+
+However, there is a constraint on the total weight of the selected items. The weights for the items are:
+- item0: 5
+- item1: 2
+- item2: 4
+- item3: 4
+- item4: 4
+
+The sum of the weights of the chosen items must be less than or equal to 17.
+
+In summary, the problem is to choose a subset of items to maximize the total value without exceeding a total weight of 17.",0.09099901088031652,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""5*item0 + 2*item1 + 4*item2 + 4*item3 + 4*item4 <= 17"", ""penalty"": 10}], ""objective"": ""maximize: 9*item0 + 5*item1 + 9*item2 + 3*item3 + 7*item4""}"
+15,Knapsack,"Select items to maximize value under weight limit. Total capacity is 20. Items: [{'id': 'item0', 'value': 10, 'weight': 4}, {'id': 'item1', 'value': 4, 'weight': 5}, {'id': 'item2', 'value': 10, 'weight': 1}, {'id': 'item3', 'value': 9, 'weight': 1}, {'id': 'item4', 'value': 8, 'weight': 5}].",True,,1.74,5.0,1.0,293,8.93,"This optimization problem involves selecting a subset of five items, represented by the variables x_item0 through x_item4, where each variable can be either 0 or 1 indicating whether the item is excluded or included, respectively.
+
+The goal is to maximize the total value obtained from the selected items. The values for the items are as follows:
+- Item 0: 10
+- Item 1: 4
+- Item 2: 10
+- Item 3: 9
+- Item 4: 8
+
+However, there is a constraint on the total weight of the selected items. Each item has an associated weight:
+- Item 0: 4
+- Item 1: 5
+- Item 2: 1
+- Item 3: 1
+- Item 4: 5
+
+The sum of the weights of the selected items must be less than or equal to 20.
+
+In summary, the problem is to choose which items to include in order to maximize the total value without exceeding a total weight of 20.",0.029357798165137616,"{""variables"": [""x_item0"", ""x_item1"", ""x_item2"", ""x_item3"", ""x_item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""4*x_item0 + 5*x_item1 + 1*x_item2 + 1*x_item3 + 5*x_item4 <= 20"", ""penalty"": 10}], ""objective"": ""maximize: 10*x_item0 + 4*x_item1 + 10*x_item2 + 9*x_item3 + 8*x_item4""}"
+16,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 6, 'weight': 3}, {'id': 'item1', 'value': 4, 'weight': 4}, {'id': 'item2', 'value': 1, 'weight': 3}, {'id': 'item3', 'value': 8, 'weight': 1}, {'id': 'item4', 'value': 6, 'weight': 3}].",True,,2.46,5.0,1.0,291,8.91,"This optimization problem involves five decision variables named x0, x1, x2, x3, and x4. The goal is to maximize the total value calculated as 6 times x0 plus 4 times x1 plus 1 times x2 plus 8 times x3 plus 6 times x4.
+
+However, these variables must satisfy a constraint: when you multiply x0 by 3, x1 by 4, x2 by 3, x3 by 1, and x4 by 3, the sum of these products cannot exceed 16. If this constraint is violated, a penalty cost of 10 is applied.
+
+In summary, the problem is to choose values for x0 through x4 that maximize the weighted sum 6x0 + 4x1 + 1x2 + 8x3 + 6x4 while ensuring that the weighted sum 3x0 + 4x1 + 3x2 + 1x3 + 3x4 does not exceed 16.",0.05502645502645503,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""3*x0 + 4*x1 + 3*x2 + 1*x3 + 3*x4 <= 16"", ""penalty"": 10}], ""objective"": ""maximize: 6*x0 + 4*x1 + 1*x2 + 8*x3 + 6*x4""}"
+17,Knapsack,"Select items to maximize value under weight limit. Total capacity is 16. Items: [{'id': 'item0', 'value': 3, 'weight': 4}, {'id': 'item1', 'value': 5, 'weight': 3}, {'id': 'item2', 'value': 9, 'weight': 1}, {'id': 'item3', 'value': 3, 'weight': 1}, {'id': 'item4', 'value': 5, 'weight': 5}].",True,,2.05,5.0,1.0,291,8.91,"This optimization problem involves selecting a subset of five items, represented by the binary variables x_item0 through x_item4, where each variable can be either 0 (item not selected) or 1 (item selected).
+
+The goal is to maximize the total value obtained from the selected items. The value contributed by each item is as follows:
+- Item 0 contributes 3 units,
+- Item 1 contributes 5 units,
+- Item 2 contributes 9 units,
+- Item 3 contributes 3 units,
+- Item 4 contributes 5 units.
+
+However, there is a constraint on the total weight of the selected items. The weights of the items are:
+- Item 0 weighs 4 units,
+- Item 1 weighs 3 units,
+- Item 2 weighs 1 unit,
+- Item 3 weighs 1 unit,
+- Item 4 weighs 5 units.
+
+The total weight of the selected items must not exceed 16 units.
+
+In summary, the problem is to choose which items to include so that the total value is as large as possible while keeping the combined weight at or below 16 units.",0.04707792207792208,"{""variables"": [""x_item0"", ""x_item1"", ""x_item2"", ""x_item3"", ""x_item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""4*x_item0 + 3*x_item1 + 1*x_item2 + 1*x_item3 + 5*x_item4 <= 16"", ""penalty"": 10}], ""objective"": ""maximize: 3*x_item0 + 5*x_item1 + 9*x_item2 + 3*x_item3 + 5*x_item4""}"
+18,Knapsack,"Select items to maximize value under weight limit. Total capacity is 12. Items: [{'id': 'item0', 'value': 9, 'weight': 5}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 3, 'weight': 4}, {'id': 'item3', 'value': 6, 'weight': 5}, {'id': 'item4', 'value': 1, 'weight': 4}].",True,,1.21,5.0,1.0,291,8.91,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items, where the values are as follows:
+- item0 contributes 9 units,
+- item1 contributes 2 units,
+- item2 contributes 3 units,
+- item3 contributes 6 units,
+- item4 contributes 1 unit.
+
+However, there is a constraint on the combined ""weight"" or ""cost"" of the selected items. Specifically, the weighted sum of the items, calculated as 5 times item0 plus 3 times item1 plus 4 times item2 plus 5 times item3 plus 4 times item4, must not exceed 12.
+
+If this constraint is violated, a penalty is applied to the solution, discouraging selections that surpass this limit.
+
+In summary, the problem is to choose a subset of items to maximize the total value while ensuring that the weighted sum of their associated costs does not exceed 12.",0.02037617554858934,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""5*item0 + 3*item1 + 4*item2 + 5*item3 + 4*item4 <= 12"", ""penalty"": 10}], ""objective"": ""maximize: 9*item0 + 2*item1 + 3*item2 + 6*item3 + 1*item4""}"
+19,Knapsack,"Select items to maximize value under weight limit. Total capacity is 14. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 10, 'weight': 2}, {'id': 'item2', 'value': 7, 'weight': 4}, {'id': 'item3', 'value': 5, 'weight': 5}, {'id': 'item4', 'value': 8, 'weight': 2}].",True,,1.84,5.0,1.0,293,8.93,"This optimization problem involves selecting a subset of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items, where the values are:
+- item0: 10
+- item1: 10
+- item2: 7
+- item3: 5
+- item4: 8
+
+However, there is a constraint on the total ""weight"" of the chosen items. Each item has an associated weight:
+- item0: 2
+- item1: 2
+- item2: 4
+- item3: 5
+- item4: 2
+
+The sum of the weights of the selected items must be less than or equal to 14.
+
+In summary, the problem is to choose which items to include so that the total value is as high as possible, while ensuring the combined weight does not exceed 14. If the weight limit is violated, a penalty is applied to discourage such solutions.",0.0748663101604278,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""2*item0 + 2*item1 + 4*item2 + 5*item3 + 2*item4 <= 14"", ""penalty"": 10}], ""objective"": ""maximize: 10*item0 + 10*item1 + 7*item2 + 5*item3 + 8*item4""}"
+20,Knapsack,"Select items to maximize value under weight limit. Total capacity is 18. Items: [{'id': 'item0', 'value': 10, 'weight': 2}, {'id': 'item1', 'value': 2, 'weight': 3}, {'id': 'item2', 'value': 2, 'weight': 2}, {'id': 'item3', 'value': 3, 'weight': 3}, {'id': 'item4', 'value': 3, 'weight': 4}].",True,,3.76,5.0,1.0,292,8.92,"This optimization problem involves selecting a combination of five items, labeled item0 through item4. Each item can either be chosen (represented by 1) or not chosen (represented by 0).
+
+The goal is to maximize the total value obtained from the selected items, where the values are as follows:
+- item0 contributes 10 units,
+- item1 contributes 2 units,
+- item2 contributes 2 units,
+- item3 contributes 3 units,
+- item4 contributes 3 units.
+
+However, the selection must satisfy a constraint on the total weight (or cost) of the chosen items. The weights for the items are:
+- item0 weighs 2 units,
+- item1 weighs 3 units,
+- item2 weighs 2 units,
+- item3 weighs 3 units,
+- item4 weighs 4 units.
+
+The sum of the weights of the selected items cannot exceed 18 units. If this constraint is violated, a penalty is applied to discourage such solutions.
+
+In summary, the problem is to choose a subset of the five items to maximize the total value while ensuring that the combined weight does not exceed 18 units.",0.05092592592592592,"{""variables"": [""item0"", ""item1"", ""item2"", ""item3"", ""item4""], ""constraints"": [{""type"": ""inequality"", ""expression"": ""2*item0 + 3*item1 + 2*item2 + 3*item3 + 4*item4 <= 18"", ""penalty"": 10}], ""objective"": ""maximize: 10*item0 + 2*item1 + 2*item2 + 3*item3 + 3*item4""}"
+21,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.63,25.0,2.0,113,28.13,"This optimization problem involves assigning 5 items to 5 positions in a sequence, represented by binary variables x_i_j where i and j range from 0 to 4. Each variable x_i_j indicates whether item i is placed at position j (1 if yes, 0 if no).
+
+The problem has two main sets of constraints:
+
+1. For each position j (from 0 to 4), exactly one item must be assigned to that position. In other words, the sum of x_i_j over all items i equals 1 for each position j.
+
+2. For each item i (from 0 to 4), it must be assigned to exactly one position. That is, the sum of x_i_j over all positions j equals 1 for each item i.
+
+Both constraints are enforced with a penalty weight of 10 to ensure valid assignments.
+
+The objective is to minimize the total cost defined by the sum over all pairs of consecutive positions in the sequence. Specifically, for each pair of consecutive positions j and (j+1) modulo 5, and for each pair of items i and k, the cost includes the distance d_i_k multiplied by the product of x_i_j and x_k_(j+1). This captures the total ""distance"" or cost of placing item k immediately after item i in the sequence.
+
+In summary, the problem is to find a permutation of 5 items that minimizes the sum of distances between consecutive items in the sequence, subject to the constraint that each item appears exactly once and each position is occupied by exactly one item.",0.026845637583892617,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in [0..4]"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in [0..4]"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+22,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.83,25.0,3.0,113,29.13,"This optimization problem models the Traveling Salesman Problem (TSP) for five cities labeled 0 through 4. The goal is to find the shortest possible route that visits each city exactly once and returns to the starting city.
+
+The decision variables are binary indicators x_{i,j}, where x_{i,j} = 1 if the route goes directly from city i to city j, and 0 otherwise.
+
+The constraints are as follows:
+
+1. For each city j, exactly one incoming route must be chosen: the sum over i of x_{i,j} equals 1. This ensures that each city is arrived at exactly once.
+
+2. For each city i, exactly one outgoing route must be chosen: the sum over j of x_{i,j} equals 1. This ensures that from each city, the route continues to exactly one other city.
+
+3. Subtour elimination constraints (such as those from the Miller-Tucker-Zemlin formulation) are included to prevent the formation of disconnected loops that do not cover all cities, ensuring the solution forms a single tour visiting all cities.
+
+The objective is to minimize the total travel distance, calculated as the sum over all city pairs (i, j) of the distance between city i and city j multiplied by x_{i,j}, effectively summing the distances of the chosen routes.
+
+In summary, this problem seeks the shortest Hamiltonian circuit visiting all five cities exactly once, adhering to the constraints that define a valid tour without subtours.",0.013377926421404682,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in {0,...,4}"", ""penalty"": 100}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in {0,...,4}"", ""penalty"": 100}, {""type"": ""equality"", ""expression"": ""subtour elimination constraints (e.g., Miller-Tucker-Zemlin formulation)"", ""penalty"": 100}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 distance(City_i, City_j) * x_{i,j}""}"
+23,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.71,25.0,2.0,113,28.13,"This optimization problem involves selecting elements from a 5-by-5 grid of binary decision variables, denoted as x_i_j, where i and j each range from 0 to 4. Each variable x_i_j can be either 0 or 1, indicating whether the element in row i and column j is chosen.
+
+The problem includes two sets of constraints:
+
+1. Row constraints: For each row i (from 0 to 4), exactly one variable x_i_j must be set to 1. In other words, in each row, you must select exactly one element.
+
+2. Column constraints: For each column j (from 0 to 4), exactly one variable x_i_j must be set to 1. That is, in each column, exactly one element must be selected.
+
+Together, these constraints ensure that the selection forms a permutation matrix — a unique assignment of one element per row and column.
+
+The objective is to minimize a cost function defined as follows: For each row i, consider the element selected in column j (where x_i_j = 1) and the element selected in the next row (i+1 modulo 5) in column k (where x_{(i+1) mod 5,k} = 1). Multiply the distance or cost d_{j,k} between columns j and k by the product of these two selection variables, and sum this over all rows i and all pairs of columns j and k.
+
+In summary, the problem is to find a permutation of the numbers 0 to 4 (assigning one unique column to each row) that minimizes the total sum of distances between consecutive selected columns in the permutation, with the sequence wrapping around from the last row back to the first. This is equivalent to finding a minimal-cost cyclic assignment or route through the columns, respecting the one-per-row and one-per-column selection constraints.",0.01599086236436322,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in [0..4]"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in [0..4]"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+24,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.61,25.0,2.0,113,28.13,"This optimization problem involves finding a route that visits each of 5 cities exactly once, minimizing the total travel distance. 
+
+The decision variables are binary indicators \( x_{i,j} \), where \( x_{i,j} = 1 \) means that city \( j \) is visited in position \( i \) of the route, and 0 otherwise. Here, \( i \) and \( j \) both range from 0 to 4, representing the positions in the route and the cities, respectively.
+
+The problem includes two sets of constraints:
+
+1. For each city \( j \), it must appear exactly once in the route. In other words, the sum over all positions \( i \) of \( x_{i,j} \) equals 1.
+2. For each position \( i \) in the route, exactly one city must be assigned. That is, the sum over all cities \( j \) of \( x_{i,j} \) equals 1.
+
+Both constraints are enforced with a penalty weight of 10 to ensure valid routes.
+
+The objective is to minimize the total travel distance of the route. The distance between cities \( j \) and \( k \) is given by \( d_{j,k} \). The total distance is calculated by summing over all consecutive pairs of positions \( i \) and \( (i+1) \mod 5 \) the distance between the city assigned to position \( i \) and the city assigned to position \( (i+1) \mod 5 \).
+
+In summary, this is a Traveling Salesman Problem (TSP) for 5 cities, where the goal is to find the shortest possible route that visits each city once and returns to the starting city.",0.007910349373764008,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each city j"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each position i"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+25,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.12,25.0,2.0,113,28.13,"This optimization problem involves selecting a unique assignment of positions in a 5-by-5 grid, represented by binary variables x_i_j where i and j range from 0 to 4. Each variable x_i_j can be either 0 or 1, indicating whether position j is chosen at step i.
+
+The problem has two sets of constraints:
+
+1. For each step i (from 0 to 4), exactly one position j must be selected. In other words, for each i, the sum of x_i_j over all j equals 1.
+
+2. For each position j (from 0 to 4), it must be assigned to exactly one step i. That is, for each j, the sum of x_i_j over all i equals 1.
+
+These constraints ensure a one-to-one matching between steps and positions, meaning each step is assigned a unique position, and each position is used exactly once.
+
+The objective is to minimize the total cost defined by the sum over all consecutive pairs of steps (i and (i+1) mod 5) of the distance between their assigned positions. Specifically, for each pair of consecutive steps, the cost includes the distance d_j_k between the position assigned at step i (position j) and the position assigned at step (i+1) mod 5 (position k), weighted by the corresponding assignment variables x_i_j and x_(i+1)_k.
+
+In summary, the problem is to find a permutation of the five positions that minimizes the total distance traveled when moving through the positions in order, forming a closed loop (since the last step connects back to the first), subject to the constraint that each position is visited exactly once. This is essentially a formulation of the Traveling Salesman Problem on five nodes with distances d_j_k.",0.023391812865497075,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for i in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for j in {0,...,4}"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+26,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,7.17,25.0,2.0,113,28.13,"This optimization problem involves finding an assignment of five cities to five positions in a tour, aiming to minimize the total travel distance while ensuring a valid route.
+
+Specifically:
+
+- There are 25 binary decision variables, each denoted as x_i_j, where i represents the position in the tour (from 0 to 4) and j represents a city (also from 0 to 4). A variable x_i_j equals 1 if city j is assigned to position i in the tour, and 0 otherwise.
+
+- The constraints enforce that:
+  1. Each city must appear exactly once in the tour. In other words, for each city j, the sum of x_i_j over all positions i equals 1.
+  2. Each position in the tour must be occupied by exactly one city. That is, for each position i, the sum of x_i_j over all cities j equals 1.
+
+- The objective is to minimize the total travel distance of the tour. The distance between city j and city k is given by d_j_k. The total distance is computed by summing, for each position i, the distance from the city assigned to position i to the city assigned to the next position (with the tour wrapping around from the last position back to the first).
+
+In summary, this is a formulation of the Traveling Salesman Problem for five cities, where the goal is to find the shortest possible route visiting each city exactly once and returning to the starting point.",0.019417475728155338,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^{4} x_{i,j} = 1 for each city j"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^{4} x_{i,j} = 1 for each position i"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^{4} sum_{j=0}^{4} sum_{k=0}^{4} d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+27,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.81,25.0,3.0,113,29.13,"This optimization problem involves finding a route through five locations, labeled 0 through 4, such that each location is visited exactly once and the total travel distance is minimized.
+
+Specifically:
+
+- There are binary decision variables x_{i,j}, where i and j range from 0 to 4. The variable x_{i,j} equals 1 if location i is assigned to position j in the route sequence, and 0 otherwise.
+
+- The constraints ensure a valid route:
+  1. Each position in the route (from 0 to 4) must be assigned exactly one location. In other words, for each position j, exactly one x_{i,j} is 1.
+  2. Each location must appear exactly once in the route. That is, for each location i, exactly one x_{i,j} is 1 across all positions j.
+  3. Additional subtour elimination constraints prevent the formation of smaller cycles that do not include all five locations, ensuring the solution is a single tour visiting all locations.
+
+- The objective is to minimize the total travel distance of the route. The distance between locations i and k is given by d_{i,k}. The total distance is computed by summing, over all positions j, the distance from the location assigned to position j to the location assigned to the next position (j+1 modulo 5, to form a loop).
+
+In summary, this problem models the classic Traveling Salesman Problem (TSP) for five locations, seeking the shortest possible route that visits each location exactly once and returns to the starting point.",0.028205128205128206,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""Subtour elimination constraints to prevent cycles smaller than 5"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+28,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.4,25.0,2.0,113,28.13,"This optimization problem involves assigning items to positions in a 5-by-5 grid represented by binary variables x_i_j, where i and j range from 0 to 4. Each variable x_i_j can be either 0 or 1, indicating whether item i is assigned to position j.
+
+The problem includes two sets of constraints:
+
+1. For each position j (from 0 to 4), exactly one item i must be assigned to it. In other words, the sum of x_i_j over all i equals 1 for each fixed j.
+
+2. For each item i (from 0 to 4), it must be assigned to exactly one position j. That is, the sum of x_i_j over all j equals 1 for each fixed i.
+
+Both constraints are enforced with a penalty weight of 10 to ensure they are satisfied.
+
+The objective is to minimize the total cost calculated as follows: for each pair of consecutive items i and (i+1) modulo 5, and for their assigned positions j and k respectively, multiply the distance or cost d_j_k by the product x_i_j * x_(i+1)_k, then sum over all i, j, and k. This effectively minimizes the sum of costs between consecutive item assignments in a cyclic order.
+
+In summary, the problem is to find a one-to-one assignment between items and positions that minimizes the total cyclic pairwise cost defined by the matrix d, while ensuring each item and each position is used exactly once.",0.025714285714285714,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} == 1 for each j in [0..4]"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} == 1 for each i in [0..4]"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+29,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.91,25.0,2.0,113,28.13,"This optimization problem involves assigning elements in a 5-by-5 grid represented by binary variables x_i_j, where each variable x_i_j can be either 0 or 1. The goal is to find a permutation of the indices 0 through 4 that minimizes a certain cost related to distances between elements.
+
+Specifically, the problem is:
+
+- Variables: For each row i (from 0 to 4) and each column j (from 0 to 4), there is a binary variable x_i_j indicating whether element i is assigned to position j.
+
+- Constraints:
+  1. Each row must have exactly one variable set to 1, meaning each element i is assigned to exactly one position j.
+  2. Each column must have exactly one variable set to 1, meaning each position j is assigned exactly one element i.
+
+- Objective: Minimize the total sum of distances between consecutive elements in the permutation. The distance between element i and element k is given by d_i_k. The objective sums over all positions j from 0 to 4, adding the distance between the element assigned to position j and the element assigned to the next position (j+1 modulo 5, so the sequence is circular).
+
+In other words, this problem seeks the optimal circular ordering (permutation) of five elements that minimizes the sum of distances between consecutive elements in the order. This is equivalent to finding a minimal-cost Hamiltonian cycle (a tour visiting each element exactly once) on a set of five nodes with distances d_i_k, which is a classic formulation of the Traveling Salesman Problem (TSP) for five cities.",0.0196078431372549,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+30,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.43,25.0,2.0,113,28.13,"This optimization problem involves assigning 5 items to 5 positions in a sequence, represented by binary variables x_i_j where i and j range from 0 to 4. The goal is to find a permutation of the items that minimizes the total cost defined by a distance matrix d.
+
+Specifically:
+
+- Each variable x_i_j is 1 if item i is placed at position j in the sequence, and 0 otherwise.
+
+- The first set of constraints requires that for each position j (from 0 to 4), exactly one item is assigned to that position. In other words, the sum of x_i_j over all items i for each fixed position j must be equal to 1.
+
+- The second set of constraints requires that each item i (from 0 to 4) is assigned to exactly one position j. That is, the sum of x_i_j over all positions j for each fixed item i must be equal to 1.
+
+- The objective is to minimize the sum over all pairs of consecutive positions in the sequence (with the sequence considered cyclically, so position 4 is followed by position 0) of the distance between the items assigned to those positions. Formally, for each pair of consecutive positions j and (j+1) mod 5, and for each pair of items i and k, the cost includes d_{i,k} multiplied by x_i_j and x_k_(j+1).
+
+In summary, this problem seeks the optimal ordering (permutation) of 5 items to minimize the total sum of distances between consecutive items in the sequence, subject to the constraints that each position is occupied by exactly one item and each item occupies exactly one position.",0.011242973141786383,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in {0,...,4}"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+31,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.43,25.0,3.0,113,29.13,"This optimization problem involves finding a route through five cities, labeled 0 through 4, that visits each city exactly once and returns to the starting city, minimizing the total travel distance.
+
+The decision variables are binary indicators x_i_j, where x_i_j equals 1 if city i is visited in position j of the route, and 0 otherwise.
+
+The problem includes the following constraints:
+
+1. Each position in the route (from 0 to 4) must be assigned to exactly one city. In other words, for each position j, exactly one city i has x_i_j = 1.
+
+2. Each city must appear exactly once in the route. That is, for each city i, there is exactly one position j where x_i_j = 1.
+
+3. Subtour elimination constraints are enforced to prevent the solution from containing disconnected loops that do not include all cities, ensuring the route is a single continuous tour visiting all cities.
+
+The objective is to minimize the total travel distance of the route. This is calculated as the sum over all consecutive pairs of positions in the route of the distance between the cities assigned to those positions. Formally, for each position k, the distance between the city visited at position k and the city visited at position (k+1) modulo 5 is multiplied by the corresponding decision variables and summed over all k.
+
+In summary, this is a formulation of the Traveling Salesman Problem (TSP) for five cities, aiming to find the shortest possible tour visiting each city exactly once and returning to the start.",0.008695652173913044,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""subtour elimination constraints"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 distance(City_i, City_j) * x_{i,k} * x_{j,k+1 mod 5}""}"
+32,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,12.44,25.0,2.0,113,28.13,"This optimization problem involves assigning 5 items to 5 positions in a sequence, represented by binary variables x_i_j where i and j range from 0 to 4. Each variable x_i_j equals 1 if item i is placed at position j, and 0 otherwise.
+
+The problem includes two sets of constraints:
+
+1. For each position j (from 0 to 4), exactly one item must be assigned to that position. In other words, the sum of x_i_j over all items i equals 1 for each position j.
+
+2. For each item i (from 0 to 4), it must be assigned to exactly one position. That is, the sum of x_i_j over all positions j equals 1 for each item i.
+
+These constraints ensure a one-to-one assignment between items and positions, forming a permutation.
+
+The objective is to minimize the total cost defined by the sum over all pairs of items (i, k) and positions j of the product d_{i,k} * x_i_j * x_k_(j+1 mod 5). Here, d_{i,k} represents a given distance or cost between items i and k, and the term x_i_j * x_k_(j+1 mod 5) indicates that item i is placed at position j and item k is placed immediately after position j in the sequence (with wrap-around from the last to the first position).
+
+In summary, the problem seeks the permutation of 5 items that minimizes the sum of costs associated with consecutive items in the sequence, subject to each item appearing exactly once and each position being occupied by exactly one item.",0.025367156208277702,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} == 1 for each j in [0..4]"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} == 1 for each i in [0..4]"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+33,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.12,25.0,2.0,113,28.13,"This optimization problem involves selecting a sequence of cities to visit in a route of length 5, represented by binary decision variables x_i_j, where x_i_j equals 1 if the city j is visited at position i in the route, and 0 otherwise.
+
+The problem includes the following constraints:
+1. Each position in the route (from 0 to 4) must be assigned exactly one city. In other words, for each position i, the sum of x_i_j over all cities j equals 1.
+2. Each city (from 0 to 4) must be visited exactly once in the route. That is, for each city j, the sum of x_i_j over all positions i equals 1.
+
+The objective is to minimize the total travel distance of the route. This total distance is calculated as the sum over all consecutive pairs of positions in the route (including the return from the last city back to the first) of the distance between the city visited at position i and the city visited at position (i+1) modulo 5.
+
+In summary, this problem seeks the shortest possible route that visits each of the five cities exactly once and returns to the starting city, effectively solving a Traveling Salesman Problem for five cities.",0.033734939759036145,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in 0..4"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in 0..4"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 distance(City_j, City_k) * x_{i,j} * x_{(i+1) mod 5,k}""}"
+34,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.8,25.0,2.0,113,28.13,"This optimization problem involves selecting assignments for a 5-by-5 grid of binary variables \( x_{i,j} \), where each variable can be either 0 or 1. The goal is to minimize a certain cost function while satisfying specific constraints.
+
+**Variables:**
+- There are 25 binary variables \( x_{i,j} \) with indices \( i \) and \( j \) each ranging from 0 to 4.
+- Each variable \( x_{i,j} \) represents a decision to assign element \( i \) to position \( j \).
+
+**Constraints:**
+1. **Row constraints:** For each \( i \) from 0 to 4, exactly one variable \( x_{i,j} \) in the row (i.e., for \( j = 0, 1, 2, 3, 4 \)) must be set to 1. This means each element \( i \) is assigned to exactly one position.
+2. **Column constraints:** For each \( j \) from 0 to 4, exactly one variable \( x_{i,j} \) in the column (i.e., for \( i = 0, 1, 2, 3, 4 \)) must be set to 1. This means each position \( j \) is assigned exactly one element.
+
+Together, these constraints enforce a one-to-one matching between elements \( i \) and positions \( j \), effectively creating a permutation.
+
+**Objective:**
+- The objective is to minimize the sum over all pairs of elements \( i \) and \( k \), and positions \( j \), of the product \( d_{i,k} \times x_{i,j} \times x_{k,(j+1) \bmod 5} \).
+- Here, \( d_{i,k} \) represents a given distance or cost between elements \( i \) and \( k \).
+- The term \( x_{i,j} \times x_{k,(j+1) \bmod 5} \) indicates that element \( i \) is assigned to position \( j \) and element \( k \) is assigned to the next position \( (j+1) \) modulo 5, forming a circular sequence.
+- Minimizing this sum corresponds to finding a circular ordering (permutation) of the elements that minimizes the total ""distance"" cost between consecutive elements in the sequence.
+
+**Summary:**
+This problem is to find a circular ordering of 5 elements that minimizes the total sum of pairwise distances between consecutive elements in the sequence. Each element must appear exactly once, and each position in the sequence must be occupied by exactly one element. The solution corresponds to a permutation minimizing the sum of distances around a cycle.",0.01600711427301023,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in [0..4]"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in [0..4]"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+35,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.68,25.0,2.0,113,28.13,"This optimization problem involves assigning 5 items to 5 positions in a sequence, represented by binary variables x_i_j, where x_i_j equals 1 if item i is placed in position j, and 0 otherwise.
+
+The problem includes two sets of constraints:
+
+1. Each position in the sequence must be assigned exactly one item. In other words, for every position j (from 0 to 4), the sum of x_i_j over all items i (0 to 4) must be exactly 1.
+
+2. Each item must be assigned to exactly one position. That is, for every item i (from 0 to 4), the sum of x_i_j over all positions j (0 to 4) must be exactly 1.
+
+The objective is to minimize the total cost defined by the sum over all pairs of items (i, k) and consecutive positions (j, j+1 modulo 5) of the product of the distance d_{i,k} between items i and k and the assignment variables x_i_j and x_k_(j+1). This effectively minimizes the total distance between items placed in consecutive positions in the sequence, considering the sequence as circular (position 4 connects back to position 0).
+
+In summary, the problem seeks a permutation of 5 items into 5 positions that minimizes the sum of distances between consecutive items in the circular sequence, ensuring each item appears exactly once and each position is occupied by exactly one item.",0.02877697841726619,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+36,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,6.45,25.0,2.0,113,28.13,"This optimization problem involves selecting a sequence of cities to visit in a tour of five cities, labeled 0 through 4. The decision variables x_i_j are binary indicators where x_i_j equals 1 if city j is visited in position i of the tour, and 0 otherwise.
+
+The problem has two main constraints:
+
+1. Each position in the tour (from 0 to 4) must be assigned exactly one city. In other words, for each position i, the sum of x_i_j over all cities j must be exactly 1.
+
+2. Each city must be visited exactly once in the tour. That is, for each city j, the sum of x_i_j over all positions i must be exactly 1.
+
+The objective is to minimize the total travel distance of the tour. The total distance is calculated by summing, for each consecutive pair of positions in the tour (including the return from the last city back to the first), the distance between the cities assigned to those positions. Formally, for each position i, the distance between the city assigned to position i and the city assigned to position (i+1) modulo 5 is multiplied by the corresponding variables x_i_j and x_(i+1)_k, and these are summed over all positions and city pairs.
+
+In summary, this is a formulation of the Traveling Salesman Problem (TSP) for five cities, where the goal is to find the shortest possible tour that visits each city exactly once and returns to the starting city.",0.012203389830508475,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in {0,...,4}"", ""penalty"": 100}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in {0,...,4}"", ""penalty"": 100}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 dist(City_j, City_k) * x_{i,j} * x_{(i+1) mod 5,k}""}"
+37,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.78,25.0,2.0,113,28.13,"This optimization problem involves selecting a unique assignment of items to positions in a sequence, with the goal of minimizing the total cost associated with transitions between consecutive positions.
+
+Specifically, there are 5 items (indexed 0 through 4) and 5 positions (also indexed 0 through 4). The decision variables x_i_j are binary indicators where x_i_j = 1 means that item i is assigned to position j, and 0 otherwise.
+
+The problem includes the following constraints:
+
+1. Each item must be assigned to exactly one position. That is, for each item i, the sum of x_i_j over all positions j equals 1.
+
+2. Each position must be occupied by exactly one item. That is, for each position j, the sum of x_i_j over all items i equals 1.
+
+The objective is to minimize the total cost computed as the sum over all pairs of consecutive positions in the sequence (with the sequence considered circular, so position 4 is followed by position 0). For each pair of consecutive positions j and (j+1) mod 5, the cost includes the distance d_i_k between the items assigned to these positions, weighted by the product x_i_j * x_k_(j+1).
+
+In summary, the problem is to find a permutation of the 5 items into the 5 positions that minimizes the sum of the distances between items placed in consecutive positions around a circular sequence. This is equivalent to finding an ordering of the items that minimizes the total transition cost around a loop.",0.011597938144329897,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 100}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 100}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+38,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.22,25.0,2.0,113,28.13,"This optimization problem involves assigning five items to five positions in a sequence, represented by binary variables x_i_j where i and j range from 0 to 4. Each variable x_i_j indicates whether item i is placed at position j (1 if yes, 0 if no).
+
+The problem includes the following constraints:
+
+1. Each position in the sequence must be assigned exactly one item. In other words, for each position j (from 0 to 4), the sum of x_i_j over all items i must equal 1.
+
+2. Each item must be assigned to exactly one position. That is, for each item i (from 0 to 4), the sum of x_i_j over all positions j must equal 1.
+
+Both constraints are enforced strongly with a penalty weight of 100 to ensure valid assignments.
+
+The objective is to minimize the total cost associated with the ordering of items in the sequence. The cost is calculated by summing, over all pairs of items (i, k), the distance or cost d_i_k multiplied by the decision variables indicating that item i is placed at position j and item k is placed at the next position (j+1 modulo 5) in the sequence. This effectively models the cost of traveling or transitioning from item i to item k in consecutive positions, considering the sequence as circular.
+
+In summary, the problem seeks to find a permutation of five items into five positions that minimizes the total transition cost between consecutive items in a circular sequence, while ensuring each item appears exactly once and each position is occupied by exactly one item.",0.027482823235477825,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each j in [0..4]"", ""penalty"": 100}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each i in [0..4]"", ""penalty"": 100}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+39,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,5.02,25.0,3.0,113,29.13,"This optimization problem involves finding a route that visits five distinct locations, labeled 0 through 4, exactly once each, and returns to the starting point, minimizing the total travel distance.
+
+Specifically:
+
+- There are binary decision variables \( x_{i,j} \) where \( i \) represents a location (from 0 to 4) and \( j \) represents the position in the route (from 0 to 4). The variable \( x_{i,j} = 1 \) if location \( i \) is visited at position \( j \) in the route, and 0 otherwise.
+
+- The first set of constraints ensures that each position in the route is assigned exactly one location. In other words, for every position \( j \), exactly one location \( i \) is chosen.
+
+- The second set of constraints ensures that each location is visited exactly once in the route. That is, for every location \( i \), it appears in exactly one position \( j \).
+
+- Additional inequality constraints are included to eliminate subtours, which are smaller cycles that do not cover all locations. These constraints ensure the solution forms a single continuous tour visiting all locations.
+
+- The objective is to minimize the total travel distance of the route. The distance between locations \( i \) and \( k \) is given by \( d_{i,k} \). The total distance sums over all consecutive pairs of locations in the route, including the return from the last location back to the first.
+
+In summary, this is a formulation of the Traveling Salesman Problem (TSP) for five locations, aiming to find the shortest possible route that visits each location exactly once and returns to the start, while preventing any disconnected subtours.",0.034502587694077054,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for all i in {0,...,4}"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for all j in {0,...,4}"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""subtour elimination constraints"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{i,k} * x_{i,j} * x_{k,(j+1) mod 5}""}"
+40,TSP,"Find shortest route visiting each city once and returning. Cities: ['City0', 'City1', 'City2', 'City3', 'City4'].",True,,4.91,25.0,2.0,113,28.13,"This optimization problem involves finding an optimal route through five cities, labeled 0 through 4, with the goal of minimizing the total travel distance. The decision variables are binary variables \( x_{i,j} \), where \( x_{i,j} = 1 \) indicates that city \( j \) is visited in position \( i \) of the route, and 0 otherwise.
+
+The problem includes the following constraints:
+
+1. Each city must be visited exactly once. This means that for each city \( j \), the sum of \( x_{i,j} \) over all positions \( i = 0 \) to 4 must equal 1.
+
+2. Each position in the route must be occupied by exactly one city. That is, for each position \( i \), the sum of \( x_{i,j} \) over all cities \( j = 0 \) to 4 must equal 1.
+
+The objective is to minimize the total travel distance of the route. The distance between cities \( j \) and \( k \) is given by \( d_{j,k} \). The total distance is calculated by summing the distances between consecutive cities in the route, considering the route as a cycle (the city after the last position loops back to the first).
+
+In summary, this is a Traveling Salesman Problem (TSP) for five cities, formulated to find the shortest possible tour that visits each city exactly once and returns to the starting city.",0.02072538860103627,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4"", ""x_2_0"", ""x_2_1"", ""x_2_2"", ""x_2_3"", ""x_2_4"", ""x_3_0"", ""x_3_1"", ""x_3_2"", ""x_3_3"", ""x_3_4"", ""x_4_0"", ""x_4_1"", ""x_4_2"", ""x_4_3"", ""x_4_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{i=0}^4 x_{i,j} = 1 for each city j"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{j=0}^4 x_{i,j} = 1 for each position i"", ""penalty"": 10}], ""objective"": ""minimize: sum_{i=0}^4 sum_{j=0}^4 sum_{k=0}^4 d_{j,k} * x_{i,j} * x_{(i+1) mod 5,k}""}"
+41,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person1'], ['Person1', 'Person2']] together.",True,,5.41,9.0,9.0,123,19.23,"This optimization problem involves assigning three people—Person1, Person2, and Person4—to three available seats labeled Seat1, Seat2, and Seat3. The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. In other words, Person1 must occupy one and only one of Seat1, Seat2, or Seat3; the same applies to Person2 and Person4.
+
+2. No seat can be occupied by more than one person. Specifically:
+   - Person1 and Person4 cannot share the same seat.
+   - Person1 and Person2 cannot share the same seat.
+
+The objective function to minimize is zero, meaning the primary goal is to find any feasible seating arrangement that meets all the above constraints without conflicts.",0.03682393555811277,"{""variables"": [""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person1_Seat3"", ""x_Person2_Seat1"", ""x_Person2_Seat2"", ""x_Person2_Seat3"", ""x_Person4_Seat1"", ""x_Person4_Seat2"", ""x_Person4_Seat3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person1_Seat2 + x_Person1_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat1 + x_Person2_Seat2 + x_Person2_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat1 + x_Person4_Seat2 + x_Person4_Seat3 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person4_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person4_Seat2 + x_Person1_Seat2 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person4_Seat3 + x_Person1_Seat3 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person1_Seat1 + x_Person2_Seat1 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person1_Seat2 + x_Person2_Seat2 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person1_Seat3 + x_Person2_Seat3 <= 1"", ""penalty"": 20}], ""objective"": ""minimize: 0""}"
+42,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person0', 'Person3']] together.",True,,4.47,1.0,2.0,123,4.23,"This optimization problem involves assigning four individuals, labeled 0, 1, 2, and 3, to a set of available seats. The goal is to find a seating arrangement that minimizes conflicts based on predefined conflict values between pairs of seats.
+
+The decision variables are binary indicators \( x_{ij} \), where \( x_{ij} = 1 \) means individual \( i \) is assigned to seat \( j \), and 0 otherwise.
+
+There are two main constraints:
+
+1. Each individual must be assigned to exactly one seat. This means for each individual \( i \), the sum of \( x_{ij} \) over all seats \( j \) equals 1.
+
+2. Each seat must be occupied by exactly one individual. This means for each seat \( j \), the sum of \( x_{ij} \) over all individuals \( i \) equals 1.
+
+Both constraints are enforced with a penalty weight of 10 to ensure valid assignments.
+
+The objective is to minimize the total conflict arising from specific pairs of individuals seated in conflicting seats. Specifically:
+
+- The conflict between the seats assigned to individual 0 and individual 3, weighted by the conflict value between those seats.
+
+- The conflict between the seats assigned to individual 1 and individual 2, weighted by the conflict value between those seats.
+
+In summary, the problem seeks a one-to-one assignment of four individuals to seats that minimizes the combined conflict between the pairs (0,3) and (1,2) based on the seating positions.",0.02483660130718954,"{""variables"": [""x_ij for i in {0,1,2,3} and j in seats""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_j x_ij = 1 for all i"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_i x_ij = 1 for all j"", ""penalty"": 10}], ""objective"": ""minimize: x_0j * x_3k * conflict(j,k) + x_1m * x_2n * conflict(m,n)""}"
+43,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person3', 'Person4']] together.",True,,2.07,1.0,2.0,123,4.23,"This optimization problem involves assigning a set of persons to a set of seats. The decision variables indicate whether a particular person is assigned to a particular seat.
+
+The problem includes the following constraints:
+
+1. Each person must be assigned to exactly one seat.
+2. Each seat must be assigned to exactly one person.
+
+The objective is to minimize the total sum of conflicts defined by pairs of specific persons sitting in the same seat. Specifically, the goal is to minimize the number of seats where Person0 and Person4 are both assigned, as well as seats where Person3 and Person4 are both assigned. Since each seat can only have one person, this effectively avoids assigning these pairs to the same seat.
+
+In summary, the problem is to find a one-to-one assignment of persons to seats that ensures every person has a unique seat, every seat is occupied by exactly one person, and the seating arrangement minimizes the occurrence of certain pairs of persons sharing a seat.",0.044964028776978415,"{""variables"": [""x_i_j for i in Persons, j in Seats""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_j x_i_j = 1 for all i"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_i x_i_j = 1 for all j"", ""penalty"": 10}], ""objective"": ""minimize: x_Person0_j * x_Person4_j + x_Person3_j * x_Person4_j for all seats j""}"
+44,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person0'], ['Person4', 'Person0']] together.",True,,6.15,10.0,7.0,123,18.23,"This optimization problem involves selecting values for ten binary variables arranged in two groups of five: x_0_0 through x_0_4, and x_1_0 through x_1_4. The goal is to minimize a specific objective function while satisfying several constraints.
+
+The constraints are as follows:
+
+1. In the first group (x_0_0 to x_0_4), exactly one variable must be set to 1, and the rest must be 0.
+2. In the second group (x_1_0 to x_1_4), exactly one variable must be set to 1, and the rest must be 0.
+3. For each index from 0 to 4, the sum of the variables at that index in both groups must be exactly 1. This means that for each position, either the variable in the first group or the variable in the second group is 1, but not both.
+
+The objective function to minimize is the sum of the following products:
+
+- The product of x_0_2 and x_0_0
+- The product of x_1_2 and x_1_0
+- The product of x_0_4 and x_0_0
+- The product of x_1_4 and x_1_0
+
+In other words, the problem is to choose one variable from each group such that the selections are complementary across the two groups at each index, and the sum of these specific pairwise products within each group is minimized.",0.0234009360374415,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_0_2"", ""x_0_3"", ""x_0_4"", ""x_1_0"", ""x_1_1"", ""x_1_2"", ""x_1_3"", ""x_1_4""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 + x_0_2 + x_0_3 + x_0_4 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 + x_1_2 + x_1_3 + x_1_4 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_1 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_2 + x_1_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_3 + x_1_3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_4 + x_1_4 = 1"", ""penalty"": 10}], ""objective"": ""minimize: x_0_2*x_0_0 + x_1_2*x_1_0 + x_0_4*x_0_0 + x_1_4*x_1_0""}"
+45,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person1'], ['Person4', 'Person1']] together.",True,,8.53,9.0,9.0,123,19.23,"This optimization problem involves assigning three people—Person 1, Person 2, and Person 4—to three available seats labeled Seat 1, Seat 2, and Seat 3. The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. That is, Person 1 must occupy exactly one of the three seats, Person 2 must occupy exactly one seat, and Person 4 must also occupy exactly one seat.
+
+2. No seat can be assigned to more than one person. Specifically:
+   - Seat 1 can be occupied by at most one person among Person 1, Person 2, and Person 4.
+   - Seat 2 can be occupied by at most one person among Person 1, Person 2, and Person 4.
+   - Seat 3 can be occupied by at most one person among Person 1, Person 2, and Person 4.
+
+The objective is to minimize any violations of these constraints, but since the objective function is zero, the primary focus is on finding a feasible seating assignment that respects all the above constraints.",0.034265103697024346,"{""variables"": [""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person1_Seat3"", ""x_Person2_Seat1"", ""x_Person2_Seat2"", ""x_Person2_Seat3"", ""x_Person4_Seat1"", ""x_Person4_Seat2"", ""x_Person4_Seat3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person1_Seat2 + x_Person1_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat1 + x_Person2_Seat2 + x_Person2_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat1 + x_Person4_Seat2 + x_Person4_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person2_Seat1 <= 1"", ""penalty"": 5}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat2 + x_Person2_Seat2 <= 1"", ""penalty"": 5}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat3 + x_Person2_Seat3 <= 1"", ""penalty"": 5}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person4_Seat1 <= 1"", ""penalty"": 5}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat2 + x_Person4_Seat2 <= 1"", ""penalty"": 5}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat3 + x_Person4_Seat3 <= 1"", ""penalty"": 5}], ""objective"": ""minimize: 0""}"
+46,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person3'], ['Person0', 'Person1']] together.",True,,2.94,1.0,2.0,123,4.23,"This optimization problem involves assigning items to positions with the goal of minimizing a certain cost while satisfying specific assignment constraints.
+
+Variables:
+- The variables are denoted as x_i_j, where each variable represents whether item i is assigned to position j (with x_i_j = 1 if assigned, and 0 otherwise).
+
+Constraints:
+1. Each item i must be assigned to exactly one position j. This means that for every item i, the sum of x_i_j over all positions j must equal 1.
+2. Each position j must be assigned exactly one item i. This means that for every position j, the sum of x_i_j over all items i must equal 1.
+
+Both constraints are enforced with a penalty weight of 10 to ensure they are strictly satisfied.
+
+Objective:
+- The objective is to minimize the sum of products x_i_j * x_k_j for the pairs of items (i, k) in the set {(0,3), (0,1)} over all positions j.
+- In other words, the goal is to minimize the number of times items 0 and 3, and items 0 and 1, are assigned to the same position j simultaneously.
+
+Summary:
+Find an assignment of items to positions such that each item occupies exactly one position and each position is occupied by exactly one item, while minimizing the overlap of specific pairs of items (0 with 3, and 0 with 1) assigned to the same position.",0.03253182461103253,"{""variables"": [""x_i_j""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_j x_i_j = 1 for all i"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_i x_i_j = 1 for all j"", ""penalty"": 10}], ""objective"": ""minimize: sum_{(i,k) in [(0,3),(0,1)]} sum_j x_i_j * x_k_j""}"
+47,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person0', 'Person2']] together.",True,,5.99,6.0,7.0,123,14.23,"This optimization problem involves assigning seats to three people (Person0, Person1, and Person2) across two available seats (Seat0 and Seat1). The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned exactly one seat. That is, Person0 must occupy either Seat0 or Seat1 (but not both), Person1 must occupy exactly one of the two seats, and Person2 must also occupy exactly one seat.
+
+2. No seat can be occupied by more than one person. Specifically:
+   - Seat0 can be assigned to at most one person among Person0, Person1, and Person2.
+   - Seat1 can be assigned to at most one person among Person0, Person1, and Person2.
+
+The problem is formulated to minimize penalties for violating these constraints, with higher penalties for assigning a person to multiple seats or no seat at all, and moderate penalties for assigning multiple people to the same seat.
+
+Since the objective function is zero, the primary focus is on satisfying the constraints to find a valid seating assignment where each person has a unique seat and no seat is shared.",0.03107113654946852,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person2_Seat0"", ""x_Person2_Seat1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person0_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat0 + x_Person1_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat0 + x_Person2_Seat1 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat0 + x_Person1_Seat0 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat0 + x_Person2_Seat0 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat1 + x_Person2_Seat1 <= 1"", ""penalty"": 5}], ""objective"": ""minimize: 0""}"
+48,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person4'], ['Person3', 'Person1']] together.",True,,7.99,9.0,9.0,123,19.23,"This optimization problem involves assigning three people—Person1, Person3, and Person4—to three available seats labeled Seat1, Seat2, and Seat3. The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. In other words, Person1 must occupy exactly one of the three seats, Person3 must occupy exactly one seat, and Person4 must occupy exactly one seat.
+
+2. No seat can be assigned to more than one person. Specifically:
+   - Seat1 can be occupied by at most one person among Person1, Person3, and Person4.
+   - Seat2 can be occupied by at most one person among Person1, Person3, and Person4.
+   - Seat3 can be occupied by at most one person among Person1, Person3, and Person4.
+
+The objective is to minimize any penalty associated with violating these constraints. Since the objective function is zero, the primary focus is on finding a feasible seating assignment that meets all the constraints without conflicts.",0.028699551569506727,"{""variables"": [""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person1_Seat3"", ""x_Person4_Seat1"", ""x_Person4_Seat2"", ""x_Person4_Seat3"", ""x_Person3_Seat1"", ""x_Person3_Seat2"", ""x_Person3_Seat3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person1_Seat2 + x_Person1_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat1 + x_Person4_Seat2 + x_Person4_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat1 + x_Person3_Seat2 + x_Person3_Seat3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person4_Seat1 <= 1"", ""penalty"": 20}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat2 + x_Person4_Seat2 <= 1"", ""penalty"": 20}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat3 + x_Person4_Seat3 <= 1"", ""penalty"": 20}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 20}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat2 + x_Person1_Seat2 <= 1"", ""penalty"": 20}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat3 + x_Person1_Seat3 <= 1"", ""penalty"": 20}], ""objective"": ""minimize: 0""}"
+49,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person2', 'Person3']] together.",True,,8.79,8.0,8.0,123,17.23,"This optimization problem involves assigning four people (Person0, Person1, Person2, and Person3) to two available seats (Seat0 and Seat1). The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. In other words, Person0 must occupy either Seat0 or Seat1 (but not both), Person1 must occupy either Seat0 or Seat1, and similarly for Person2 and Person3.
+
+2. No seat can be assigned to more than one person. Specifically:
+   - Seat0 can be assigned to at most one person among Person0 and Person1.
+   - Seat1 can be assigned to at most one person among Person0 and Person1.
+   - Seat0 can be assigned to at most one person among Person2 and Person3.
+   - Seat1 can be assigned to at most one person among Person2 and Person3.
+
+The objective is to minimize the penalty associated with violating these constraints. Since the objective function is zero, the problem focuses solely on finding a feasible seating arrangement that meets all the above constraints without conflicts.",0.030612244897959183,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person2_Seat0"", ""x_Person2_Seat1"", ""x_Person3_Seat0"", ""x_Person3_Seat1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person0_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat0 + x_Person1_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat0 + x_Person2_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat0 + x_Person3_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person1_Seat0 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat0 + x_Person3_Seat0 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat1 + x_Person3_Seat1 <= 1"", ""penalty"": 15}], ""objective"": ""minimize: 0""}"
+50,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person0', 'Person3']] together.",True,,2.31,1.0,2.0,123,4.23,"This optimization problem involves assigning five individuals, labeled 0 through 4, to a set of seats. The goal is to find an assignment that satisfies the following conditions:
+
+1. Each individual must be assigned to exactly one seat.
+2. Each seat must be occupied by exactly one individual.
+
+These conditions are enforced as equality constraints with a penalty factor to ensure they are strictly met.
+
+The objective is to minimize the sum of specific pairwise seat assignments involving individuals 3 and 4, and individuals 0 and 3. Specifically, for every seat, the product of the assignment variables for individuals 4 and 3 to that seat, as well as for individuals 0 and 3 to that seat, is included in the objective. Minimizing this objective encourages arrangements where individuals 3 and 4, and individuals 0 and 3, are not assigned to the same seat.
+
+In summary, the problem seeks a one-to-one seating arrangement of five individuals to seats that avoids placing certain pairs together, thereby minimizing the specified pairwise overlaps.",0.03247863247863248,"{""variables"": [""x_ij for i in [0,1,2,3,4] and j in seats""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_j x_ij = 1 for each i"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_i x_ij = 1 for each j"", ""penalty"": 10}], ""objective"": ""minimize: x_4s * x_3s + x_0s * x_3s for all seats s""}"
+51,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person0']] together.",True,,5.05,6.0,7.0,123,14.23,"This optimization problem involves assigning three people (Person0, Person1, and Person2) to two available seats (Seat0 and Seat1). The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat.  
+   - Person0 must occupy either Seat0 or Seat1, but not both.  
+   - Person1 must occupy either Seat0 or Seat1, but not both.  
+   - Person2 must occupy either Seat0 or Seat1, but not both.
+
+2. No seat can be occupied by more than one person at the same time. Specifically:  
+   - Seat0 cannot be assigned to both Person0 and Person1 simultaneously.  
+   - Seat1 cannot be assigned to both Person0 and Person1 simultaneously.  
+   - Seat0 cannot be assigned to both Person2 and Person0 simultaneously.  
+   - Seat1 cannot be assigned to both Person2 and Person0 simultaneously.
+
+The objective is to minimize any violations of these constraints, but since the objective function is zero, the primary focus is on satisfying all the constraints without conflict. In other words, the problem seeks a valid seating assignment where each person has exactly one seat and no seat is shared by more than one person.",0.03230769230769231,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person2_Seat0"", ""x_Person2_Seat1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person0_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat0 + x_Person1_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat0 + x_Person2_Seat1 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat0 + x_Person1_Seat0 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person0_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person2_Seat0 + x_Person0_Seat0 <= 1"", ""penalty"": 5}, {""type"": ""inequality"", ""expression"": ""x_Person2_Seat1 + x_Person0_Seat1 <= 1"", ""penalty"": 5}], ""objective"": ""minimize: 0""}"
+52,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person4', 'Person2']] together.",True,,6.05,8.0,8.0,123,17.23,"This optimization problem involves assigning four people—Person0, Person1, Person2, and Person4—to two available seats, labeled Seat0 and Seat1. The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. In other words, for each person, either Seat0 or Seat1 is chosen, but not both.
+
+2. No seat can be occupied by more than one person. Specifically:
+   - Seat0 can have at most one occupant among Person0 and Person1.
+   - Seat1 can have at most one occupant among Person0 and Person1.
+   - Seat0 can have at most one occupant among Person4 and Person2.
+   - Seat1 can have at most one occupant among Person4 and Person2.
+
+The objective is to minimize constraint violations, with penalties applied if any of these conditions are not met. Since the objective function is zero, the problem focuses solely on finding a feasible seating assignment that respects all the constraints described above.",0.040145985401459854,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person2_Seat0"", ""x_Person2_Seat1"", ""x_Person4_Seat0"", ""x_Person4_Seat1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person0_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat0 + x_Person1_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat0 + x_Person2_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat0 + x_Person4_Seat1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person1_Seat0 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat0 + x_Person2_Seat0 <= 1"", ""penalty"": 15}, {""type"": ""equality"", ""expression"": ""x_Person4_Seat1 + x_Person2_Seat1 <= 1"", ""penalty"": 15}], ""objective"": ""minimize: 0""}"
+53,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person1'], ['Person2', 'Person1']] together.",True,,5.09,6.0,7.0,123,14.23,"This optimization problem involves assigning three people (Person0, Person1, and Person2) to one of two shifts (S1 or S2). The goal is to find an assignment that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one shift. That is, Person0 must work either shift S1 or S2 (but not both), Person1 must work either shift S1 or S2, and Person2 must work either shift S1 or S2.
+
+2. Certain pairs of people cannot work the same shift simultaneously:
+   - Person0 and Person1 cannot both be assigned to shift S1.
+   - Person0 and Person1 cannot both be assigned to shift S2.
+   - Person2 and Person1 cannot both be assigned to shift S1.
+   - Person2 and Person1 cannot both be assigned to shift S2.
+
+The objective is to minimize any violations of these constraints, but since the objective function is zero, the problem essentially seeks a feasible assignment that respects all these rules without any penalty.",0.030274361400189215,"{""variables"": [""x_Person0_S1"", ""x_Person0_S2"", ""x_Person1_S1"", ""x_Person1_S2"", ""x_Person2_S1"", ""x_Person2_S2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_S1 + x_Person0_S2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_S1 + x_Person1_S2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_S1 + x_Person2_S2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person0_S1 + x_Person1_S1 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person0_S2 + x_Person1_S2 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person2_S1 + x_Person1_S1 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person2_S2 + x_Person1_S2 <= 1"", ""penalty"": 20}], ""objective"": ""minimize: 0""}"
+54,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person0'], ['Person2', 'Person0']] together.",True,,9.46,20.0,9.0,123,30.23,"This optimization problem involves assigning 5 people (Person0 through Person4) to 4 available seats (Seat0 through Seat3). Each person can be assigned to exactly one seat, and no seat can be assigned to more than one person.
+
+The constraints are as follows:
+- Each person must occupy exactly one seat.
+- Each seat can be occupied by at most one person.
+
+The objective is to minimize the total overlap of seat assignments between Person0 and Person4, as well as between Person0 and Person2. In other words, the goal is to assign seats so that Person0 does not share the same seat with Person4 or Person2, minimizing the number of times Person0 and these two others end up in the same seat.
+
+Overall, the problem seeks a seating arrangement for all five people that respects the one-person-per-seat rule while minimizing seat sharing between Person0 and the two specified individuals.",0.05964214711729622,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person0_Seat2"", ""x_Person0_Seat3"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person1_Seat3"", ""x_Person2_Seat0"", ""x_Person2_Seat1"", ""x_Person2_Seat2"", ""x_Person2_Seat3"", ""x_Person3_Seat0"", ""x_Person3_Seat1"", ""x_Person3_Seat2"", ""x_Person3_Seat3"", ""x_Person4_Seat0"", ""x_Person4_Seat1"", ""x_Person4_Seat2"", ""x_Person4_Seat3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum_{s} x_Person0_s = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{s} x_Person1_s = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{s} x_Person2_s = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{s} x_Person3_s = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum_{s} x_Person4_s = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""sum_{p} x_p_Seat0 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""sum_{p} x_p_Seat1 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""sum_{p} x_p_Seat2 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""sum_{p} x_p_Seat3 <= 1"", ""penalty"": 10}], ""objective"": ""minimize: sum_{s} (x_Person4_s * x_Person0_s) + sum_{s} (x_Person2_s * x_Person0_s)""}"
+55,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person4', 'Person3'], ['Person3', 'Person0']] together.",False,LLM Fail,8.69,,,123,1.23,,,null
+56,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person2'], ['Person1', 'Person2']] together.",True,,4.21,4.0,4.0,123,9.23,"This optimization problem involves assigning two people to two seats with the following conditions:
+
+- Each person must be assigned to exactly one seat. That is, Person 1 must occupy either Seat 1 or Seat 2 (but not both), and Person 2 must also occupy either Seat 1 or Seat 2 (but not both).
+
+- No seat can be occupied by more than one person. In other words, Seat 1 can have at most one occupant (either Person 1 or Person 2), and Seat 2 can have at most one occupant as well.
+
+The goal is to find an assignment of people to seats that satisfies these constraints. There is no additional objective to optimize beyond meeting these seating requirements.",0.02574002574002574,"{""variables"": [""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person2_Seat1"", ""x_Person2_Seat2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person1_Seat1 + x_Person1_Seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_Seat1 + x_Person2_Seat2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person1_Seat1 + x_Person2_Seat1 <= 1"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person1_Seat2 + x_Person2_Seat2 <= 1"", ""penalty"": 20}], ""objective"": ""minimize: 0""}"
+57,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person3', 'Person1'], ['Person0', 'Person2']] together.",False,LLM Fail,7.78,,,123,1.23,,,null
+58,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person2', 'Person3'], ['Person3', 'Person1']] together.",True,,7.98,6.0,5.0,123,12.23,"This optimization problem involves assigning three people—Person 1, Person 2, and Person 3—to two available seats, Seat 1 and Seat 2. The goal is to find a seating arrangement that satisfies certain constraints, with no additional objective to minimize or maximize beyond meeting these constraints.
+
+The decision variables indicate whether a particular person is assigned to a specific seat. For example, the variable representing Person 1 in Seat 1 can be either 0 (not assigned) or 1 (assigned).
+
+The constraints are as follows:
+
+1. Each person must be assigned to exactly one seat. This means:
+   - Person 1 must occupy either Seat 1 or Seat 2, but not both.
+   - Person 2 must occupy either Seat 1 or Seat 2, but not both.
+   - Person 3 must occupy either Seat 1 or Seat 2, but not both.
+
+2. Person 2 and Person 3 cannot be seated together in the same seat. In other words, they must not share Seat 1 or Seat 2.
+
+3. Person 3 and Person 1 also cannot be seated together in the same seat. That is, they must not share Seat 1 or Seat 2.
+
+Since there are only two seats and three people, and given these constraints, the problem seeks a seating assignment where each person occupies exactly one seat, and no prohibited pairs share a seat.
+
+The objective function is to minimize zero, meaning the primary focus is on satisfying the constraints rather than optimizing any particular cost or benefit.",0.06578947368421052,"{""variables"": [""x_Person1_seat1"", ""x_Person1_seat2"", ""x_Person2_seat1"", ""x_Person2_seat2"", ""x_Person3_seat1"", ""x_Person3_seat2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person1_seat1 + x_Person1_seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person2_seat1 + x_Person2_seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person3_seat1 + x_Person3_seat2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Person2_seat1 * x_Person3_seat1 + x_Person2_seat2 * x_Person3_seat2 = 0"", ""penalty"": 20}, {""type"": ""inequality"", ""expression"": ""x_Person3_seat1 * x_Person1_seat1 + x_Person3_seat2 * x_Person1_seat2 = 0"", ""penalty"": 20}], ""objective"": ""minimize: 0""}"
+59,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person0', 'Person4'], ['Person1', 'Person0']] together.",True,,7.16,10.0,7.0,123,18.23,"This optimization problem involves selecting values for a set of binary variables arranged in pairs for five different items or positions. Specifically, there are 10 binary variables grouped as five pairs: (x_0_0, x_0_1), (x_1_0, x_1_1), (x_2_0, x_2_1), (x_3_0, x_3_1), and (x_4_0, x_4_1).
+
+The constraints are as follows:
+
+1. For each pair of variables corresponding to the same item (for example, x_0_0 and x_0_1), exactly one variable must be set to 1, and the other must be 0. This means for each item, you must choose exactly one option out of the two available.
+
+2. The sum of all variables with the suffix ""_0"" across all five items must be exactly 5. Since there are five such variables (x_0_0 through x_4_0), this constraint requires that all of these variables be set to 1.
+
+3. Similarly, the sum of all variables with the suffix ""_1"" across all five items must also be exactly 5. Since there are five such variables (x_0_1 through x_4_1), this constraint requires that all of these variables be set to 1.
+
+However, these last two constraints together imply that all variables x_i_0 and x_i_1 are set to 1 simultaneously, which conflicts with the first set of constraints that require exactly one variable in each pair to be 1. This suggests the problem as stated is infeasible unless interpreted differently.
+
+The objective is to minimize the sum of the products of certain pairs of variables:
+
+- The product of x_0_0 and x_4_0,
+- The product of x_0_1 and x_4_1,
+- The product of x_1_0 and x_0_0,
+- The product of x_1_1 and x_0_1.
+
+In summary, the problem is to assign binary values to these variables, choosing exactly one option per item, while satisfying the sum constraints on the variables ending with ""_0"" and ""_1"", and minimizing the specified quadratic objective function involving pairs of variables from the first and last items and between the first and second items.",0.018886679920477135,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1""}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1""}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1""}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1""}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1""}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 = 5""}, {""type"": ""equality"", ""expression"": ""x_0_1 + x_1_1 + x_2_1 + x_3_1 + x_4_1 = 5""}], ""objective"": ""minimize: x_0_0 * x_4_0 + x_0_1 * x_4_1 + x_1_0 * x_0_0 + x_1_1 * x_0_1""}"
+60,Seating,"Assign seats to individuals to minimize conflicts. Avoid seating [['Person1', 'Person0'], ['Person3', 'Person0']] together.",True,,8.32,9.0,9.0,123,19.23,"This optimization problem involves assigning three people—Person0, Person1, and Person3—to three available seats labeled Seat0, Seat1, and Seat2. The goal is to find a seating arrangement that satisfies the following conditions:
+
+1. Each person must be assigned to exactly one seat. In other words, Person0 must occupy one and only one of Seat0, Seat1, or Seat2; the same applies to Person1 and Person3.
+
+2. No seat can be occupied by more than one person. This means that for each seat, at most one of the three people can be assigned to it.
+
+The objective function is trivial (it aims to minimize zero), so the problem focuses solely on finding a feasible assignment that meets all the constraints without any preference or cost optimization.",0.0392156862745098,"{""variables"": [""x_Person0_Seat0"", ""x_Person0_Seat1"", ""x_Person0_Seat2"", ""x_Person1_Seat0"", ""x_Person1_Seat1"", ""x_Person1_Seat2"", ""x_Person3_Seat0"", ""x_Person3_Seat1"", ""x_Person3_Seat2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person0_Seat1 + x_Person0_Seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person1_Seat0 + x_Person1_Seat1 + x_Person1_Seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person3_Seat0 + x_Person3_Seat1 + x_Person3_Seat2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person1_Seat0 <= 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat1 + x_Person1_Seat1 <= 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat2 + x_Person1_Seat2 <= 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat0 + x_Person3_Seat0 <= 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat1 + x_Person3_Seat1 <= 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Person0_Seat2 + x_Person3_Seat2 <= 1"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+61,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node0', 'Node4'), ('Node1', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",False,LLM Fail,9.79,,,205,2.05,,,null
+62,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node2'), ('Node2', 'Node4'), ('Node3', 'Node4')].",False,LLM Fail,21.97,,,145,1.45,,,null
+63,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",True,,7.38,15.0,8.0,145,24.45,"This optimization problem involves assigning one of three possible labels (0, 1, or 2) to each of five nodes, labeled Node0 through Node4. The goal is to find an assignment that satisfies the following conditions:
+
+1. **Unique Label per Node:**  
+   Each node must be assigned exactly one label. In other words, for each node, exactly one of the three corresponding variables (e.g., x_Node0_0, x_Node0_1, x_Node0_2 for Node0) is set to 1, and the others are 0.
+
+2. **Label Conflict Restrictions Between Specific Node Pairs:**  
+   Certain pairs of nodes are not allowed to share the same label simultaneously. Specifically:  
+   - Node0 and Node2 cannot have the same label.  
+   - Node1 and Node4 cannot have the same label.  
+   - Node2 and Node3 cannot have the same label.
+
+These restrictions are enforced by ensuring that for each pair, the product of their corresponding label variables is zero, meaning they cannot both be assigned the same label.
+
+The objective function is to minimize zero, which effectively means the problem focuses solely on satisfying the constraints without optimizing any additional cost or benefit.
+
+In summary, this is a labeling problem where each node must receive exactly one label from three options, and certain pairs of nodes are prohibited from sharing the same label. The solution seeks any assignment meeting all these constraints.",0.01184990125082291,"{""variables"": [""x_Node0_0"", ""x_Node0_1"", ""x_Node0_2"", ""x_Node1_0"", ""x_Node1_1"", ""x_Node1_2"", ""x_Node2_0"", ""x_Node2_1"", ""x_Node2_2"", ""x_Node3_0"", ""x_Node3_1"", ""x_Node3_2"", ""x_Node4_0"", ""x_Node4_1"", ""x_Node4_2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_0 + x_Node0_1 + x_Node0_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node1_0 + x_Node1_1 + x_Node1_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node2_0 + x_Node2_1 + x_Node2_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_0 + x_Node3_1 + x_Node3_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_0 + x_Node4_1 + x_Node4_2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_0 * x_Node2_0 + x_Node0_1 * x_Node2_1 + x_Node0_2 * x_Node2_2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_0 * x_Node4_0 + x_Node1_1 * x_Node4_1 + x_Node1_2 * x_Node4_2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_0 * x_Node3_0 + x_Node2_1 * x_Node3_1 + x_Node2_2 * x_Node3_2 = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+64,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3')].",True,,3.79,4.0,4.0,105,9.05,"This optimization problem involves assigning colors to two nodes, Node 2 and Node 3, using two possible colors: color 1 and color 2. The goal is to find a valid coloring assignment that satisfies the following conditions:
+
+1. Each node must be assigned exactly one color. Specifically:
+   - Node 2 must be assigned either color 1 or color 2, but not both.
+   - Node 3 must be assigned either color 1 or color 2, but not both.
+
+2. Nodes 2 and 3 cannot share the same color simultaneously. That is:
+   - Both Node 2 and Node 3 cannot be assigned color 1 at the same time.
+   - Both Node 2 and Node 3 cannot be assigned color 2 at the same time.
+
+The objective is to minimize zero, meaning the focus is solely on satisfying these constraints without optimizing any additional cost or benefit. Penalties are applied if any of the constraints are violated, encouraging solutions that assign exactly one color per node and prevent adjacent nodes from sharing the same color.",0.011183597390493943,"{""variables"": [""x_Node2_color1"", ""x_Node2_color2"", ""x_Node3_color1"", ""x_Node3_color2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node2_color1 + x_Node2_color2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_color1 + x_Node3_color2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_color1 + x_Node3_color1 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_color2 + x_Node3_color2 <= 1"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+65,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node2', 'Node3')].",True,,5.12,8.0,8.0,125,17.25,"This optimization problem involves selecting exactly one option for each of four nodes, labeled Node0 through Node3. Each node has two possible choices, represented by binary variables:
+
+- For Node0: choose either option 0 (x_Node0_0) or option 1 (x_Node0_1).
+- For Node1: choose either option 0 (x_Node1_0) or option 1 (x_Node1_1).
+- For Node2: choose either option 0 (x_Node2_0) or option 1 (x_Node2_1).
+- For Node3: choose either option 0 (x_Node3_0) or option 1 (x_Node3_1).
+
+The constraints are as follows:
+
+1. For each node, exactly one of its two options must be selected. This means that for each node, the sum of its two variables equals 1.
+
+2. Certain pairs of choices between Node0 and Node3, and between Node2 and Node3, cannot be selected simultaneously:
+   - Node0 option 0 and Node3 option 0 cannot both be chosen.
+   - Node0 option 1 and Node3 option 1 cannot both be chosen.
+   - Node2 option 0 and Node3 option 0 cannot both be chosen.
+   - Node2 option 1 and Node3 option 1 cannot both be chosen.
+
+The goal is to find a selection of options for all nodes that satisfies these constraints. Since the objective function is zero, the problem focuses solely on finding a feasible assignment that meets all constraints without optimizing any particular cost.",0.010021474588403722,"{""variables"": [""x_Node0_0"", ""x_Node0_1"", ""x_Node1_0"", ""x_Node1_1"", ""x_Node2_0"", ""x_Node2_1"", ""x_Node3_0"", ""x_Node3_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_0 + x_Node0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node1_0 + x_Node1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node2_0 + x_Node2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_0 + x_Node3_1 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_0 * x_Node3_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_1 * x_Node3_1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_0 * x_Node3_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_1 * x_Node3_1 = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+66,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node3'), ('Node2', 'Node3'), ('Node2', 'Node4')].",False,LLM Fail,10.37,,,165,1.6500000000000001,,,null
+67,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3')].",True,,5.01,8.0,4.0,105,13.05,"This optimization problem involves assigning colors to four nodes (Node0, Node1, Node2, and Node3) using two possible colors (Color0 and Color1). Each variable, such as x_Node0_Color0, represents whether a particular node is assigned a specific color (with a value of 1 indicating assignment and 0 otherwise).
+
+The constraints are as follows:
+
+1. Node0 must be assigned exactly one color: either Color0 or Color1.
+2. Node3 must be assigned exactly one color: either Color0 or Color1.
+3. Node0 and Node3 cannot both be assigned Color0 simultaneously.
+4. Node0 and Node3 cannot both be assigned Color1 simultaneously.
+
+The objective is to minimize zero, meaning the goal is to find a feasible assignment of colors to nodes that satisfies all the constraints without optimizing any additional cost. Essentially, the problem is to find a valid coloring for Node0 and Node3 under the given restrictions. Note that there are no explicit constraints or assignments specified for Node1 and Node2 in this problem.",0.027051397655545536,"{""variables"": [""x_Node0_Color0"", ""x_Node0_Color1"", ""x_Node1_Color0"", ""x_Node1_Color1"", ""x_Node2_Color0"", ""x_Node2_Color1"", ""x_Node3_Color0"", ""x_Node3_Color1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_Color0 + x_Node0_Color1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_Color0 + x_Node3_Color1 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_Color0 + x_Node3_Color0 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_Color1 + x_Node3_Color1 <= 1"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+68,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node0', 'Node3'), ('Node1', 'Node3')].",False,LLM Fail,9.13,,,165,1.6500000000000001,,,null
+69,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node4')].",True,,3.78,6.0,5.0,105,12.05,"This optimization problem involves assigning colors to two nodes, Node 1 and Node 4, from the set of colors {Red, Blue, Green}. The goal is to find a coloring that satisfies the following conditions:
+
+1. Each node must be assigned exactly one color. In other words, Node 1 must be colored with exactly one of Red, Blue, or Green, and similarly, Node 4 must be colored with exactly one of these three colors.
+
+2. The two nodes cannot share the same color. That is, if Node 1 is colored Red, then Node 4 cannot be Red; if Node 1 is Blue, then Node 4 cannot be Blue; and if Node 1 is Green, then Node 4 cannot be Green.
+
+The objective is to minimize a cost function that is effectively zero, meaning the problem focuses solely on satisfying the above constraints without any additional optimization criteria. Penalties are applied to enforce these constraints strictly.",0.014418125643666324,"{""variables"": [""x_Node1_Red"", ""x_Node1_Blue"", ""x_Node1_Green"", ""x_Node4_Red"", ""x_Node4_Blue"", ""x_Node4_Green""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node1_Red + x_Node1_Blue + x_Node1_Green = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_Red + x_Node4_Blue + x_Node4_Green = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Red * x_Node4_Red = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Blue * x_Node4_Blue = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Green * x_Node4_Green = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+70,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node2'), ('Node1', 'Node4'), ('Node2', 'Node3')].",False,LLM Fail,8.81,,,145,1.45,,,null
+71,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node3'), ('Node1', 'Node2'), ('Node1', 'Node3')].",False,LLM Fail,4.09,,,145,1.45,,,null
+72,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node2', 'Node4')].",True,,5.22,8.0,8.0,125,17.25,"This optimization problem involves selecting exactly one option for each of four nodes: Node0, Node1, Node2, and Node4. For each node, there are two possible choices represented by binary variables (for example, x_Node0_0 and x_Node0_1 for Node0), and the constraint requires that exactly one of these two variables is set to 1, indicating the chosen option, while the other is 0.
+
+Additionally, there are incompatibility constraints between certain pairs of choices across nodes. Specifically:
+
+- The first choice of Node0 (x_Node0_0) cannot be selected simultaneously with the first choice of Node1 (x_Node1_0).
+- The second choice of Node0 (x_Node0_1) cannot be selected simultaneously with the second choice of Node1 (x_Node1_1).
+- The first choice of Node2 (x_Node2_0) cannot be selected simultaneously with the first choice of Node4 (x_Node4_0).
+- The second choice of Node2 (x_Node2_1) cannot be selected simultaneously with the second choice of Node4 (x_Node4_1).
+
+The goal is to find an assignment of choices to each node that satisfies all these constraints. Since the objective function is zero, the problem focuses solely on feasibility—finding a valid selection of options that meets all the equality and incompatibility constraints.",0.029175784099197667,"{""variables"": [""x_Node0_0"", ""x_Node0_1"", ""x_Node1_0"", ""x_Node1_1"", ""x_Node2_0"", ""x_Node2_1"", ""x_Node4_0"", ""x_Node4_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_0 + x_Node0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node1_0 + x_Node1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node2_0 + x_Node2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_0 + x_Node4_1 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_0 * x_Node1_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_1 * x_Node1_1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_0 * x_Node4_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_1 * x_Node4_1 = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+73,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node2', 'Node3'), ('Node3', 'Node4')].",True,,8.28,9.0,9.0,125,19.25,"This optimization problem involves assigning one of three colors—Red, Blue, or Green—to each of three nodes labeled Node 2, Node 3, and Node 4. The goal is to find a coloring that satisfies the following conditions:
+
+1. Each node must be assigned exactly one color. In other words, for each node, exactly one of the variables corresponding to Red, Blue, or Green is set to 1, and the others are 0.
+
+2. Adjacent nodes cannot share the same color. Specifically:
+   - Node 2 and Node 3 cannot both be assigned Red, nor both Blue, nor both Green.
+   - Node 3 and Node 4 cannot both be assigned Red, nor both Blue, nor both Green.
+
+The objective function is to minimize zero, meaning the problem focuses solely on satisfying the above constraints without any additional optimization criteria.
+
+In summary, this is a graph coloring problem for three connected nodes where each node must have a unique color different from its neighbors, using the colors Red, Blue, and Green.",0.07495429616087751,"{""variables"": [""x_Node2_Red"", ""x_Node2_Blue"", ""x_Node2_Green"", ""x_Node3_Red"", ""x_Node3_Blue"", ""x_Node3_Green"", ""x_Node4_Red"", ""x_Node4_Blue"", ""x_Node4_Green""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node2_Red + x_Node2_Blue + x_Node2_Green = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_Red + x_Node3_Blue + x_Node3_Green = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_Red + x_Node4_Blue + x_Node4_Green = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_Red * x_Node3_Red = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_Blue * x_Node3_Blue = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_Green * x_Node3_Green = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Red * x_Node4_Red = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Blue * x_Node4_Blue = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Green * x_Node4_Green = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+74,Graph Coloring,Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [].,True,,1.13,0.0,0.0,87,0.87,"This optimization problem has no variables and no constraints, and the objective function is to minimize the value zero. In other words, there is nothing to optimize or decide, and the minimal objective value is zero by default.",0.031746031746031744,"{""variables"": [], ""constraints"": [], ""objective"": ""minimize: 0""}"
+75,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node2', 'Node4')].",True,,9.93,12.0,13.0,145,26.45,"This optimization problem involves selecting exactly one option from a set of three choices for each of four different nodes: Node0, Node1, Node2, and Node4. Specifically, for each node, you must choose exactly one of the three variables associated with it (for example, for Node0, choose exactly one among x_Node0_0, x_Node0_1, and x_Node0_2).
+
+Additionally, the problem imposes constraints to prevent certain pairs of choices from being selected simultaneously. These constraints specify that for certain pairs of nodes, the same indexed options cannot both be chosen at the same time. For instance, if option 0 is chosen for Node0, then option 0 cannot be chosen for Node1 or Node2; similarly, if option 1 is chosen for Node0, option 1 cannot be chosen for Node1 or Node2, and so on. Likewise, the same exclusion applies between Node2 and Node4 for each corresponding option index.
+
+The goal is to find a selection of options—one per node—that satisfies all these constraints. Since the objective function is zero, the problem focuses solely on finding a feasible assignment that meets all the equality and inequality constraints without minimizing or maximizing any particular cost.",0.004507888805409466,"{""variables"": [""x_Node0_0"", ""x_Node0_1"", ""x_Node0_2"", ""x_Node1_0"", ""x_Node1_1"", ""x_Node1_2"", ""x_Node2_0"", ""x_Node2_1"", ""x_Node2_2"", ""x_Node4_0"", ""x_Node4_1"", ""x_Node4_2""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_0 + x_Node0_1 + x_Node0_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node1_0 + x_Node1_1 + x_Node1_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node2_0 + x_Node2_1 + x_Node2_2 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_0 + x_Node4_1 + x_Node4_2 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_0 * x_Node1_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_1 * x_Node1_1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_2 * x_Node1_2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_0 * x_Node2_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_1 * x_Node2_1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_2 * x_Node2_2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_0 * x_Node4_0 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_1 * x_Node4_1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node2_2 * x_Node4_2 = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+76,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node1'), ('Node0', 'Node2'), ('Node1', 'Node3')].",False,LLM Fail,9.52,,,145,1.45,,,null
+77,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node1', 'Node4'), ('Node2', 'Node3'), ('Node3', 'Node4')].",False,LLM Fail,10.96,,,165,1.6500000000000001,,,null
+78,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node0', 'Node4'), ('Node1', 'Node2')].",True,,7.47,12.0,10.0,125,23.25,"This optimization problem involves assigning one of three possible colors to each of four nodes labeled Node0, Node1, Node2, and Node4. The goal is to find a coloring that satisfies the following conditions:
+
+1. Each node must be assigned exactly one color. In other words, for each node, exactly one of its three color variables is set to 1, and the others are 0.
+
+2. Certain pairs of nodes that are connected cannot share the same color:
+   - Node0 and Node4 cannot have the same color.
+   - Node1 and Node2 cannot have the same color.
+
+The objective is to minimize the penalty for violating these constraints. Since the objective function itself is zero, the problem focuses solely on finding a valid coloring assignment that respects the constraints without conflicts.",0.013377926421404682,"{""variables"": [""x_Node0_Color1"", ""x_Node0_Color2"", ""x_Node0_Color3"", ""x_Node1_Color1"", ""x_Node1_Color2"", ""x_Node1_Color3"", ""x_Node2_Color1"", ""x_Node2_Color2"", ""x_Node2_Color3"", ""x_Node4_Color1"", ""x_Node4_Color2"", ""x_Node4_Color3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node0_Color1 + x_Node0_Color2 + x_Node0_Color3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node1_Color1 + x_Node1_Color2 + x_Node1_Color3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node2_Color1 + x_Node2_Color2 + x_Node2_Color3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_Color1 + x_Node4_Color2 + x_Node4_Color3 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_Color1 * x_Node4_Color1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_Color2 * x_Node4_Color2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node0_Color3 * x_Node4_Color3 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color1 * x_Node2_Color1 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color2 * x_Node2_Color2 = 0"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color3 * x_Node2_Color3 = 0"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+79,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3')].",True,,5.78,6.0,5.0,105,12.05,"This optimization problem involves assigning colors to two nodes, Node1 and Node3, using three possible colors: Color1, Color2, and Color3.
+
+The goal is to find a color assignment that satisfies the following constraints:
+
+1. Each node must be assigned exactly one color.  
+   - For Node1, exactly one of the variables x_Node1_Color1, x_Node1_Color2, or x_Node1_Color3 must be set to 1 (indicating that color is chosen), and the others set to 0.  
+   - Similarly, for Node3, exactly one of x_Node3_Color1, x_Node3_Color2, or x_Node3_Color3 must be set to 1.
+
+2. Adjacent nodes cannot share the same color.  
+   - For each color, the sum of the corresponding variables for Node1 and Node3 must be at most 1. This means that if Node1 is assigned a particular color, Node3 cannot be assigned that same color.
+
+The objective function is to minimize zero, meaning the problem focuses solely on satisfying these constraints without optimizing any additional cost or preference.
+
+In summary, this is a graph coloring problem for two nodes where each node must be colored with exactly one color, and the two nodes cannot share the same color.",0.020984665052461663,"{""variables"": [""x_Node1_Color1"", ""x_Node1_Color2"", ""x_Node1_Color3"", ""x_Node3_Color1"", ""x_Node3_Color2"", ""x_Node3_Color3""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node1_Color1 + x_Node1_Color2 + x_Node1_Color3 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_Color1 + x_Node3_Color2 + x_Node3_Color3 = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color1 + x_Node3_Color1 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color2 + x_Node3_Color2 <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Color3 + x_Node3_Color3 <= 1"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+80,Graph Coloring,"Color the nodes of the graph so that no adjacent nodes share the same color. Graph: [('Node1', 'Node3'), ('Node3', 'Node4')].",True,,8.09,9.0,9.0,125,19.25,"This optimization problem involves assigning one of three colors—Red, Blue, or Green—to each of three nodes labeled Node1, Node3, and Node4. The goal is to find a valid coloring that satisfies the following conditions:
+
+1. Each node must be assigned exactly one color. In other words, for each node, only one of the color variables (Red, Blue, or Green) can be selected.
+
+2. Adjacent nodes cannot share the same color. Specifically:
+   - Node1 and Node3 cannot both be assigned Red, or both Blue, or both Green.
+   - Node3 and Node4 cannot both be assigned Red, or both Blue, or both Green.
+
+The objective is to minimize any violations of these constraints, but since the objective function is zero, the problem effectively seeks a feasible coloring that meets all the above constraints without conflict. Penalties are applied to enforce these constraints strongly, ensuring that the solution assigns exactly one color per node and that no two connected nodes share the same color.",0.07414104882459313,"{""variables"": [""x_Node1_Red"", ""x_Node1_Blue"", ""x_Node1_Green"", ""x_Node3_Red"", ""x_Node3_Blue"", ""x_Node3_Green"", ""x_Node4_Red"", ""x_Node4_Blue"", ""x_Node4_Green""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_Node1_Red + x_Node1_Blue + x_Node1_Green = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node3_Red + x_Node3_Blue + x_Node3_Green = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_Node4_Red + x_Node4_Blue + x_Node4_Green = 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Red + x_Node3_Red <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Blue + x_Node3_Blue <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node1_Green + x_Node3_Green <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Red + x_Node4_Red <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Blue + x_Node4_Blue <= 1"", ""penalty"": 10}, {""type"": ""inequality"", ""expression"": ""x_Node3_Green + x_Node4_Green <= 1"", ""penalty"": 10}], ""objective"": ""minimize: 0""}"
+81,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 6, 4, 7, 5, 3].",True,,10.75,12.0,7.0,158,20.58,"This optimization problem involves selecting one option from two choices for each of six items, labeled 0 through 5. For each item i, there are two binary decision variables: x_i_0 and x_i_1. The constraints require that exactly one of these two variables for each item must be chosen (i.e., set to 1), ensuring a single selection per item.
+
+Additionally, among all items, exactly three must have their first option (the variables x_i_0) selected. In other words, the sum of x_0_0, x_1_0, x_2_0, x_3_0, x_4_0, and x_5_0 must equal 3.
+
+The objective is to minimize the square of the difference between the weighted sums of the selected first options and the selected second options. Specifically, each first option x_i_0 has an associated weight (2 for item 0, 6 for item 1, 4 for item 2, 7 for item 3, 5 for item 4, and 3 for item 5), and similarly for each second option x_i_1 with the same weights. The goal is to choose the options so that the weighted sum of the selected first options is as close as possible to the weighted sum of the selected second options, minimizing the square of their difference.
+
+In summary, the problem is:
+
+- For each of six items, select exactly one of two options.
+- Exactly three items must have their first option selected.
+- Minimize the squared difference between the total weighted sum of chosen first options and the total weighted sum of chosen second options.",0.015394483643361129,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (2*x_0_0 + 6*x_1_0 + 4*x_2_0 + 7*x_3_0 + 5*x_4_0 + 3*x_5_0 - (2*x_0_1 + 6*x_1_1 + 4*x_2_1 + 7*x_3_1 + 5*x_4_1 + 3*x_5_1))^2""}"
+82,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 9, 3, 10, 5].",True,,3.78,6.0,1.0,160,8.6,"This optimization problem involves selecting exactly three items out of six available options, labeled x_0 through x_5. Each item has an associated skill value. The goal is to choose these three items so that the difference between the total skill of the selected items and the total skill of the unselected items is as small as possible. In other words, you want to minimize the square of the difference between the sum of the skills of the chosen items and the sum of the skills of the items not chosen, while ensuring that exactly three items are selected.",0.03337969401947149,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum(x_i for i in 0..5) = 3"", ""penalty"": 10}], ""objective"": ""minimize: (sum(x_i * skill_i for i in 0..5) - sum((1 - x_i) * skill_i for i in 0..5))^2""}"
+83,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 7, 5, 1, 2, 7].",True,,3.21,6.0,1.0,158,8.58,"This optimization problem involves six binary decision variables named x_0 through x_5, each of which can be either 0 or 1. The goal is to select exactly three of these variables to be 1, while the remaining three are 0. This requirement is enforced by the constraint that the sum of all six variables must equal 3.
+
+The objective is to minimize the square of the difference between two weighted sums: the sum of the selected variables weighted by their respective coefficients (8 for x_0, 7 for x_1, 5 for x_2, 1 for x_3, 2 for x_4, and 7 for x_5), and the sum of the unselected variables weighted by the same coefficients. In other words, the problem seeks to choose exactly three variables so that the difference between the total weight of the selected variables and the total weight of the unselected variables is as close to zero as possible. The penalty for violating the constraint is set to 10, ensuring that solutions must strictly have three variables selected.",0.024778761061946902,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (8*x_0 + 7*x_1 + 5*x_2 + 1*x_3 + 2*x_4 + 7*x_5 - (8*(1-x_0) + 7*(1-x_1) + 5*(1-x_2) + 1*(1-x_3) + 2*(1-x_4) + 7*(1-x_5)))^2""}"
+84,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [1, 8, 5, 6, 10, 9].",True,,3.28,6.0,1.0,159,8.59,"This optimization problem involves six binary decision variables named x_0 through x_5, each of which can be either 0 or 1. The goal is to select exactly three of these variables to be 1, while the remaining three are 0. This requirement is enforced by the constraint that the sum of all six variables must equal 3.
+
+The objective is to minimize the square of the difference between two sums:
+
+1. The sum of the values associated with the selected variables (those set to 1), where the values are 1 for x_0, 8 for x_1, 5 for x_2, 6 for x_3, 10 for x_4, and 9 for x_5.
+
+2. The sum of the values associated with the unselected variables (those set to 0), using the same values as above.
+
+In other words, you want to choose exactly three variables so that the difference between the total value of the chosen variables and the total value of the not chosen variables is as small as possible, ideally zero. The penalty term ensures that any solution violating the constraint of selecting exactly three variables is heavily penalized, guiding the optimization to respect this requirement.",0.02576489533011272,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: ( (1*x_0 + 8*x_1 + 5*x_2 + 6*x_3 + 10*x_4 + 9*x_5) - (1*(1 - x_0) + 8*(1 - x_1) + 5*(1 - x_2) + 6*(1 - x_3) + 10*(1 - x_4) + 9*(1 - x_5)) )^2""}"
+85,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 9, 9, 8, 9, 7].",True,,12.93,12.0,7.0,158,20.58,"This optimization problem involves selecting one option from each of six pairs of binary decision variables. Specifically, for each index from 0 to 5, you must choose exactly one variable from the pair (x_i_0, x_i_1), ensuring that for each i, x_i_0 + x_i_1 = 1.
+
+Among these choices, exactly three variables from the first elements of each pair (the x_i_0 variables) must be selected in total—that is, the sum x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 must equal 3.
+
+The objective is to minimize the square of the difference between the weighted sums of the selected variables from the first elements and the second elements of each pair. The weights for the first elements are 5, 9, 9, 8, 9, and 7 for x_0_0 through x_5_0 respectively, and the weights for the second elements are the same for x_0_1 through x_5_1.
+
+In summary, the problem is:
+
+- For each of the six pairs, select exactly one variable.
+- Exactly three of the selected variables must be from the first elements of the pairs.
+- Minimize the squared difference between the weighted sum of chosen first elements and the weighted sum of chosen second elements.",0.01556420233463035,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (5*x_0_0 + 9*x_1_0 + 9*x_2_0 + 8*x_3_0 + 9*x_4_0 + 7*x_5_0 - (5*x_0_1 + 9*x_1_1 + 9*x_2_1 + 8*x_3_1 + 9*x_4_1 + 7*x_5_1))^2""}"
+86,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [3, 8, 5, 4, 9, 3].",True,,3.22,6.0,1.0,158,8.58,"This optimization problem involves six binary decision variables named x_0 through x_5. The goal is to select exactly three of these variables to be 1, while the others are 0, as enforced by the constraint that the sum of all variables must equal 3.
+
+The objective is to minimize the squared difference between the weighted sum of the selected variables and half of the total sum of their weights. Specifically, each variable x_i has an associated weight: 3 for x_0, 8 for x_1, 5 for x_2, 4 for x_3, 9 for x_4, and 3 for x_5. The weighted sum is calculated as 3*x_0 + 8*x_1 + 5*x_2 + 4*x_3 + 9*x_4 + 3*x_5. The objective function aims to make this weighted sum as close as possible to half of the sum of all weights, which is (3 + 8 + 5 + 4 + 9 + 3)/2 = 16.
+
+In summary, the problem is to choose exactly three variables so that the total weight of the chosen variables is as close as possible to 16, minimizing the squared difference from this target.",0.012623985572587917,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (3*x_0 + 8*x_1 + 5*x_2 + 4*x_3 + 9*x_4 + 3*x_5 - (3 + 8 + 5 + 4 + 9 + 3)/2)^2""}"
+87,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 1, 7, 10, 4, 9].",True,,9.21,12.0,8.0,159,21.59,"This optimization problem involves selecting exactly one option from each of six pairs, labeled from 0 to 5. Each pair consists of two choices, which we can call option 0 and option 1 for each pair. The variables x_i_j represent whether option j (either 0 or 1) is chosen for pair i (where i ranges from 0 to 5). Each variable is binary, meaning it can be either 0 (not chosen) or 1 (chosen).
+
+The constraints are as follows:
+
+1. For each pair (from 0 to 5), exactly one of the two options must be selected. In other words, for each i, x_i_0 plus x_i_1 must equal 1.
+
+2. Across all pairs, exactly three of the option 0 choices must be selected in total.
+
+3. Similarly, across all pairs, exactly three of the option 1 choices must be selected in total.
+
+The objective is to minimize the square of the difference between the weighted sums of the selected option 0 variables and the selected option 1 variables. Specifically, each option 0 variable has an associated positive weight: 8 for pair 0, 1 for pair 1, 7 for pair 2, 10 for pair 3, 4 for pair 4, and 9 for pair 5. Each option 1 variable has the same weights but with a negative sign. The goal is to choose options so that the weighted sum of the selected option 0 variables minus the weighted sum of the selected option 1 variables is as close to zero as possible, minimizing the square of this difference.
+
+In summary, the problem is to select exactly one option from each of six pairs, with exactly three choices from option 0 and three from option 1 overall, so that the weighted difference between the sums of the chosen options is minimized in squared value.",0.02699662542182227,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum(x_i_0 for i in 0..5) = 3"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""sum(x_i_1 for i in 0..5) = 3"", ""penalty"": 10}], ""objective"": ""minimize: (8*x_0_0 + 1*x_1_0 + 7*x_2_0 + 10*x_3_0 + 4*x_4_0 + 9*x_5_0 - 8*x_0_1 - 1*x_1_1 - 7*x_2_1 - 10*x_3_1 - 4*x_4_1 - 9*x_5_1)^2""}"
+88,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 8, 9, 3, 8, 10].",True,,7.45,12.0,7.0,160,20.6,"This optimization problem involves selecting one option from each of six pairs, with the goal of minimizing a specific squared cost function while satisfying certain constraints.
+
+Details:
+
+- There are six items, indexed from 0 to 5. For each item i, you must choose exactly one of two possible options, represented by binary variables x_i_0 and x_i_1. Each variable can be either 0 or 1, and the sum of these two variables for each item must be exactly 1, ensuring that exactly one option per item is selected.
+
+- Additionally, among the six items, exactly three must have their first option (x_i_0) selected. In other words, the total number of chosen x_i_0 variables across all items must be exactly 3.
+
+- The objective is to minimize the square of the difference between the weighted sum of the chosen first options and the weighted sum of the chosen second options. Specifically, the cost function is the square of:
+
+  (10*x_0_0 + 8*x_1_0 + 9*x_2_0 + 3*x_3_0 + 8*x_4_0 + 10*x_5_0) minus (10*x_0_1 + 8*x_1_1 + 9*x_2_1 + 3*x_3_1 + 8*x_4_1 + 10*x_5_1)
+
+In summary, the problem is:
+
+- For each of six items, select exactly one of two options.
+
+- Exactly three of these selections must be the first option.
+
+- Minimize the squared difference between the total weights of the chosen first options and the total weights of the chosen second options.",0.019907100199071003,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (10*x_0_0 + 8*x_1_0 + 9*x_2_0 + 3*x_3_0 + 8*x_4_0 + 10*x_5_0 - 10*x_0_1 - 8*x_1_1 - 9*x_2_1 - 3*x_3_1 - 8*x_4_1 - 10*x_5_1)^2""}"
+89,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 3, 5, 2, 1, 7].",True,,2.58,6.0,1.0,159,8.59,"This optimization problem involves six binary decision variables named x0 through x5, each of which can be either 0 or 1. The goal is to select exactly three of these variables to be 1, as specified by the constraint that the sum of all six variables must equal 3.
+
+The objective is to minimize the squared difference between two weighted sums: the sum of the weights corresponding to the selected variables and the sum of the weights corresponding to the unselected variables. Specifically, the weights for the variables x0 to x5 are 10, 3, 5, 2, 1, and 7, respectively. The objective function calculates the difference between the total weight of the chosen variables and the total weight of the variables not chosen, then squares this difference to penalize larger imbalances.
+
+In summary, the problem seeks to choose exactly three variables such that the difference between the sum of their weights and the sum of the weights of the remaining variables is as small as possible, ideally balancing the two groups.",0.04599659284497445,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4"", ""x5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x0 + x1 + x2 + x3 + x4 + x5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (10*x0 + 3*x1 + 5*x2 + 2*x3 + 1*x4 + 7*x5 - (10*(1-x0) + 3*(1-x1) + 5*(1-x2) + 2*(1-x3) + 1*(1-x4) + 7*(1-x5)))^2""}"
+90,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 6, 3, 6, 8].",True,,7.5,12.0,7.0,158,20.58,"This optimization problem involves selecting one option from two choices for each of six items, labeled 0 through 5. For each item i (where i ranges from 0 to 5), you must choose exactly one of two variables: x_i_0 or x_i_1. This means that for each item, either x_i_0 is 1 and x_i_1 is 0, or x_i_0 is 0 and x_i_1 is 1.
+
+Additionally, among the six items, exactly three must have their x_i_0 variable selected (i.e., exactly three of x_0_0, x_1_0, ..., x_5_0 are equal to 1).
+
+The goal is to minimize the square of the difference between two weighted sums:
+
+- The first sum is the total weight of the items chosen with the x_i_0 option: 6*x_0_0 + 5*x_1_0 + 6*x_2_0 + 3*x_3_0 + 6*x_4_0 + 8*x_5_0.
+
+- The second sum is the total weight of the items chosen with the x_i_1 option: 6*x_0_1 + 5*x_1_1 + 6*x_2_1 + 3*x_3_1 + 6*x_4_1 + 8*x_5_1.
+
+In other words, you want to assign each item to one of two groups such that exactly three items are in the first group (the group corresponding to variables x_i_0), and the squared difference between the total weights of the two groups is as small as possible. The constraints ensure that each item is assigned to exactly one group and that the first group contains exactly three items.",0.024619840695148443,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (6*x_0_0 + 5*x_1_0 + 6*x_2_0 + 3*x_3_0 + 6*x_4_0 + 8*x_5_0 - (6*x_0_1 + 5*x_1_1 + 6*x_2_1 + 3*x_3_1 + 6*x_4_1 + 8*x_5_1))^2""}"
+91,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 6, 7, 1, 9, 3].",True,,8.27,12.0,7.0,158,20.58,"This optimization problem involves selecting exactly one option from two choices for each of six items, labeled 0 through 5. For each item i (from 0 to 5), you must choose either option 0 or option 1, but not both.
+
+The constraints are as follows:
+
+1. For each item i, exactly one of the two variables (x_i_0 or x_i_1) must be set to 1, representing the chosen option, while the other is 0.
+
+2. Across all six items, exactly three must have option 0 selected (i.e., the sum of x_0_0 + x_1_0 + ... + x_5_0 equals 3).
+
+The objective is to minimize the square of the difference between the weighted sum of the selected option 0 variables and the weighted sum of the selected option 1 variables. Specifically, each option 0 variable x_i_0 has a positive weight (8, 6, 7, 1, 9, 3 for items 0 to 5 respectively), and each option 1 variable x_i_1 has the corresponding negative weight. The goal is to choose which options to select so that the squared difference between these weighted sums is as small as possible, while satisfying the constraints above.",0.014925373134328358,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (8*x_0_0 + 6*x_1_0 + 7*x_2_0 + 1*x_3_0 + 9*x_4_0 + 3*x_5_0 - 8*x_0_1 - 6*x_1_1 - 7*x_2_1 - 1*x_3_1 - 9*x_4_1 - 3*x_5_1)^2""}"
+92,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [7, 7, 4, 1, 5, 2].",True,,7.49,12.0,7.0,158,20.58,"This optimization problem involves selecting exactly one option from two choices for each of six items, labeled 0 through 5. For each item i, you must choose either option 0 or option 1, but not both.
+
+The constraints are as follows:
+- For each item (0 to 5), exactly one of the two variables (x_i_0 or x_i_1) must be set to 1, representing the chosen option, while the other is 0.
+- Across all six items, exactly three must have option 0 selected. In other words, the total number of items assigned to option 0 is exactly three.
+
+The objective is to minimize the square of the difference between the weighted sums of the chosen options. Specifically, each option 0 for item i has a positive weight (7, 7, 4, 1, 5, 2 respectively for items 0 through 5), and each option 1 has the corresponding negative weight (-7, -7, -4, -1, -5, -2). The goal is to select options so that the sum of the weights of chosen option 0 variables minus the sum of the weights of chosen option 1 variables is as close to zero as possible, minimizing the square of this difference.
+
+In summary:
+- Choose exactly one option (0 or 1) for each of six items.
+- Exactly three items must be assigned option 0.
+- Minimize the squared difference between the sum of weights of chosen option 0 items and the sum of weights of chosen option 1 items.",0.02308214528173795,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (7*x_0_0 + 7*x_1_0 + 4*x_2_0 + 1*x_3_0 + 5*x_4_0 + 2*x_5_0 - 7*x_0_1 - 7*x_1_1 - 4*x_2_1 - 1*x_3_1 - 5*x_4_1 - 2*x_5_1)^2""}"
+93,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [8, 10, 10, 8, 9, 4].",True,,3.0,6.0,1.0,160,8.6,"This optimization problem involves six binary decision variables named x0 through x5, each of which can be either 0 or 1. The goal is to select exactly three of these variables to be set to 1, as enforced by the constraint that the sum of all variables must equal 3.
+
+The objective is to minimize the square of the difference between two weighted sums: the sum of the selected variables weighted by their respective coefficients (8 for x0, 10 for x1, 10 for x2, 8 for x3, 9 for x4, and 4 for x5) and the sum of the unselected variables weighted by the same coefficients. In other words, the problem aims to find a subset of exactly three variables whose weighted sum is as close as possible to the weighted sum of the remaining three variables, minimizing the squared difference between these two sums.",0.0498960498960499,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4"", ""x5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x0 + x1 + x2 + x3 + x4 + x5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (8*x0 + 10*x1 + 10*x2 + 8*x3 + 9*x4 + 4*x5 - (8*(1 - x0) + 10*(1 - x1) + 10*(1 - x2) + 8*(1 - x3) + 9*(1 - x4) + 4*(1 - x5)))^2""}"
+94,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 8, 10, 6, 10, 2].",True,,8.89,12.0,7.0,160,20.6,"This optimization problem involves selecting one option from two choices for each of six items, labeled 0 through 5. For each item i, you must choose exactly one variable from the pair (x_i_0, x_i_1), where selecting x_i_0 represents choosing the first option for item i, and selecting x_i_1 represents choosing the second option.
+
+The constraints are as follows:
+
+1. For each item i (from 0 to 5), exactly one of the two variables x_i_0 or x_i_1 must be set to 1, ensuring that exactly one option is chosen per item.
+
+2. Across all items, exactly three of the variables corresponding to the first option (x_0_0, x_1_0, x_2_0, x_3_0, x_4_0, x_5_0) must be selected. In other words, exactly three items must be assigned their first option, and the remaining three items will have their second option selected.
+
+The objective is to minimize the square of the difference between the total weighted sum of the selected first options and the total weighted sum of the selected second options. The weights for each item are:
+
+- Item 0: 6
+
+- Item 1: 8
+
+- Item 2: 10
+
+- Item 3: 6
+
+- Item 4: 10
+
+- Item 5: 2
+
+Formally, the goal is to minimize:
+
+(square of) [ (sum of weights for items chosen with first option) minus (sum of weights for items chosen with second option) ]
+
+This means you want to select exactly three items to have their first option and three items to have their second option, such that the difference between the total weights of the chosen first options and the chosen second options is as small as possible.",0.03335318642048839,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (6*x_0_0 + 8*x_1_0 + 10*x_2_0 + 6*x_3_0 + 10*x_4_0 + 2*x_5_0 - (6*x_0_1 + 8*x_1_1 + 10*x_2_1 + 6*x_3_1 + 10*x_4_1 + 2*x_5_1))^2""}"
+95,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 1, 4, 5, 7, 1].",True,,2.83,6.0,1.0,158,8.58,"This optimization problem involves six binary decision variables named x0, x1, x2, x3, x4, and x5, each of which can be either 0 or 1. The goal is to select exactly three of these variables to be 1, while the others are 0, as specified by the constraint that the sum of all variables must equal 3.
+
+The objective is to minimize the squared difference between the weighted sum of the selected variables and half of the total sum of their weights. Specifically, each variable has an associated weight: 6 for x0, 1 for x1, 4 for x2, 5 for x3, 7 for x4, and 1 for x5. The weighted sum is calculated by multiplying each variable by its weight and summing these products. The target value to compare against is half of the sum of all weights, which is (6 + 1 + 4 + 5 + 7 + 1)/2 = 12.
+
+In summary, the problem is to choose exactly three variables such that the weighted sum of these chosen variables is as close as possible to 12, minimizing the square of the difference between the weighted sum and 12. There is a penalty applied if the constraint of selecting exactly three variables is violated.",0.03843074459567654,"{""variables"": [""x0"", ""x1"", ""x2"", ""x3"", ""x4"", ""x5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x0 + x1 + x2 + x3 + x4 + x5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (6*x0 + 1*x1 + 4*x2 + 5*x3 + 7*x4 + 1*x5 - (6 + 1 + 4 + 5 + 7 + 1)/2)^2""}"
+96,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [10, 2, 7, 7, 3, 5].",True,,2.58,6.0,1.0,159,8.59,"This optimization problem involves six binary decision variables named x_0 through x_5. The goal is to select exactly three of these variables to be 1, while the others are 0. This is enforced by a constraint requiring that the sum of all six variables equals 3.
+
+The objective is to minimize the squared difference between the weighted sum of the selected variables and half of the total sum of all their weights. Specifically, each variable x_i has an associated weight: 10 for x_0, 2 for x_1, 7 for x_2, 7 for x_3, 3 for x_4, and 5 for x_5. The objective function calculates the weighted sum of the chosen variables, subtracts half of the sum of all weights (which is (10 + 2 + 7 + 7 + 3 + 5)/2 = 17), and squares this difference. Minimizing this value encourages selecting three variables whose weights sum as close as possible to 17.
+
+In summary, the problem is to pick exactly three variables out of six so that the total weight of the chosen variables is as close as possible to half the sum of all weights, thereby minimizing the squared deviation from this target.",0.032467532467532464,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (10*x_0 + 2*x_1 + 7*x_2 + 7*x_3 + 3*x_4 + 5*x_5 - (10 + 2 + 7 + 7 + 3 + 5)/2)^2""}"
+97,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 10, 3, 10, 5, 6].",True,,2.59,6.0,1.0,160,8.6,"This optimization problem involves six binary decision variables: x_0, x_1, x_2, x_3, x_4, and x_5. The goal is to select exactly three of these variables to be 1 (and the others 0), as specified by the constraint that the sum of all variables must equal 3.
+
+The objective is to minimize the squared difference between the weighted sum of the selected variables and half of the total sum of all weights. Specifically, each variable x_i has an associated weight: 6 for x_0, 10 for x_1, 3 for x_2, 10 for x_3, 5 for x_4, and 6 for x_5. The total sum of these weights is 40, so half of that is 20.
+
+In other words, you want to choose exactly three variables such that the sum of their weights is as close as possible to 20, minimizing the square of the difference between the chosen sum and 20. The penalty term enforces the constraint that exactly three variables must be selected.",0.04812319538017324,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0 + x_1 + x_2 + x_3 + x_4 + x_5 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (6*x_0 + 10*x_1 + 3*x_2 + 10*x_3 + 5*x_4 + 6*x_5 - (6 + 10 + 3 + 10 + 5 + 6)/2)^2""}"
+98,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [6, 5, 7, 1, 4, 5].",True,,2.07,6.0,1.0,158,8.58,"This optimization problem involves selecting exactly three variables out of six binary choices, labeled x_0 through x_5. Each variable can be either 0 or 1, where 1 indicates selection and 0 indicates non-selection.
+
+The goal is to minimize the square of the difference between the total skill level of the selected variables and the total skill level of the unselected variables. In other words, you want to choose three variables so that the sum of their skill values is as balanced as possible with the sum of the skill values of the remaining three variables.
+
+The constraint enforces that exactly three variables must be chosen. If this constraint is violated, a penalty of 10 is applied to the objective, discouraging any solution that does not select exactly three variables.
+
+In summary, the problem is:
+- Select exactly three out of six variables.
+- Minimize the squared difference between the sum of the skill values of the selected variables and the sum of the skill values of the unselected variables.
+- Ensure the selection constraint is strictly met to avoid penalties.",0.019339242546333603,"{""variables"": [""x_0"", ""x_1"", ""x_2"", ""x_3"", ""x_4"", ""x_5""], ""constraints"": [{""type"": ""equality"", ""expression"": ""sum(x_i for i in range(6)) = 3"", ""penalty"": 10}], ""objective"": ""minimize: (sum(skill[i] * x_i for i in range(6)) - sum(skill[i] * (1 - x_i) for i in range(6)))^2""}"
+99,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [5, 3, 6, 9, 2, 1].",True,,8.87,12.0,7.0,158,20.58,"This optimization problem involves selecting one option from two choices for each of six items, labeled 0 through 5. For each item, exactly one of two binary decision variables must be set to 1, indicating the chosen option, while the other is set to 0.
+
+The constraints are as follows:
+- For each item (0 to 5), the sum of its two associated variables must equal 1, ensuring exactly one option is chosen per item.
+- Across all items, the total number of times the first option (variables ending with ""_0"") is chosen must be exactly 3.
+
+The objective is to minimize the square of the difference between the weighted sums of the chosen options. Specifically, each option has an associated weight:
+- Option 0 weights: 5, 3, 6, 9, 2, and 1 for items 0 through 5, respectively.
+- Option 1 weights: the same weights apply to the second choice variables for each item.
+
+The goal is to select options so that the difference between the sum of weights of chosen first options and the sum of weights of chosen second options is as close to zero as possible, minimizing the squared difference.",0.024174053182917002,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (5*x_0_0 + 3*x_1_0 + 6*x_2_0 + 9*x_3_0 + 2*x_4_0 + 1*x_5_0 - (5*x_0_1 + 3*x_1_1 + 6*x_2_1 + 9*x_3_1 + 2*x_4_1 + 1*x_5_1))^2""}"
+100,Team Assignment,"Divide individuals into balanced teams by skill level. People: ['Person0', 'Person1', 'Person2', 'Person3', 'Person4', 'Person5'], Skills: [2, 7, 5, 6, 8, 5].",True,,8.6,12.0,7.0,158,20.58,"This optimization problem involves selecting values for a set of binary variables arranged in pairs. Specifically, there are six pairs of variables: (x_0_0, x_0_1), (x_1_0, x_1_1), (x_2_0, x_2_1), (x_3_0, x_3_1), (x_4_0, x_4_1), and (x_5_0, x_5_1). Each pair corresponds to a single choice where exactly one variable in the pair must be set to 1, and the other must be 0.
+
+The constraints are as follows:
+
+1. For each pair, exactly one variable must be selected (set to 1). That is:
+   - x_0_0 + x_0_1 = 1
+   - x_1_0 + x_1_1 = 1
+   - x_2_0 + x_2_1 = 1
+   - x_3_0 + x_3_1 = 1
+   - x_4_0 + x_4_1 = 1
+   - x_5_0 + x_5_1 = 1
+
+2. Among the six variables with the ""_0"" suffix (x_0_0, x_1_0, x_2_0, x_3_0, x_4_0, x_5_0), exactly three must be selected (set to 1):
+   - x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3
+
+The objective is to minimize the square of the difference between two weighted sums:
+
+- The first sum is the weighted sum of the ""_0"" variables: 2*x_0_0 + 7*x_1_0 + 5*x_2_0 + 6*x_3_0 + 8*x_4_0 + 5*x_5_0
+- The second sum is the weighted sum of the ""_1"" variables: 2*x_0_1 + 7*x_1_1 + 5*x_2_1 + 6*x_3_1 + 8*x_4_1 + 5*x_5_1
+
+In other words, the goal is to select exactly one variable from each pair, with exactly three selections from the ""_0"" group, so that the difference between the weighted sums of the chosen ""_0"" variables and the chosen ""_1"" variables is as close to zero as possible. This can be interpreted as balancing the weighted sums of the two groups under the given constraints.",0.03371462974111981,"{""variables"": [""x_0_0"", ""x_0_1"", ""x_1_0"", ""x_1_1"", ""x_2_0"", ""x_2_1"", ""x_3_0"", ""x_3_1"", ""x_4_0"", ""x_4_1"", ""x_5_0"", ""x_5_1""], ""constraints"": [{""type"": ""equality"", ""expression"": ""x_0_0 + x_0_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_1_0 + x_1_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_2_0 + x_2_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_3_0 + x_3_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_4_0 + x_4_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_5_0 + x_5_1 = 1"", ""penalty"": 10}, {""type"": ""equality"", ""expression"": ""x_0_0 + x_1_0 + x_2_0 + x_3_0 + x_4_0 + x_5_0 = 3"", ""penalty"": 10}], ""objective"": ""minimize: (2*x_0_0 + 7*x_1_0 + 5*x_2_0 + 6*x_3_0 + 8*x_4_0 + 5*x_5_0 - (2*x_0_1 + 7*x_1_1 + 5*x_2_1 + 6*x_3_1 + 8*x_4_1 + 5*x_5_1))^2""}"
