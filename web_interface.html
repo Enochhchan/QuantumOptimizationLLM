@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extreme's NL-QUBO Translation & Execution System</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 
         :root {
-            --bg-a: #f4f7fb;
-            --bg-b: #dce6f7;
-            --panel: #ffffff;
-            --line: #d4d9e2;
-            --ink: #16181d;
-            --muted: #586076;
-            --brand: #162f73;
-            --brand-soft: #ebf0ff;
-            --ok: #13a66a;
-            --warn: #b44d2e;
+            --bg: #f7f7f8;
+            --surface: #ffffff;
+            --line: #e5e7eb;
+            --ink: #111827;
+            --muted: #6b7280;
+            --brand: #1f2937;
+            --ok: #0f9f66;
+            --warn: #b2432a;
         }
 
         * {
@@ -27,79 +25,120 @@
         }
 
         body {
-            min-height: 100vh;
-            background:
-                radial-gradient(1200px 500px at 10% -10%, #ffffff 0%, transparent 65%),
-                radial-gradient(900px 450px at 100% 100%, #c8d6f5 0%, transparent 70%),
-                linear-gradient(150deg, var(--bg-a), var(--bg-b));
+            min-height: 100dvh;
+            background: var(--bg);
             color: var(--ink);
-            font-family: "Space Grotesk", "Segoe UI", sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
+            font-family: "Manrope", "Segoe UI", sans-serif;
         }
 
         .chat-shell {
-            width: min(1120px, 100%);
-            height: min(92vh, 940px);
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--panel);
-            box-shadow: 0 30px 80px rgba(12, 22, 46, 0.18);
-            overflow: hidden;
+            width: 100%;
+            height: 100dvh;
+            background: var(--bg);
             display: grid;
             grid-template-rows: auto 1fr auto;
         }
 
         .chat-header {
-            padding: 20px 22px;
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 14px 18px;
             border-bottom: 1px solid var(--line);
-            background: linear-gradient(90deg, #f6f9ff, #ffffff 55%);
+            background: var(--bg);
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 16px;
         }
 
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 8px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
         .title-wrap h1 {
-            font-size: clamp(1.25rem, 2vw, 1.7rem);
-            line-height: 1.2;
-            letter-spacing: -0.01em;
+            font-size: clamp(1.24rem, 2vw, 1.76rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            text-wrap: balance;
         }
 
         .title-wrap p {
             color: var(--muted);
-            font-size: 0.95rem;
+            font-size: 0.86rem;
             margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .meta-pill {
+            border: 1px solid #d9dce1;
+            background: var(--surface);
+            color: #374151;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
         }
 
         .mode-pill {
-            border: 1px solid #b7c6f2;
-            background: var(--brand-soft);
-            color: var(--brand);
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 8px 12px;
+            border: 1px solid #d9dce1;
+            background: var(--surface);
+            color: #111827;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 10px;
             border-radius: 999px;
             white-space: nowrap;
         }
 
         .chat-log {
-            padding: 20px;
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 18px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 13px;
+        }
+
+        .chat-log::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        .chat-log::-webkit-scrollbar-thumb {
+            background: #d3d7dd;
+            border-radius: 12px;
         }
 
         .message {
             max-width: min(92%, 760px);
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid var(--line);
             padding: 12px 14px;
-            line-height: 1.5;
-            font-size: 1rem;
+            line-height: 1.56;
+            font-size: 0.98rem;
             opacity: 0;
             transform: translateY(8px);
             animation: riseIn 260ms ease forwards;
@@ -108,48 +147,63 @@
         .message.user {
             align-self: flex-end;
             background: var(--brand);
-            color: #ffffff;
-            border-color: #203b88;
+            color: #f9fafb;
+            border-color: #374151;
         }
 
         .message.assistant {
             align-self: flex-start;
-            background: #f9fbff;
+            background: var(--surface);
         }
 
         .message.system {
             align-self: center;
-            font-size: 0.9rem;
+            font-size: 0.89rem;
             color: var(--muted);
             border-style: dashed;
-            background: #fcfdff;
-            padding: 8px 12px;
+            background: var(--surface);
+            padding: 10px 14px;
         }
 
         .label {
             display: inline-block;
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
+            font-size: 0.73rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 6px;
-            font-weight: 600;
+            color: #475569;
+            margin-bottom: 7px;
+            font-weight: 700;
         }
 
         .mono {
-            font-family: "IBM Plex Mono", Consolas, monospace;
-            font-size: 0.93rem;
+            font-family: "JetBrains Mono", Consolas, monospace;
+            font-size: 0.89rem;
             white-space: pre-wrap;
+            color: #1f2937;
+        }
+
+        .result-metric {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .result-note {
+            margin-top: 8px;
+            line-height: 1.5;
         }
 
         .success-tag {
             display: inline-block;
-            border-radius: 8px;
-            padding: 2px 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            font-weight: 800;
             color: #053d25;
-            background: #19de8e;
+            background: #80f0bf;
+            border: 1px solid #39c68a;
         }
 
         .typing {
@@ -162,7 +216,7 @@
             width: 7px;
             height: 7px;
             border-radius: 999px;
-            background: #8f97ab;
+            background: #9ca3af;
             animation: dotPulse 1s infinite ease-in-out;
         }
 
@@ -177,18 +231,20 @@
         }
 
         button.action {
-            border: 1px solid #29385f;
+            border: 1px solid #cfd5dd;
             border-radius: 10px;
-            padding: 8px 14px;
-            background: #1f2b4c;
-            color: #fff;
+            padding: 9px 14px;
+            background: #ffffff;
+            color: #111827;
             font: inherit;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 120ms ease, opacity 120ms ease;
+            transition: transform 120ms ease, opacity 120ms ease, background-color 120ms ease;
         }
 
         button.action:hover {
             transform: translateY(-1px);
+            background-color: #f9fafb;
         }
 
         button.action:disabled {
@@ -197,51 +253,55 @@
         }
 
         .composer {
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
             border-top: 1px solid var(--line);
-            background: #fafcff;
+            background: var(--bg);
             padding: 14px;
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 10px;
+            gap: 12px;
             align-items: end;
         }
 
         .composer textarea {
             width: 100%;
-            min-height: 140px;
-            max-height: 300px;
-            resize: vertical;
-            border: 1px solid #c7cfdd;
-            border-radius: 12px;
-            padding: 12px;
+            min-height: 142px;
+            max-height: none;
+            resize: none;
+            overflow-y: hidden;
+            border: 1px solid #d6dae0;
+            border-radius: 20px;
+            padding: 13px;
             font: inherit;
-            line-height: 1.4;
+            line-height: 1.44;
+            color: #1f2937;
             background: #ffffff;
         }
 
         .composer textarea:focus {
             outline: none;
-            border-color: #8799cf;
-            box-shadow: 0 0 0 3px rgba(30, 56, 128, 0.08);
+            border-color: #9ca3af;
+            box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.18);
         }
 
         .send-btn {
-            min-width: 120px;
+            min-width: 128px;
             border: none;
             border-radius: 12px;
             padding: 12px 16px;
-            background: linear-gradient(140deg, #1a2f71, #314ea4);
+            background: #111827;
             color: #fff;
             font: inherit;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(31, 52, 120, 0.28);
             transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
         }
 
         .send-btn:hover {
             transform: translateY(-1px);
-            filter: brightness(1.02);
+            filter: brightness(1.03);
         }
 
         .send-btn:disabled {
@@ -250,9 +310,17 @@
             transform: none;
         }
 
+        .composer-help {
+            grid-column: 1 / -1;
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: -2px;
+        }
+
         .error {
             color: var(--warn);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         @keyframes riseIn {
@@ -267,24 +335,64 @@
             40% { transform: scale(1.1); opacity: 1; }
         }
 
+        @media (max-width: 900px) {
+            .chat-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-meta {
+                justify-content: flex-start;
+            }
+        }
+
         @media (max-width: 760px) {
-            body { padding: 12px; }
-            .chat-shell { height: 94vh; }
-            .chat-header { padding: 14px; }
-            .chat-log { padding: 12px; }
-            .composer { padding: 10px; grid-template-columns: 1fr; }
-            .send-btn { width: 100%; }
+            .chat-shell {
+                height: 100dvh;
+            }
+
+            .chat-header {
+                padding: 14px;
+            }
+
+            .brand-logo {
+                width: 54px;
+                height: 54px;
+            }
+
+            .chat-log {
+                padding: 13px;
+            }
+
+            .message {
+                max-width: 96%;
+            }
+
+            .composer {
+                padding: 10px;
+                grid-template-columns: 1fr;
+            }
+
+            .send-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <main class="chat-shell">
         <header class="chat-header">
-            <div class="title-wrap">
-                <h1>Extreme's NL-QUBO Translation & Execution System</h1>
-                <p>Chat demo with mock backend contract</p>
+            <div class="brand-block">
+                <img class="brand-logo" src="/static/logowithtransparent.png" alt="Q logo">
+                <div class="title-wrap">
+                    <h1>Extreme's NL-QUBO Translation & Execution System</h1>
+                    <p>Natural-language optimization to validated QUBO and solver output</p>
+                </div>
             </div>
-            <div class="mode-pill">DEMO FLOW</div>
+            <div class="header-meta">
+                <div class="meta-pill">Pipeline: Translate -> Validate -> Solve</div>
+                <div class="mode-pill">DEMO FLOW</div>
+            </div>
         </header>
 
         <section id="chatLog" class="chat-log"></section>
@@ -297,6 +405,7 @@ Drivers can only use routes that avoid left turns, so each assigned delivery mus
 At least 2 drivers must be reserved for priority shipments in the afternoon.
 Minimize the total estimated travel time while keeping workloads balanced across drivers.</textarea>
             <button id="sendBtn" class="send-btn" type="button">Translate Prompt</button>
+            <p class="composer-help">Shortcut: press Ctrl+Enter or Shift+Enter to translate</p>
         </footer>
     </main>
 
@@ -316,6 +425,31 @@ Minimize the total estimated travel time while keeping workloads balanced across
 
         function scrollToBottom() {
             chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function withBreaks(value) {
+            return escapeHtml(value).replace(/\n/g, "<br>");
+        }
+
+        async function parseResponseData(response) {
+            const text = await response.text();
+            if (!text) {
+                return {};
+            }
+            try {
+                return JSON.parse(text);
+            } catch (_err) {
+                return { message: text };
+            }
         }
 
         function addMessage(role, html) {
@@ -341,10 +475,26 @@ Minimize the total estimated travel time while keeping workloads balanced across
             sendBtn.textContent = flag ? "Processing..." : "Translate Prompt";
         }
 
+        function autoGrowTextarea() {
+            promptInput.style.height = "auto";
+            promptInput.style.height = `${promptInput.scrollHeight}px`;
+        }
+
         function renderTranslationSummary(data) {
             const summary = data.qubo_summary || {};
             const fidelity = data.fidelity || {};
-            const constraints = Array.isArray(summary.constraints) ? summary.constraints.join(", ") : "N/A";
+            const backendMode = data.backend_mode || "demo-mock";
+            const constraints = Array.isArray(summary.constraints)
+                ? summary.constraints.map((c) => {
+                    if (typeof c === "string") {
+                        return c;
+                    }
+                    if (c && typeof c === "object" && c.expression) {
+                        return c.expression;
+                    }
+                    return JSON.stringify(c);
+                }).join(", ")
+                : "N/A";
 
             addMessage("assistant", `
                 <div class="label">Translator</div>
@@ -359,20 +509,26 @@ QUBO compilation successful
 
 --- QUBO Summary ---
 Variables: ${summary.variables ?? "N/A"}
-Objective: ${summary.objective ?? "N/A"}
-Constraints: ${constraints}
+Objective: ${escapeHtml(summary.objective ?? "N/A")}
+Constraints: ${escapeHtml(constraints)}
 Model Size: ${summary.term_count ?? "N/A"} binary variables
+Backend: ${backendMode}
 ----------------------------------------------------------</div>
-                <div style="margin-top:10px;">
+                <div class="result-metric">
                     Fidelity Score: <span class="success-tag">${Number(fidelity.score ?? 0).toFixed(2)}</span>
                 </div>
-                <div style="margin-top:8px;"><strong>Reverse Translation:</strong><br>"${fidelity.reverse_translation || "N/A"}"</div>
+                <div class="result-note"><strong>Reverse Translation:</strong><br>"${withBreaks(fidelity.reverse_translation || "N/A")}"</div>
             `);
+
+            if (data.warning) {
+                addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
+            }
         }
 
         function renderExecutionResult(data) {
             const result = data.result || {};
             const solution = Array.isArray(result.solution) ? result.solution : [];
+            const backendMode = data.backend_mode || "demo-mock";
 
             const rows = solution.map((row) => {
                 if (row.driver && Array.isArray(row.deliveries)) {
@@ -381,7 +537,16 @@ Model Size: ${summary.term_count ?? "N/A"} binary variables
                 if (row.driver && row.reserved_for) {
                     return `Driver ${row.driver} - Reserved for ${row.reserved_for}`;
                 }
-                return "Unknown solution row";
+                if (row.variable !== undefined && row.value !== undefined) {
+                    return `${row.variable} = ${row.value}`;
+                }
+                if (row.note) {
+                    return row.note;
+                }
+                if (typeof row === "string") {
+                    return row;
+                }
+                return JSON.stringify(row);
             }).join("\n");
 
             addMessage("assistant", `
@@ -393,9 +558,15 @@ Execution complete
 Best Objective Value: ${result.best_objective ?? "N/A"}
 Feasible: ${result.feasible === true ? "Yes" : "No"}
 Runtime: ${result.runtime_s ?? "N/A"} seconds
+Constraint Violations: ${result.constraint_violations ?? "N/A"}
+Backend: ${backendMode}
 Solution Preview:
-${rows}</div>
+${escapeHtml(rows)}</div>
             `);
+
+            if (data.warning) {
+                addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
+            }
 
             const saveMsg = addMessage("assistant", `
                 <div>Would you like to save logs and metrics?</div>
@@ -435,7 +606,7 @@ ${rows}</div>
             currentPromptId = "";
             latestResult = null;
 
-            addMessage("user", `<div>${prompt.replace(/\n/g, "<br>")}</div>`);
+            addMessage("user", `<div>${withBreaks(prompt)}</div>`);
             setBusy(true);
 
             const typing = addTyping("Translator");
@@ -447,11 +618,12 @@ ${rows}</div>
                 });
 
                 const [response] = await Promise.all([call, sleep(1400)]);
-                const data = await response.json();
+                const data = await parseResponseData(response);
                 typing.remove();
 
                 if (!response.ok) {
-                    throw new Error(data.message || "Translation failed.");
+                    const detail = data.details ? ` (${data.details})` : "";
+                    throw new Error((data.message || "Translation failed.") + detail);
                 }
 
                 currentPromptId = data.prompt_id || "";
@@ -459,7 +631,7 @@ ${rows}</div>
                 addProceedButton();
             } catch (error) {
                 typing.remove();
-                addMessage("assistant", `<span class="error">Translation failed: ${error.message}</span>`);
+                addMessage("assistant", `<span class="error">Translation failed: ${escapeHtml(error.message)}</span>`);
             } finally {
                 setBusy(false);
             }
@@ -486,18 +658,19 @@ ${rows}</div>
                 });
 
                 const [response] = await Promise.all([call, sleep(2300)]);
-                const data = await response.json();
+                const data = await parseResponseData(response);
                 typing.remove();
 
                 if (!response.ok) {
-                    throw new Error(data.message || "Execution failed.");
+                    const detail = data.details ? ` (${data.details})` : "";
+                    throw new Error((data.message || "Execution failed.") + detail);
                 }
 
                 latestResult = data.result || null;
                 renderExecutionResult(data);
             } catch (error) {
                 typing.remove();
-                addMessage("assistant", `<span class="error">Execution failed: ${error.message}</span>`);
+                addMessage("assistant", `<span class="error">Execution failed: ${escapeHtml(error.message)}</span>`);
             } finally {
                 setBusy(false);
             }
@@ -529,11 +702,14 @@ ${rows}</div>
         }
 
         sendBtn.addEventListener("click", startTranslation);
+        promptInput.addEventListener("input", autoGrowTextarea);
         promptInput.addEventListener("keydown", (event) => {
             if (event.key === "Enter" && (event.ctrlKey || event.shiftKey)) {
                 startTranslation();
             }
         });
+
+        autoGrowTextarea();
 
         addMessage("assistant", `
             <div class="label">System</div>
