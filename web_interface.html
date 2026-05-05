@@ -110,6 +110,7 @@
             padding: 7px 10px;
             border-radius: 999px;
             white-space: nowrap;
+            display: none;
         }
 
         .chat-log {
@@ -391,7 +392,7 @@
             </div>
             <div class="header-meta">
                 <div class="meta-pill">Pipeline: Translate -> Validate -> Solve</div>
-                <div class="mode-pill">DEMO FLOW</div>
+                <div class="mode-pill" id="modePill" style="display:none;">DEMO FLOW</div>
             </div>
         </header>
 
@@ -414,10 +415,12 @@ Minimize the total estimated travel time while keeping workloads balanced across
         let currentPromptText = "";
         let latestResult = null;
         let isBusy = false;
+        let lastBackendWarning = "";
 
         const chatLog = document.getElementById("chatLog");
         const promptInput = document.getElementById("promptInput");
         const sendBtn = document.getElementById("sendBtn");
+        const modePill = document.getElementById("modePill");
 
         function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms));
@@ -475,6 +478,22 @@ Minimize the total estimated travel time while keeping workloads balanced across
             sendBtn.textContent = flag ? "Processing..." : "Translate Prompt";
         }
 
+        async function syncModeBadge() {
+            if (!modePill) {
+                return;
+            }
+            try {
+                const response = await fetch("/health");
+                const data = await parseResponseData(response);
+                const isDemo = Boolean(data.demo_mode);
+                modePill.style.display = isDemo ? "inline-block" : "none";
+                modePill.textContent = isDemo ? "DEMO FLOW" : "";
+            } catch (_err) {
+                modePill.style.display = "none";
+                modePill.textContent = "";
+            }
+        }
+
         function autoGrowTextarea() {
             promptInput.style.height = "auto";
             promptInput.style.height = `${promptInput.scrollHeight}px`;
@@ -483,6 +502,7 @@ Minimize the total estimated travel time while keeping workloads balanced across
         function renderTranslationSummary(data) {
             const summary = data.qubo_summary || {};
             const fidelity = data.fidelity || {};
+            const fidelityPercent = Math.max(0, Math.min(100, Number(fidelity.score ?? 0) * 100));
             const backendMode = data.backend_mode || "demo-mock";
             const constraints = Array.isArray(summary.constraints)
                 ? summary.constraints.map((c) => {
@@ -513,14 +533,15 @@ Objective: ${escapeHtml(summary.objective ?? "N/A")}
 Constraints: ${escapeHtml(constraints)}
 Model Size: ${summary.term_count ?? "N/A"} binary variables
 Backend: ${backendMode}
-----------------------------------------------------------</div>
+                ----------------------------------------------------------</div>
                 <div class="result-metric">
-                    Fidelity Score: <span class="success-tag">${Number(fidelity.score ?? 0).toFixed(2)}</span>
+                    Fidelity Score: <span class="success-tag">${fidelityPercent.toFixed(1)}%</span>
                 </div>
                 <div class="result-note"><strong>Reverse Translation:</strong><br>"${withBreaks(fidelity.reverse_translation || "N/A")}"</div>
             `);
 
             if (data.warning) {
+                lastBackendWarning = String(data.warning);
                 addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
             }
         }
@@ -564,7 +585,8 @@ Solution Preview:
 ${escapeHtml(rows)}</div>
             `);
 
-            if (data.warning) {
+            if (data.warning && String(data.warning) !== lastBackendWarning) {
+                lastBackendWarning = String(data.warning);
                 addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
             }
 
@@ -605,6 +627,7 @@ ${escapeHtml(rows)}</div>
             currentPromptText = prompt;
             currentPromptId = "";
             latestResult = null;
+            lastBackendWarning = "";
 
             addMessage("user", `<div>${withBreaks(prompt)}</div>`);
             setBusy(true);
@@ -710,6 +733,7 @@ ${escapeHtml(rows)}</div>
         });
 
         autoGrowTextarea();
+        syncModeBadge();
 
         addMessage("assistant", `
             <div class="label">System</div>
