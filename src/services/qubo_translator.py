@@ -45,11 +45,16 @@ class QUBOTranslator:
     @staticmethod
     def build_translation_prompt() -> str:
         return (
-            "You are a QUBO translator. Given an optimization problem in natural language, "
-            "return JSON with this structure only: "
-            "{\"variables\":[...], \"constraints\":[{\"type\":\"equality\"|\"inequality\",\"expression\":\"<math>\",\"penalty\":<number>}], "
+            "You are a QUBO translator. Convert the optimization request into a mathematically coherent QUBO-ready model. "
+            "Return one RFC8259 JSON object only, with double quotes, no markdown, no prose. "
+            "Schema: "
+            "{\"variables\":[...],\"constraints\":[{\"type\":\"equality\"|\"inequality\",\"expression\":\"<math>\",\"penalty\":<number>}],"
             "\"objective\":\"<minimize|maximize>: <expression>\"}. "
-            "Output valid RFC8259 JSON only using double quotes; no markdown, no code fences, no comments."
+            "Rules: (1) Every symbol used in objective/constraints must be in variables. "
+            "(2) Use explicit binary decision variables (for assignment problems prefer names like x_driver_delivery). "
+            "(3) Encode each natural-language requirement as at least one concrete algebraic constraint with numeric RHS. "
+            "(4) Do not invent placeholder aggregate variables (for example total_travel_time) unless tied to equations. "
+            "(5) Keep penalties positive and scaled so constraints are enforceable."
         )
 
     @staticmethod

@@ -399,12 +399,7 @@
         <section id="chatLog" class="chat-log"></section>
 
         <footer class="composer">
-            <textarea id="promptInput" placeholder="Describe your optimization problem...">Schedule 8 truck drivers to complete 11 local deliveries in one workday.
-Each delivery must be assigned to exactly one driver.
-No driver may be assigned more than 2 deliveries.
-Drivers can only use routes that avoid left turns, so each assigned delivery must use a right-turn-only route.
-At least 2 drivers must be reserved for priority shipments in the afternoon.
-Minimize the total estimated travel time while keeping workloads balanced across drivers.</textarea>
+            <textarea id="promptInput" placeholder="Describe your optimization problem..." autocomplete="off"></textarea>
             <button id="sendBtn" class="send-btn" type="button">Translate Prompt</button>
             <p class="composer-help">Shortcut: press Ctrl+Enter or Shift+Enter to translate</p>
         </footer>
@@ -502,7 +497,9 @@ Minimize the total estimated travel time while keeping workloads balanced across
         function renderTranslationSummary(data) {
             const summary = data.qubo_summary || {};
             const fidelity = data.fidelity || {};
+            const quality = data.model_quality || {};
             const fidelityPercent = Math.max(0, Math.min(100, Number(fidelity.score ?? 0) * 100));
+            const qualityPercent = Math.max(0, Math.min(100, Number(quality.score ?? 0) * 100));
             const backendMode = data.backend_mode || "demo-mock";
             const constraints = Array.isArray(summary.constraints)
                 ? summary.constraints.map((c) => {
@@ -537,7 +534,11 @@ Backend: ${backendMode}
                 <div class="result-metric">
                     Fidelity Score: <span class="success-tag">${fidelityPercent.toFixed(1)}%</span>
                 </div>
+                <div class="result-metric">
+                    Model Quality: <span class="success-tag">${qualityPercent.toFixed(1)}%</span>
+                </div>
                 <div class="result-note"><strong>Reverse Translation:</strong><br>"${withBreaks(fidelity.reverse_translation || "N/A")}"</div>
+                <div class="result-note"><strong>Quality Notes:</strong><br>${withBreaks((quality.issues || []).join("\n") || "None")}</div>
             `);
 
             if (data.warning) {
@@ -549,9 +550,16 @@ Backend: ${backendMode}
         function renderExecutionResult(data) {
             const result = data.result || {};
             const solution = Array.isArray(result.solution) ? result.solution : [];
+            const rawSolution = Array.isArray(result.raw_solution_preview) ? result.raw_solution_preview : solution;
+            const decisionPlan = Array.isArray(result.decision_plan) ? result.decision_plan : [];
+            const overview = result.solution_overview || {};
+            const quality = result.model_quality || data.model_quality || {};
+            const objective = result.objective_breakdown || {};
+            const violated = Array.isArray(result.violated_constraints) ? result.violated_constraints : [];
+            const simple = result.simple_answer || {};
             const backendMode = data.backend_mode || "demo-mock";
 
-            const rows = solution.map((row) => {
+            const rows = rawSolution.map((row) => {
                 if (row.driver && Array.isArray(row.deliveries)) {
                     return `Driver ${row.driver} - Deliveries ${row.deliveries.join(", ")}`;
                 }
@@ -570,19 +578,54 @@ Backend: ${backendMode}
                 return JSON.stringify(row);
             }).join("\n");
 
+            const actions = Array.isArray(simple.actions) ? simple.actions : [];
+            const whyNot = Array.isArray(simple.why_not) ? simple.why_not : [];
+            const nextSteps = Array.isArray(simple.next_steps) ? simple.next_steps : [];
+            const actionLines = actions.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const whyLines = whyNot.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const nextLines = nextSteps.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const decisionPlanLines = decisionPlan.join("\n");
+            const topLinear = Array.isArray(objective.top_linear_terms) ? objective.top_linear_terms : [];
+            const topQuadratic = Array.isArray(objective.top_quadratic_terms) ? objective.top_quadratic_terms : [];
+            const linearLines = topLinear.map((t) => `${t.term}: coef=${Number(t.coef).toFixed(4)}, contribution=${Number(t.contribution).toFixed(4)}`).join("\n");
+            const quadraticLines = topQuadratic.map((t) => `${t.term}: coef=${Number(t.coef).toFixed(4)}, contribution=${Number(t.contribution).toFixed(4)}`).join("\n");
+            const violatedLines = violated.map((v) => {
+                const residual = v.residual === null || v.residual === undefined ? "N/A" : Number(v.residual).toFixed(6);
+                const lhs = v.lhs_value === undefined ? "N/A" : Number(v.lhs_value).toFixed(6);
+                const rhs = v.rhs_value === undefined ? "N/A" : Number(v.rhs_value).toFixed(6);
+                return `${v.label || "Constraint"}: residual=${residual}, lhs=${lhs}, rhs=${rhs}, expr=${v.expression || "N/A"}`;
+            }).join("\n");
+
             addMessage("assistant", `
                 <div class="label">Solver</div>
                 <div class="mono">Running QUBO on local solver...
 Execution complete
 
---- Solver Results ---
-Best Objective Value: ${result.best_objective ?? "N/A"}
+--- Simple Answer ---
+${escapeHtml(simple.headline || "No clear answer yet.")}
+Status: ${escapeHtml(simple.status || "N/A")}
+Confidence: ${escapeHtml(simple.confidence || "N/A")} (${simple.quality_percent ?? "N/A"}%)
+Runtime: ${simple.runtime_s ?? result.runtime_s ?? "N/A"} seconds
+
+What to do:
+${escapeHtml(actionLines || "No clear actions were extracted.")}
+
+If no valid plan was found:
+${escapeHtml(whyLines || "N/A")}
+
+Next step:
+${escapeHtml(nextLines || "N/A")}
+
+Technical details (optional):
+Solver Verdict: ${escapeHtml(result.solver_summary || "N/A")}
 Feasible: ${result.feasible === true ? "Yes" : "No"}
-Runtime: ${result.runtime_s ?? "N/A"} seconds
-Constraint Violations: ${result.constraint_violations ?? "N/A"}
-Backend: ${backendMode}
-Solution Preview:
-${escapeHtml(rows)}</div>
+Rule Violations: ${result.constraint_violations ?? "N/A"}
+Decision Plan:
+${escapeHtml(decisionPlanLines || "None")}
+Top failed rules:
+${escapeHtml(violatedLines || "None")}
+Raw Selected Variables:
+${escapeHtml(rows || "None")}</div>
             `);
 
             if (data.warning && String(data.warning) !== lastBackendWarning) {
@@ -732,12 +775,19 @@ ${escapeHtml(rows)}</div>
             }
         });
 
+        // Always start with a blank prompt box (even if browser restores old form values).
+        const clearPromptBox = () => {
+            promptInput.value = "";
+            promptInput.defaultValue = "";
+        };
+        clearPromptBox();
+        window.addEventListener("pageshow", clearPromptBox);
         autoGrowTextarea();
         syncModeBadge();
 
         addMessage("assistant", `
             <div class="label">System</div>
-            Paste or edit the sample prompt, then click <strong>Translate Prompt</strong>.<br>
+            Paste your prompt, then click <strong>Translate Prompt</strong>.<br>
             Translation and solving include a brief simulated processing delay in the UI.
         `);
     </script>

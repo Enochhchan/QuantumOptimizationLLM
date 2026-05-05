@@ -19,6 +19,8 @@ class ReverseTranslator:
         system_prompt = (
             "You are a QUBO-to-text reconstructor. Rebuild an optimization prompt from QUBO JSON as faithfully as possible. "
             "Preserve exact counts, bounds, qualifiers (e.g., at least/at most/exactly), variable relationships, and optimization intent. "
+            "Never interpret pseudo-code like sum(... for ... in ...) as literal variables; describe only algebraic terms present. "
+            "If the model appears malformed, say that explicitly and avoid inventing missing business context. "
             "Use one concise paragraph, plain text only, no bullet points, no markdown, no preamble. "
             "Do not quote or copy any reference text verbatim. If hints are provided, use them only as semantic checks."
         )
@@ -26,7 +28,9 @@ class ReverseTranslator:
             payload = {"qubo": qubo_payload}
             if reference_hints:
                 payload["reference_hints"] = reference_hints
-            elif reference_prompt:
+            if reference_prompt:
+                payload["reference_prompt"] = reference_prompt
+            elif not reference_hints and reference_prompt:
                 payload["reference_hints"] = {"note": "minimal", "length": len(reference_prompt)}
             return self.llm_client.generate(
                 system_prompt=system_prompt,
