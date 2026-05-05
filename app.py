@@ -9,7 +9,9 @@ from pathlib import Path
 import random
 import re
 import sys
+import threading
 import time
+import webbrowser
 from difflib import SequenceMatcher
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
@@ -1359,5 +1361,15 @@ def resource_path(relative_path: str) -> str:
 
 
 if __name__ == "__main__":
+    host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    if getattr(sys, "frozen", False):
+        # EXE UX: open the local UI shortly after the server starts.
+        def _open_local_ui() -> None:
+            try:
+                webbrowser.open(f"http://127.0.0.1:{port}")
+            except Exception:
+                pass
+
+        threading.Timer(1.5, _open_local_ui).start()
+    app.run(host=host, port=port)

@@ -2,6 +2,17 @@
 
 ## Local Development Setup
 
+## Windows One-File App (No Install)
+
+1. Open the repository's **Releases** page on GitHub.
+2. Download the latest `NL-QUBO-App-*.exe` asset.
+3. Double-click the `.exe` file.
+4. The app starts a local server and opens your browser automatically at `http://127.0.0.1:5000`.
+
+Notes:
+- No Python or pip install is required for this mode.
+- If Windows SmartScreen appears, choose **More info** -> **Run anyway**.
+
 ### Prerequisites
 - Python 3.9 or higher
 - pip
