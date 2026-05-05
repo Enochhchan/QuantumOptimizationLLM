@@ -35,9 +35,11 @@ jobs:
       - name: Prepare release asset
         run: |
           New-Item -ItemType Directory -Path release -Force | Out-Null
-          $assetName = "NL-QUBO-App-${{ github.ref_name }}.exe"
+          $safeRef = "${{ github.ref_name }}".Replace('/', '-').Replace('\', '-')
+          $assetName = "NL-QUBO-App-$safeRef.exe"
           if ("${{ github.event_name }}" -eq "push") {
-            $assetName = "NL-QUBO-App-main-${{ github.sha }}.exe"
+            $shortSha = "${{ github.sha }}".Substring(0, 7)
+            $assetName = "NL-QUBO-App-$safeRef-$shortSha.exe"
           }
           Copy-Item -LiteralPath dist\app.exe -Destination ("release\" + $assetName) -Force
           "ASSET_NAME=$assetName" >> $env:GITHUB_ENV
