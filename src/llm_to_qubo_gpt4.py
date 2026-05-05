@@ -11,6 +11,7 @@ if __package__ in {None, ""}:
 from src.domain.run_config import RunConfig
 from src.io.prompt_library import PromptLibrary
 from src.io.result_writer import ResultWriter
+from src.io.single_prompt_csv_writer import SinglePromptCsvWriter
 from src.io.visualization import Visualization
 from src.pipeline.experiment_runner import ExperimentRunner
 from src.services.constraint_evaluator import ConstraintEvaluator
@@ -29,6 +30,21 @@ from src.solvers.local_solver import LocalSolver
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run NL to QUBO translation experiment.")
     parser.add_argument("--prompts", default=None, help="Path to generated_prompts.csv (or set QUBO_PROMPTS_PATH).")
+    parser.add_argument(
+        "--prompt-text",
+        default=None,
+        help="Single natural-language prompt to run. If set, a one-row prompt CSV is generated automatically.",
+    )
+    parser.add_argument(
+        "--prompt-type",
+        default="Custom",
+        help="Problem type label used when --prompt-text is provided.",
+    )
+    parser.add_argument(
+        "--prompt-csv-path",
+        default=None,
+        help="Optional output path for the generated one-row prompts CSV when --prompt-text is used.",
+    )
     parser.add_argument("--model", default=os.getenv("OPENAI_MODEL", "gpt-4"), help="OpenAI model name (or set OPENAI_MODEL).")
     parser.add_argument("--limit", type=int, default=None, help="Only run the first N prompts.")
     parser.add_argument("--dry-run", action="store_true", help="Skip OpenAI calls and use deterministic dry-run output.")
@@ -49,8 +65,25 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = _parse_args()
+    prompts_path = args.prompts
+    if args.prompt_text:
+        writer = SinglePromptCsvWriter()
+        default_generated = (
+            Path("single_prompt_generated.csv")
+            if args.legacy_output_mode
+            else Path(args.output_dir) / "results" / "single_prompt_generated.csv"
+        )
+        generated_path = Path(args.prompt_csv_path) if args.prompt_csv_path else default_generated
+        generated_csv = writer.write(
+            prompt_text=args.prompt_text,
+            prompt_type=args.prompt_type,
+            output_path=generated_path,
+        )
+        prompts_path = str(generated_csv)
+        print(f"[pipeline] generated one-row prompt CSV: {generated_csv}")
+
     config = RunConfig(
-        prompts_path=args.prompts,
+        prompts_path=prompts_path,
         model_name=args.model,
         limit=args.limit,
         dry_run=args.dry_run,

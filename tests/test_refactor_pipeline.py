@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.domain.prompt import Prompt
 from src.io.prompt_library import PromptLibrary
+from src.io.single_prompt_csv_writer import SinglePromptCsvWriter
 from src.services.llm_client import LLMClient
 from src.services.qubo_schema import QUBOSchema
 from src.services.qubo_translator import QUBOTranslator
@@ -54,3 +55,13 @@ def test_cli_dry_run_end_to_end():
     assert completed.returncode == 0, completed.stderr
     output = Path("artifacts/results/llm_qubo_results_detailed_with_fidelity_gpt4_without_loop.csv")
     assert output.exists()
+
+
+def test_single_prompt_csv_writer(tmp_path):
+    writer = SinglePromptCsvWriter()
+    out = tmp_path / "one_prompt.csv"
+    path = writer.write(prompt_text="Assign 3 jobs to 2 workers with minimum cost.", prompt_type="Assignment", output_path=out)
+    assert path.exists()
+    content = path.read_text(encoding="utf-8")
+    assert "type,description" in content
+    assert "Assignment" in content
