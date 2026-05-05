@@ -57,7 +57,12 @@ def _load_dotenv_if_available() -> None:
 
 _load_dotenv_if_available()
 
-DEMO_MODE = _env_flag("DEMO_MODE", True)
+def _default_demo_mode() -> bool:
+    # EXE users expect the real backend by default; local dev keeps demo fallback on.
+    return not getattr(sys, "frozen", False)
+
+
+DEMO_MODE = _env_flag("DEMO_MODE", _default_demo_mode())
 USE_LEGACY_BACKEND = _env_flag("USE_LEGACY_BACKEND", True)
 OPENAI_MODEL = (os.getenv("OPENAI_MODEL") or os.getenv("LEGACY_OPENAI_MODEL") or "gpt-4o-mini").strip() or "gpt-4o-mini"
 MAX_SOLUTION_PREVIEW = max(5, int(os.getenv("MAX_SOLUTION_PREVIEW", "24")))

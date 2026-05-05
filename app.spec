@@ -5,7 +5,11 @@ a = Analysis(
     ['app.py'],
     pathex=[],
     binaries=[],
-    datas=[('web_interface.html', '.')],
+    datas=[
+        ('web_interface.html', '.'),
+        ('static', 'static'),
+        ('legacy/py', 'legacy/py'),
+    ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
