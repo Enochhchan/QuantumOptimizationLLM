@@ -8,6 +8,8 @@ import os
 from pathlib import Path
 import random
 import re
+import socket
+import subprocess
 import sys
 import threading
 import time
@@ -2297,16 +2299,91 @@ def resource_path(relative_path: str) -> str:
     return os.path.join(base_path, relative_path)
 
 
+def _ensure_console_for_frozen_windows() -> bool:
+    """
+    Relaunches the EXE inside cmd.exe if no console is attached.
+    Returns True when the current process should exit after relaunch.
+    """
+    if os.name != "nt" or not getattr(sys, "frozen", False):
+        return False
+    if os.getenv("NLQUBO_CONSOLE_RELAUNCHED") == "1":
+        return False
+    try:
+        import ctypes
+
+        if ctypes.windll.kernel32.GetConsoleWindow():
+            return False
+    except Exception:
+        return False
+
+    env = os.environ.copy()
+    env["NLQUBO_CONSOLE_RELAUNCHED"] = "1"
+    cmdline = subprocess.list2cmdline([sys.executable, *sys.argv[1:]])
+    try:
+        subprocess.Popen(
+            ["cmd.exe", "/k", cmdline],
+            env=env,
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
+        return True
+    except Exception:
+        return False
+
+
+def _open_local_ui_in_chrome(port: int) -> None:
+    url = f"http://127.0.0.1:{port}"
+    if os.name == "nt":
+        candidates = [
+            os.path.join(
+                os.getenv("PROGRAMFILES", ""),
+                "Google",
+                "Chrome",
+                "Application",
+                "chrome.exe",
+            ),
+            os.path.join(
+                os.getenv("PROGRAMFILES(X86)", ""),
+                "Google",
+                "Chrome",
+                "Application",
+                "chrome.exe",
+            ),
+            os.path.join(
+                os.getenv("LOCALAPPDATA", ""),
+                "Google",
+                "Chrome",
+                "Application",
+                "chrome.exe",
+            ),
+        ]
+        for chrome_path in candidates:
+            if chrome_path and os.path.exists(chrome_path):
+                subprocess.Popen([chrome_path, "--new-window", url])
+                return
+
+    webbrowser.open(url)
+
+
 if __name__ == "__main__":
+    if _ensure_console_for_frozen_windows():
+        raise SystemExit(0)
+
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", 5000))
     if getattr(sys, "frozen", False):
-        # EXE UX: open the local UI shortly after the server starts.
-        def _open_local_ui() -> None:
+        # EXE UX: open the local UI in Chrome after the server is reachable.
+        def _open_local_ui_when_ready() -> None:
+            deadline = time.time() + 20.0
+            while time.time() < deadline:
+                try:
+                    with socket.create_connection(("127.0.0.1", port), timeout=0.6):
+                        break
+                except OSError:
+                    time.sleep(0.4)
             try:
-                webbrowser.open(f"http://127.0.0.1:{port}")
+                _open_local_ui_in_chrome(port)
             except Exception:
                 pass
 
-        threading.Timer(1.5, _open_local_ui).start()
+        threading.Thread(target=_open_local_ui_when_ready, daemon=True).start()
     app.run(host=host, port=port)
