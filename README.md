@@ -12,6 +12,8 @@
 Notes:
 - No Python or pip install is required for this mode.
 - If Windows SmartScreen appears, choose **More info** -> **Run anyway**.
+- Extract the download first; do not run the `.exe` directly from inside a `.zip` preview window.
+- If startup fails, check `nl_qubo_startup.log` in the same folder as the `.exe`.
 
 ### Prerequisites
 - Python 3.9 or higher

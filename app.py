@@ -13,6 +13,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 import webbrowser
 from difflib import SequenceMatcher
 from typing import Any, Dict, List, Optional, Tuple
@@ -2299,35 +2300,19 @@ def resource_path(relative_path: str) -> str:
     return os.path.join(base_path, relative_path)
 
 
-def _ensure_console_for_frozen_windows() -> bool:
-    """
-    Relaunches the EXE inside cmd.exe if no console is attached.
-    Returns True when the current process should exit after relaunch.
-    """
-    if os.name != "nt" or not getattr(sys, "frozen", False):
-        return False
-    if os.getenv("NLQUBO_CONSOLE_RELAUNCHED") == "1":
-        return False
-    try:
-        import ctypes
+def _startup_log_path() -> Path:
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().with_name("nl_qubo_startup.log")
+    return BASE_DIR / "nl_qubo_startup.log"
 
-        if ctypes.windll.kernel32.GetConsoleWindow():
-            return False
-    except Exception:
-        return False
 
-    env = os.environ.copy()
-    env["NLQUBO_CONSOLE_RELAUNCHED"] = "1"
-    cmdline = subprocess.list2cmdline([sys.executable, *sys.argv[1:]])
+def _log_startup(message: str) -> None:
     try:
-        subprocess.Popen(
-            ["cmd.exe", "/k", cmdline],
-            env=env,
-            creationflags=subprocess.CREATE_NEW_CONSOLE,
-        )
-        return True
+        line = f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}\n"
+        with _startup_log_path().open("a", encoding="utf-8") as handle:
+            handle.write(line)
     except Exception:
-        return False
+        pass
 
 
 def _open_local_ui_in_chrome(port: int) -> None:
@@ -2365,11 +2350,9 @@ def _open_local_ui_in_chrome(port: int) -> None:
 
 
 if __name__ == "__main__":
-    if _ensure_console_for_frozen_windows():
-        raise SystemExit(0)
-
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", 5000))
+    _log_startup(f"starting app (frozen={getattr(sys, 'frozen', False)}) host={host} port={port}")
     if getattr(sys, "frozen", False):
         # EXE UX: open the local UI in Chrome after the server is reachable.
         def _open_local_ui_when_ready() -> None:
@@ -2382,8 +2365,13 @@ if __name__ == "__main__":
                     time.sleep(0.4)
             try:
                 _open_local_ui_in_chrome(port)
+                _log_startup(f"browser launch attempted for http://127.0.0.1:{port}")
             except Exception:
-                pass
+                _log_startup(f"browser launch failed: {traceback.format_exc()}")
 
         threading.Thread(target=_open_local_ui_when_ready, daemon=True).start()
-    app.run(host=host, port=port)
+    try:
+        app.run(host=host, port=port)
+    except Exception:
+        _log_startup(f"server crashed: {traceback.format_exc()}")
+        raise
