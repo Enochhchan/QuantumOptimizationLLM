@@ -1,16 +1,17 @@
-name: Build EXE ZIP
+name: Build Windows EXE
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   release:
-    types: [created, published]
+    types: [published]
   workflow_dispatch:
 
 jobs:
   build-exe:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -27,34 +28,30 @@ jobs:
           py -m pip install -r requirements.txt
           py -m pip install pyinstaller
 
-      - name: Build EXE with PyInstaller
+      - name: Build standalone EXE with PyInstaller
         run: |
-          py -m PyInstaller --onefile --add-data "web_interface.html;." app.py
+          py -m PyInstaller --noconfirm --clean app.spec
 
-      - name: Create launcher and ZIP
+      - name: Prepare release asset
         run: |
-          cd dist
-          # create start_app.bat so grader can just double-click
-          "@echo off" | Out-File -Encoding ascii start_app.bat
-          'start "" "app.exe"' | Add-Content start_app.bat
-          'timeout /t 2 >nul' | Add-Content start_app.bat
-          'start "" "http://127.0.0.1:5000"' | Add-Content start_app.bat
-          # zip everything under dist into runnable-app.zip in repo root
-          Compress-Archive -Path * -DestinationPath ..\runnable-app.zip
+          New-Item -ItemType Directory -Path release -Force | Out-Null
+          $safeRef = "${{ github.ref_name }}".Replace('/', '-').Replace('\', '-')
+          $assetName = "NL-QUBO-App-$safeRef.exe"
+          if ("${{ github.event_name }}" -eq "push") {
+            $shortSha = "${{ github.sha }}".Substring(0, 7)
+            $assetName = "NL-QUBO-App-$safeRef-$shortSha.exe"
+          }
+          Copy-Item -LiteralPath dist\app.exe -Destination ("release\" + $assetName) -Force
+          "ASSET_NAME=$assetName" >> $env:GITHUB_ENV
 
-      - name: Upload EXE zip as artifact
+      - name: Upload EXE as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: runnable-app
-          path: runnable-app.zip
+          name: windows-exe
+          path: release/${{ env.ASSET_NAME }}
 
-      - name: Upload ZIP to this Release
+      - name: Upload EXE to GitHub Release
         if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: runnable-app.zip
-          asset_name: runnable-app.zip
-          asset_content_type: application/zip
+          files: release/${{ env.ASSET_NAME }}

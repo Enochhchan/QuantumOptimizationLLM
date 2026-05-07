@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Extreme's NL-QUBO Translation & Execution System</title>
+    <title>Extreme's NL-QUBO Translation & Execution System</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg: #f7f7f8;
+            --surface: #ffffff;
+            --line: #e5e7eb;
+            --ink: #111827;
+            --muted: #6b7280;
+            --brand: #1f2937;
+            --ok: #0f9f66;
+            --warn: #b2432a;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,491 +25,771 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "Manrope", "Segoe UI", sans-serif;
+        }
+
+        .chat-shell {
+            width: 100%;
+            height: 100dvh;
+            background: var(--bg);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .chat-header {
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 8px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .title-wrap h1 {
+            font-size: clamp(1.24rem, 2vw, 1.76rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            text-wrap: balance;
+        }
+
+        .title-wrap p {
+            color: var(--muted);
+            font-size: 0.86rem;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .meta-pill {
+            border: 1px solid #d9dce1;
+            background: var(--surface);
+            color: #374151;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .mode-pill {
+            border: 1px solid #d9dce1;
+            background: var(--surface);
+            color: #111827;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
+            display: none;
+        }
+
+        .chat-log {
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 18px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 20px;
+            gap: 13px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+        .chat-log::-webkit-scrollbar {
+            width: 9px;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            color: #222;
+        .chat-log::-webkit-scrollbar-thumb {
+            background: #d3d7dd;
+            border-radius: 12px;
         }
 
-        /* Frame 1: Input Stage */
-        .input-stage {
-            display: block;
+        .message {
+            max-width: min(92%, 760px);
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            padding: 12px 14px;
+            line-height: 1.56;
+            font-size: 0.98rem;
+            opacity: 0;
+            transform: translateY(8px);
+            animation: riseIn 260ms ease forwards;
         }
 
-        .input-container {
-            margin-bottom: 20px;
+        .message.user {
+            align-self: flex-end;
+            background: var(--brand);
+            color: #f9fafb;
+            border-color: #374151;
         }
 
-        .input-field {
-            width: 100%;
-            min-height: 120px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            font-family: inherit;
-            resize: vertical;
+        .message.assistant {
+            align-self: flex-start;
+            background: var(--surface);
         }
 
-        .input-field:focus {
-            outline: none;
-            border-color: #666;
+        .message.system {
+            align-self: center;
+            font-size: 0.89rem;
+            color: var(--muted);
+            border-style: dashed;
+            background: var(--surface);
+            padding: 10px 14px;
         }
 
-        .input-actions {
+        .label {
+            display: inline-block;
+            font-size: 0.73rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #475569;
+            margin-bottom: 7px;
+            font-weight: 700;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", Consolas, monospace;
+            font-size: 0.89rem;
+            white-space: pre-wrap;
+            color: #1f2937;
+        }
+
+        .result-metric {
+            margin-top: 10px;
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .result-note {
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .success-tag {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #053d25;
+            background: #80f0bf;
+            border: 1px solid #39c68a;
+        }
+
+        .typing {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .typing span {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #9ca3af;
+            animation: dotPulse 1s infinite ease-in-out;
+        }
+
+        .typing span:nth-child(2) { animation-delay: 0.18s; }
+        .typing span:nth-child(3) { animation-delay: 0.36s; }
+
+        .action-row {
+            margin-top: 12px;
+            display: flex;
             gap: 10px;
-            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: #666;
-            padding: 5px 10px;
-        }
-
-        .icon-btn:hover {
-            color: #333;
-        }
-
-        /* Frame 2: Translation Stage */
-        .translation-stage {
-            display: none;
-        }
-
-        .prompt-reference {
-            background-color: #f9f9f9;
-            padding: 10px 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #666;
-            border-left: 3px solid #666;
-        }
-
-        .processing-log {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .log-line {
-            margin: 5px 0;
-        }
-
-        .qubo-summary {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .qubo-summary h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .qubo-summary p {
-            margin: 5px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .fidelity-section {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .fidelity-score {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .fidelity-bar {
-            flex: 1;
-            height: 20px;
-            background-color: #e0e0e0;
+        button.action {
+            border: 1px solid #cfd5dd;
             border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .fidelity-fill {
-            height: 100%;
-            background-color: #4caf50;
-            transition: width 0.3s ease;
-        }
-
-        .fidelity-value {
-            font-weight: 600;
-            font-size: 16px;
-            color: #4caf50;
-        }
-
-        .reverse-translation {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #666;
-            font-style: italic;
-        }
-
-        /* Frame 3: Execution Stage */
-        .execution-stage {
-            display: none;
-        }
-
-        .execution-status {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-        }
-
-        .status-line {
-            margin: 5px 0;
-        }
-
-        .status-success {
-            color: #4caf50;
-        }
-
-        .solver-results {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .solver-results h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .solver-results p {
-            margin: 5px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .solution-preview {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .solution-preview h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .solution-preview p {
-            margin: 5px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* Buttons */
-        .btn {
-            background-color: #555;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 4px;
-            font-size: 16px;
+            padding: 9px 14px;
+            background: #ffffff;
+            color: #111827;
+            font: inherit;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: transform 120ms ease, opacity 120ms ease, background-color 120ms ease;
         }
 
-        .btn:hover {
-            background-color: #333;
+        button.action:hover {
+            transform: translateY(-1px);
+            background-color: #f9fafb;
         }
 
-        .btn:active {
-            transform: scale(0.98);
+        button.action:disabled {
+            cursor: not-allowed;
+            opacity: 0.65;
         }
 
-        .btn-container {
-            text-align: center;
-            margin-top: 20px;
+        .composer {
+            max-width: 920px;
+            width: 100%;
+            margin: 0 auto;
+            border-top: 1px solid var(--line);
+            background: var(--bg);
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: end;
         }
 
-        .action-prompt {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #666;
+        .composer textarea {
+            width: 100%;
+            min-height: 142px;
+            max-height: none;
+            resize: none;
+            overflow-y: hidden;
+            border: 1px solid #d6dae0;
+            border-radius: 20px;
+            padding: 13px;
+            font: inherit;
+            line-height: 1.44;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .composer textarea:focus {
+            outline: none;
+            border-color: #9ca3af;
+            box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.18);
+        }
+
+        .send-btn {
+            min-width: 128px;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            background: #111827;
+            color: #fff;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.03);
+        }
+
+        .send-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.65;
+            transform: none;
+        }
+
+        .composer-help {
+            grid-column: 1 / -1;
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: -2px;
+        }
+
+        .error {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        @keyframes riseIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes dotPulse {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.45; }
+            40% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @media (max-width: 900px) {
+            .chat-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-meta {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .chat-shell {
+                height: 100dvh;
+            }
+
+            .chat-header {
+                padding: 14px;
+            }
+
+            .brand-logo {
+                width: 54px;
+                height: 54px;
+            }
+
+            .chat-log {
+                padding: 13px;
+            }
+
+            .message {
+                max-width: 96%;
+            }
+
+            .composer {
+                padding: 10px;
+                grid-template-columns: 1fr;
+            }
+
+            .send-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Frame 1: Input Stage -->
-    <div class="container input-stage" id="inputStage">
-        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
-        <div class="input-container">
-            <textarea 
-                class="input-field" 
-                id="promptInput" 
-                placeholder="Enter your natural language optimization problem here..."
-            >Assign 20 technicians to 4 shifts so that each shift has at least 4 people.</textarea>
-        </div>
-        <div class="input-actions">
-            <button class="icon-btn" title="View code">&lt;&gt;</button>
-            <button class="icon-btn" title="Submit" onclick="startTranslation()">↑</button>
-        </div>
-    </div>
-
-    <!-- Frame 2: Translation Stage -->
-    <div class="container translation-stage" id="translationStage">
-        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
-        <div class="prompt-reference" id="promptReference"></div>
-        
-        <div class="processing-log" id="processingLog"></div>
-        
-        <div class="qubo-summary" id="quboSummary" style="display: none;">
-            <h3>--- QUBO Summary ---</h3>
-            <div id="quboSummaryContent"></div>
-        </div>
-        
-        <div class="fidelity-section" id="fidelitySection" style="display: none;">
-            <div class="log-line">Reverse-translating QUBO back to natural language...</div>
-            <div class="log-line">Computing fidelity score...</div>
-            <div class="fidelity-score">
-                <span>Fidelity Score:</span>
-                <div class="fidelity-bar">
-                    <div class="fidelity-fill" id="fidelityFill"></div>
+    <main class="chat-shell">
+        <header class="chat-header">
+            <div class="brand-block">
+                <img class="brand-logo" src="/static/logowithtransparent.png" alt="Q logo">
+                <div class="title-wrap">
+                    <h1>Extreme's NL-QUBO Translation & Execution System</h1>
+                    <p>Natural-language optimization to validated QUBO and solver output</p>
                 </div>
-                <span class="fidelity-value" id="fidelityValue">0.87</span>
             </div>
-            <div class="reverse-translation" id="reverseTranslation"></div>
-        </div>
-        
-        <div class="action-prompt">Would you like to proceed to execution?</div>
-        <div class="btn-container">
-            <button class="btn" onclick="proceedToExecution()">Proceed</button>
-        </div>
-    </div>
+            <div class="header-meta">
+                <div class="meta-pill">Pipeline: Translate -> Validate -> Solve</div>
+                <div class="mode-pill" id="modePill" style="display:none;">DEMO FLOW</div>
+            </div>
+        </header>
 
-    <!-- Frame 3: Execution Stage -->
-    <div class="container execution-stage" id="executionStage">
-        <h1>Team Extreme's NL-QUBO Translation & Execution System</h1>
-        
-        <div class="execution-status" id="executionStatus"></div>
-        
-        <div class="solver-results" id="solverResults" style="display: none;">
-            <h3>--- Solver Results ---</h3>
-            <div id="solverResultsContent"></div>
-        </div>
-        
-        <div class="solution-preview" id="solutionPreview" style="display: none;">
-            <h3>Solution Preview</h3>
-            <div id="solutionPreviewContent"></div>
-        </div>
-        
-        <div class="action-prompt">Would you like to save logs and metrics?</div>
-        <div class="btn-container">
-            <button class="btn" onclick="saveResults()">Save</button>
-        </div>
-    </div>
+        <section id="chatLog" class="chat-log"></section>
+
+        <footer class="composer">
+            <textarea id="promptInput" placeholder="Describe your optimization problem..." autocomplete="off"></textarea>
+            <button id="sendBtn" class="send-btn" type="button">Translate Prompt</button>
+            <p class="composer-help">Shortcut: press Ctrl+Enter or Shift+Enter to translate</p>
+        </footer>
+    </main>
 
     <script>
-        let currentPrompt = '';
+        let currentPromptId = "";
+        let currentPromptText = "";
+        let latestResult = null;
+        let isBusy = false;
+        let lastBackendWarning = "";
 
-        function startTranslation() {
-            const prompt = document.getElementById('promptInput').value.trim();
-            if (!prompt) {
-                alert('Please enter a prompt');
+        const chatLog = document.getElementById("chatLog");
+        const promptInput = document.getElementById("promptInput");
+        const sendBtn = document.getElementById("sendBtn");
+        const modePill = document.getElementById("modePill");
+
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        function scrollToBottom() {
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function withBreaks(value) {
+            return escapeHtml(value).replace(/\n/g, "<br>");
+        }
+
+        async function parseResponseData(response) {
+            const text = await response.text();
+            if (!text) {
+                return {};
+            }
+            try {
+                return JSON.parse(text);
+            } catch (_err) {
+                return { message: text };
+            }
+        }
+
+        function addMessage(role, html) {
+            const node = document.createElement("article");
+            node.className = `message ${role}`;
+            node.innerHTML = html;
+            chatLog.appendChild(node);
+            scrollToBottom();
+            return node;
+        }
+
+        function addTyping(labelText) {
+            return addMessage("assistant", `
+                <div class="label">${labelText}</div>
+                <div class="typing"><span></span><span></span><span></span></div>
+            `);
+        }
+
+        function setBusy(flag) {
+            isBusy = flag;
+            sendBtn.disabled = flag;
+            promptInput.disabled = flag;
+            sendBtn.textContent = flag ? "Processing..." : "Translate Prompt";
+        }
+
+        async function syncModeBadge() {
+            if (!modePill) {
                 return;
             }
-            
-            currentPrompt = prompt;
-            
-            // Hide input stage, show translation stage
-            document.getElementById('inputStage').style.display = 'none';
-            document.getElementById('translationStage').style.display = 'block';
-            
-            // Show prompt reference
-            document.getElementById('promptReference').textContent = `"${prompt}"`;
-            
-            // Start processing animation
-            simulateTranslation();
+            try {
+                const response = await fetch("/health");
+                const data = await parseResponseData(response);
+                const isDemo = Boolean(data.demo_mode);
+                modePill.style.display = isDemo ? "inline-block" : "none";
+                modePill.textContent = isDemo ? "DEMO FLOW" : "";
+            } catch (_err) {
+                modePill.style.display = "none";
+                modePill.textContent = "";
+            }
         }
 
-        function simulateTranslation() {
-            const log = document.getElementById('processingLog');
-            log.innerHTML = '';
-            
-            const steps = [
-                'Translating prompt...',
-                'LLM translation completed.',
-                'Validating JSON...',
-                'JSON is valid',
-                'Compiling JSON into QUBO...',
-                'QUBO compilation successful'
-            ];
-            
-            let stepIndex = 0;
-            const interval = setInterval(() => {
-                if (stepIndex < steps.length) {
-                    const line = document.createElement('div');
-                    line.className = 'log-line';
-                    line.textContent = steps[stepIndex];
-                    log.appendChild(line);
-                    stepIndex++;
-                } else {
-                    clearInterval(interval);
-                    showQUBOSummary();
+        function autoGrowTextarea() {
+            promptInput.style.height = "auto";
+            promptInput.style.height = `${promptInput.scrollHeight}px`;
+        }
+
+        function renderTranslationSummary(data) {
+            const summary = data.qubo_summary || {};
+            const fidelity = data.fidelity || {};
+            const quality = data.model_quality || {};
+            const fidelityPercent = Math.max(0, Math.min(100, Number(fidelity.score ?? 0) * 100));
+            const qualityPercent = Math.max(0, Math.min(100, Number(quality.score ?? 0) * 100));
+            const backendMode = data.backend_mode || "demo-mock";
+            const constraints = Array.isArray(summary.constraints)
+                ? summary.constraints.map((c) => {
+                    if (typeof c === "string") {
+                        return c;
+                    }
+                    if (c && typeof c === "object" && c.expression) {
+                        return c.expression;
+                    }
+                    return JSON.stringify(c);
+                }).join(", ")
+                : "N/A";
+
+            addMessage("assistant", `
+                <div class="label">Translator</div>
+                <div class="mono">Translating prompt...
+LLM translation completed.
+
+Validating JSON...
+JSON is valid
+
+Compiling JSON into QUBO...
+QUBO compilation successful
+
+--- QUBO Summary ---
+Variables: ${summary.variables ?? "N/A"}
+Objective: ${escapeHtml(summary.objective ?? "N/A")}
+Constraints: ${escapeHtml(constraints)}
+Model Size: ${summary.term_count ?? "N/A"} binary variables
+Backend: ${backendMode}
+                ----------------------------------------------------------</div>
+                <div class="result-metric">
+                    Fidelity Score: <span class="success-tag">${fidelityPercent.toFixed(1)}%</span>
+                </div>
+                <div class="result-metric">
+                    Model Quality: <span class="success-tag">${qualityPercent.toFixed(1)}%</span>
+                </div>
+                <div class="result-note"><strong>Reverse Translation:</strong><br>"${withBreaks(fidelity.reverse_translation || "N/A")}"</div>
+                <div class="result-note"><strong>Quality Notes:</strong><br>${withBreaks((quality.issues || []).join("\n") || "None")}</div>
+            `);
+
+            if (data.warning) {
+                lastBackendWarning = String(data.warning);
+                addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
+            }
+        }
+
+        function renderExecutionResult(data) {
+            const result = data.result || {};
+            const solution = Array.isArray(result.solution) ? result.solution : [];
+            const rawSolution = Array.isArray(result.raw_solution_preview) ? result.raw_solution_preview : solution;
+            const decisionPlan = Array.isArray(result.decision_plan) ? result.decision_plan : [];
+            const overview = result.solution_overview || {};
+            const quality = result.model_quality || data.model_quality || {};
+            const objective = result.objective_breakdown || {};
+            const violated = Array.isArray(result.violated_constraints) ? result.violated_constraints : [];
+            const simple = result.simple_answer || {};
+            const backendMode = data.backend_mode || "demo-mock";
+
+            const rows = rawSolution.map((row) => {
+                if (row.driver && Array.isArray(row.deliveries)) {
+                    return `Driver ${row.driver} - Deliveries ${row.deliveries.join(", ")}`;
                 }
-            }, 800);
+                if (row.driver && row.reserved_for) {
+                    return `Driver ${row.driver} - Reserved for ${row.reserved_for}`;
+                }
+                if (row.variable !== undefined && row.value !== undefined) {
+                    return `${row.variable} = ${row.value}`;
+                }
+                if (row.note) {
+                    return row.note;
+                }
+                if (typeof row === "string") {
+                    return row;
+                }
+                return JSON.stringify(row);
+            }).join("\n");
+
+            const actions = Array.isArray(simple.actions) ? simple.actions : [];
+            const whyNot = Array.isArray(simple.why_not) ? simple.why_not : [];
+            const nextSteps = Array.isArray(simple.next_steps) ? simple.next_steps : [];
+            const actionLines = actions.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const whyLines = whyNot.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const nextLines = nextSteps.map((text, idx) => `${idx + 1}. ${text}`).join("\n");
+            const decisionPlanLines = decisionPlan.join("\n");
+            const topLinear = Array.isArray(objective.top_linear_terms) ? objective.top_linear_terms : [];
+            const topQuadratic = Array.isArray(objective.top_quadratic_terms) ? objective.top_quadratic_terms : [];
+            const linearLines = topLinear.map((t) => `${t.term}: coef=${Number(t.coef).toFixed(4)}, contribution=${Number(t.contribution).toFixed(4)}`).join("\n");
+            const quadraticLines = topQuadratic.map((t) => `${t.term}: coef=${Number(t.coef).toFixed(4)}, contribution=${Number(t.contribution).toFixed(4)}`).join("\n");
+            const violatedLines = violated.map((v) => {
+                const residual = v.residual === null || v.residual === undefined ? "N/A" : Number(v.residual).toFixed(6);
+                const lhs = v.lhs_value === undefined ? "N/A" : Number(v.lhs_value).toFixed(6);
+                const rhs = v.rhs_value === undefined ? "N/A" : Number(v.rhs_value).toFixed(6);
+                return `${v.label || "Constraint"}: residual=${residual}, lhs=${lhs}, rhs=${rhs}, expr=${v.expression || "N/A"}`;
+            }).join("\n");
+
+            addMessage("assistant", `
+                <div class="label">Solver</div>
+                <div class="mono">Running QUBO on local solver...
+Execution complete
+
+--- Simple Answer ---
+${escapeHtml(simple.headline || "No clear answer yet.")}
+Status: ${escapeHtml(simple.status || "N/A")}
+Confidence: ${escapeHtml(simple.confidence || "N/A")} (${simple.quality_percent ?? "N/A"}%)
+Runtime: ${simple.runtime_s ?? result.runtime_s ?? "N/A"} seconds
+
+What to do:
+${escapeHtml(actionLines || "No clear actions were extracted.")}
+
+If no valid plan was found:
+${escapeHtml(whyLines || "N/A")}
+
+Next step:
+${escapeHtml(nextLines || "N/A")}
+
+Technical details (optional):
+Solver Verdict: ${escapeHtml(result.solver_summary || "N/A")}
+Feasible: ${result.feasible === true ? "Yes" : "No"}
+Rule Violations: ${result.constraint_violations ?? "N/A"}
+Decision Plan:
+${escapeHtml(decisionPlanLines || "None")}
+Top failed rules:
+${escapeHtml(violatedLines || "None")}
+Raw Selected Variables:
+${escapeHtml(rows || "None")}</div>
+            `);
+
+            if (data.warning && String(data.warning) !== lastBackendWarning) {
+                lastBackendWarning = String(data.warning);
+                addMessage("assistant", `<span class="error">${escapeHtml(data.warning)}</span>`);
+            }
+
+            const saveMsg = addMessage("assistant", `
+                <div>Would you like to save logs and metrics?</div>
+                <div class="action-row">
+                    <button class="action" id="saveBtn" type="button">Save</button>
+                </div>
+            `);
+
+            const saveBtn = saveMsg.querySelector("#saveBtn");
+            saveBtn.addEventListener("click", saveResultPayload);
         }
 
-        function showQUBOSummary() {
-            const summary = document.getElementById('quboSummary');
-            const content = document.getElementById('quboSummaryContent');
-            
-            content.innerHTML = `
-                <p><strong>Variables:</strong> x_1 ... x_20</p>
-                <p><strong>Objective:</strong> minimize overtime hours</p>
-                <p><strong>Constraints:</strong> shift coverage, max technicians per shift</p>
-                <p><strong>QUBO size:</strong> 420 terms</p>
-            `;
-            
-            summary.style.display = 'block';
-            
-            // Show fidelity section after a delay
-            setTimeout(() => {
-                showFidelitySection();
-            }, 1000);
+        function addProceedButton() {
+            const msg = addMessage("assistant", `
+                <div>Would you like to proceed to execution?</div>
+                <div class="action-row">
+                    <button class="action" id="proceedBtn" type="button">Proceed</button>
+                </div>
+            `);
+
+            const proceedBtn = msg.querySelector("#proceedBtn");
+            proceedBtn.addEventListener("click", proceedToExecution);
         }
 
-        function showFidelitySection() {
-            const fidelitySection = document.getElementById('fidelitySection');
-            const fidelityFill = document.getElementById('fidelityFill');
-            const fidelityValue = document.getElementById('fidelityValue');
-            const reverseTranslation = document.getElementById('reverseTranslation');
-            
-            fidelitySection.style.display = 'block';
-            
-            // Animate fidelity bar
-            const score = 0.87;
-            setTimeout(() => {
-                fidelityFill.style.width = (score * 100) + '%';
-                fidelityValue.textContent = score.toFixed(2);
-                reverseTranslation.textContent = `Reverse Translation: 'The system schedules 20 technicians across 4 shifts with constraints to reduce overtime.'`;
-            }, 500);
+        async function startTranslation() {
+            if (isBusy) {
+                return;
+            }
+
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                addMessage("assistant", '<span class="error">Please enter a prompt first.</span>');
+                return;
+            }
+
+            currentPromptText = prompt;
+            currentPromptId = "";
+            latestResult = null;
+            lastBackendWarning = "";
+
+            addMessage("user", `<div>${withBreaks(prompt)}</div>`);
+            setBusy(true);
+
+            const typing = addTyping("Translator");
+            try {
+                const call = fetch("/api/translate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt_text: prompt })
+                });
+
+                const [response] = await Promise.all([call, sleep(1400)]);
+                const data = await parseResponseData(response);
+                typing.remove();
+
+                if (!response.ok) {
+                    const detail = data.details ? ` (${data.details})` : "";
+                    throw new Error((data.message || "Translation failed.") + detail);
+                }
+
+                currentPromptId = data.prompt_id || "";
+                renderTranslationSummary(data);
+                addProceedButton();
+            } catch (error) {
+                typing.remove();
+                addMessage("assistant", `<span class="error">Translation failed: ${escapeHtml(error.message)}</span>`);
+            } finally {
+                setBusy(false);
+            }
         }
 
-        function proceedToExecution() {
-            // Hide translation stage, show execution stage
-            document.getElementById('translationStage').style.display = 'none';
-            document.getElementById('executionStage').style.display = 'block';
-            
-            // Start execution simulation
-            simulateExecution();
+        async function proceedToExecution() {
+            if (isBusy) {
+                return;
+            }
+
+            if (!currentPromptId) {
+                addMessage("assistant", '<span class="error">No translated prompt found. Please translate first.</span>');
+                return;
+            }
+
+            setBusy(true);
+            const typing = addTyping("Solver");
+
+            try {
+                const call = fetch("/api/execute", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt_id: currentPromptId, solver: "local" })
+                });
+
+                const [response] = await Promise.all([call, sleep(2300)]);
+                const data = await parseResponseData(response);
+                typing.remove();
+
+                if (!response.ok) {
+                    const detail = data.details ? ` (${data.details})` : "";
+                    throw new Error((data.message || "Execution failed.") + detail);
+                }
+
+                latestResult = data.result || null;
+                renderExecutionResult(data);
+            } catch (error) {
+                typing.remove();
+                addMessage("assistant", `<span class="error">Execution failed: ${escapeHtml(error.message)}</span>`);
+            } finally {
+                setBusy(false);
+            }
         }
 
-        function simulateExecution() {
-            const status = document.getElementById('executionStatus');
-            status.innerHTML = '';
-            
-            const statusLine1 = document.createElement('div');
-            statusLine1.className = 'status-line';
-            statusLine1.textContent = 'Running QUBO on local solver...';
-            status.appendChild(statusLine1);
-            
-            setTimeout(() => {
-                const statusLine2 = document.createElement('div');
-                statusLine2.className = 'status-line status-success';
-                statusLine2.textContent = 'Execution complete ✓';
-                status.appendChild(statusLine2);
-                
-                setTimeout(() => {
-                    showSolverResults();
-                }, 500);
-            }, 1500);
+        function saveResultPayload() {
+            if (!latestResult) {
+                addMessage("assistant", '<span class="error">No execution result to save yet.</span>');
+                return;
+            }
+
+            const payload = {
+                prompt_id: currentPromptId,
+                prompt: currentPromptText,
+                result: latestResult
+            };
+
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = `demo_result_${currentPromptId || "unknown"}.json`;
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+            URL.revokeObjectURL(url);
+
+            addMessage("system", "Result payload downloaded.");
         }
 
-        function showSolverResults() {
-            const results = document.getElementById('solverResults');
-            const content = document.getElementById('solverResultsContent');
-            
-            content.innerHTML = `
-                <p><strong>Best Objective Value:</strong> 14.0 overtime hours</p>
-                <p><strong>Feasible:</strong> Yes</p>
-                <p><strong>Runtime:</strong> 0.38 seconds</p>
-            `;
-            
-            results.style.display = 'block';
-            
-            setTimeout(() => {
-                showSolutionPreview();
-            }, 500);
-        }
-
-        function showSolutionPreview() {
-            const preview = document.getElementById('solutionPreview');
-            const content = document.getElementById('solutionPreviewContent');
-            
-            content.innerHTML = `
-                <p>Shift 1: 5 technicians</p>
-                <p>Shift 2: 5 technicians</p>
-                <p>Shift 3: 5 technicians</p>
-                <p>Shift 4: 5 technicians</p>
-            `;
-            
-            preview.style.display = 'block';
-        }
-
-        function saveResults() {
-            alert('Logs and metrics saved successfully!');
-            // In a real implementation, this would save to a file or database
-        }
-
-        // Allow Enter key to submit (Ctrl+Enter or Shift+Enter)
-        document.getElementById('promptInput').addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.shiftKey) && e.key === 'Enter') {
+        sendBtn.addEventListener("click", startTranslation);
+        promptInput.addEventListener("input", autoGrowTextarea);
+        promptInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" && (event.ctrlKey || event.shiftKey)) {
                 startTranslation();
             }
         });
+
+        // Always start with a blank prompt box (even if browser restores old form values).
+        const clearPromptBox = () => {
+            promptInput.value = "";
+            promptInput.defaultValue = "";
+        };
+        clearPromptBox();
+        window.addEventListener("pageshow", clearPromptBox);
+        autoGrowTextarea();
+        syncModeBadge();
+
+        addMessage("assistant", `
+            <div class="label">System</div>
+            Paste your prompt, then click <strong>Translate Prompt</strong>.<br>
+            Translation and solving include a brief simulated processing delay in the UI.
+        `);
     </script>
 </body>
 </html>
